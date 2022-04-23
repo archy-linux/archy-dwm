@@ -114,9 +114,9 @@ static Key keys[] = {
 	{ 0,                            XF86MonBrightnessUp,   spawn, {.v = brightness_up } },
 	{ 0,                            XF86MonBrightnessDown, spawn, {.v = brightness_down } },
 	// Sound controllers
-	{ 0,                            XF86AudioRiseVolume, spawn, {.v = cmdsoundup } },
-	{ 0,                            XF86AudioLowerVolume, spawn, {.v = cmdsounddwon } },
-	{ 0,                            XF86AudioMute, spawn, {.v = cmdsoundtoggle } },
+//	{ 0,                            XF86AudioRiseVolume, spawn, {.v = cmdsoundup } },
+//	{ 0,                            XF86AudioLowerVolume, spawn, {.v = cmdsounddwon } },
+//	{ 0,                            XF86AudioMute, spawn, {.v = cmdsoundtoggle } },
 };
 
 /* button definitions */
