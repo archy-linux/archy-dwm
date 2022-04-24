@@ -26,11 +26,6 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
-static const char *brightness_up[] = { "xbacklight", "-inc", "5%"};
-static const char *brightness_down[] = { "xbacklight", "-dec", "5%"};
-static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
-static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
-static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -60,11 +55,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask // win/super key
-#define XF86AudioMute 0x1008ff12
-#define XF86AudioLowerVolume 0x1008ff11
-#define XF86AudioRaiseVolume 0x1008ff13
-#define XF86MonBrightnessDown 0x1008ff03
-#define XF86MonBrightnessUp 0x1008ff02
+
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -79,8 +70,15 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 
-#include "movestack.c"
+static const char *brightness_up[] = { "xbacklight", "-inc", "5%"};
+static const char *brightness_down[] = { "xbacklight", "-dec", "5%"};
+static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
+static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
+static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 
+#include "movestack.c"
+// X11 keysym definitions
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY|ShiftMask,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -139,12 +137,16 @@ static Key keys[] = {
 	// Kill dwm
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
 	// Brightness
-	{ 0,                            XF86MonBrightnessUp,   spawn, {.v = brightness_up } },
-	{ 0,                            XF86MonBrightnessDown, spawn, {.v = brightness_down } },
+	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brightness_up } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightness_down } },
 	// Sound controllers
-//	{ 0,                            XF86AudioRiseVolume, spawn, {.v = cmdsoundup } },
-//	{ 0,                            XF86AudioLowerVolume, spawn, {.v = cmdsounddwon } },
-//	{ 0,                            XF86AudioMute, spawn, {.v = cmdsoundtoggle } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = cmdsoundup } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = cmdsounddown } },
+	{ 0,                            XF86XK_AudioMute, spawn, {.v = cmdsoundtoggle } },
+	// Media controls (requires playerctl)
+	{ 0,                            XF86XK_AudioPlay,	spawn,	SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioNext,	spawn,	SHCMD("playerctl next") },
+	{ 0,                            XF86XK_AudioPrev,	spawn,	SHCMD("playerctl previous")  },
 };
 
 /* button definitions */
