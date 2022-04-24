@@ -134,6 +134,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	// Lock the screen
+	{ MODKEY|ShiftMask,    	        XK_x,     spawn,                SHCMD("betterlockscreen -l dim") },
 	// Kill dwm
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
 	// Brightness
