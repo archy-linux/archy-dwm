@@ -2,6 +2,7 @@
 
 /* def */
 #define WEBBROWSER "google-chrome-stable"
+#define TERMINAL "alacritty"
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 3;        /* gaps size between windows */
@@ -58,7 +59,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod4Mask // win/super key
 #define XF86AudioMute 0x1008ff12
 #define XF86AudioLowerVolume 0x1008ff11
 #define XF86AudioRaiseVolume 0x1008ff13
@@ -76,16 +77,22 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,                       XK_d,      spawn,          {.v = dmenucmd } },
+	// Start the terminal
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
+	// Start the terminal with tmux
+	{ MODKEY|ShiftMask,                       XK_Return, spawn,         SHCMD(TERMINAL " -e tmux")  },
+	// Full screen mode
+	{ MODKEY,             XK_f,      fullscreen,     {0} },
+	// Start the web browser
 	{ MODKEY,                       XK_w,      spawn,          SHCMD(WEBBROWSER) },
-
+	// Toggle the slstatus bar (hide/show)
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -94,12 +101,18 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 //	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
+	// Quit from the foucsed window (kill)
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
+	// Tiled layout
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	// Floating layout
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	// Monocle layout
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+
+	{ MODKEY|ShiftMask,                       XK_space,  setlayout,      {0} },
+	{ MODKEY|ShiftMask,             XK_f,  togglefloating, {0} },
+
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -115,7 +128,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	// Kill dwm
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
+	// Brightness
 	{ 0,                            XF86MonBrightnessUp,   spawn, {.v = brightness_up } },
 	{ 0,                            XF86MonBrightnessDown, spawn, {.v = brightness_down } },
 	// Sound controllers
