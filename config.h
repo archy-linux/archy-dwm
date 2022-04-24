@@ -82,15 +82,22 @@ static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "togg
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ShiftMask,                       XK_d,      spawn,          {.v = dmenucmd } },
+	/* ---------------------------------- Apps Keys ---------------------------------- */
+	// Dmenu (launcher)
+	{ MODKEY|ShiftMask,             XK_d,      spawn,                  {.v = dmenucmd } },
 	// Start the terminal
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,                  {.v = termcmd } },
 	// Start the terminal with tmux
-	{ MODKEY|ShiftMask,                       XK_Return, spawn,         SHCMD(TERMINAL " -e tmux")  },
-	// Full screen mode
-	{ MODKEY,             XK_f,      fullscreen,     {0} },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,            SHCMD(TERMINAL " -e tmux")  },
 	// Start the web browser
-	{ MODKEY,                       XK_w,      spawn,          SHCMD(WEBBROWSER) },
+	{ MODKEY,                       XK_w,      spawn,            SHCMD(WEBBROWSER) },
+	// Discord
+	{ MODKEY|ShiftMask,             XK_b,        spawn,          SHCMD("discord") },
+	// Jetbrains toolbox
+	{ MODKEY|ShiftMask,             XK_j,        spawn,          SHCMD("jetbrains-toolbox") },
+	/* ---------------------------------- dwm Keys ---------------------------------- */
+	// Full screen mode
+	{ MODKEY,				        XK_f,      fullscreen,     {0} },
 	// Toggle the slstatus bar (hide/show)
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 
@@ -115,8 +122,8 @@ static Key keys[] = {
 	// Monocle layout
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 
-	{ MODKEY|ShiftMask,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_f,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
+	{ MODKEY|ShiftMask,             XK_f,  togglefloating,     {0} },
 
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -133,26 +140,28 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	// Lock the screen
-	{ MODKEY|ShiftMask,    	        XK_x,     spawn,                SHCMD("betterlockscreen -l dim") },
 	// Kill dwm
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
+	/* ---------------------------------- Control Keys ---------------------------------- */
 	// Brightness
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brightness_up } },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightness_down } },
 	// Sound controllers
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = cmdsoundup } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = cmdsounddown } },
-	{ 0,                            XF86XK_AudioMute, spawn, {.v = cmdsoundtoggle } },
+	{ 0,                            XF86XK_AudioMute,        spawn, {.v = cmdsoundtoggle } },
 	// Media controls (requires playerctl)
-	{ 0,                            XF86XK_AudioPlay,	spawn,	SHCMD("playerctl play-pause") },
-	{ 0,                            XF86XK_AudioStop,   spawn,  SHCMD("playerctl stop") },
-	{ 0,                            XF86XK_AudioNext,	spawn,	SHCMD("playerctl next") },
-	{ 0,                            XF86XK_AudioPrev,	spawn,	SHCMD("playerctl previous")  },
+	{ 0,                            XF86XK_AudioPlay,	     spawn,	SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioStop,        spawn, SHCMD("playerctl stop") },
+	{ 0,                            XF86XK_AudioNext,	     spawn,	SHCMD("playerctl next") },
+	{ 0,                            XF86XK_AudioPrev,	     spawn,	SHCMD("playerctl previous")  },
     // Mute and unmute mic
-	{ 0,							XF86XK_AudioMicMute,	spawn,		SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	{ 0,							XF86XK_AudioMicMute,	spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 	// Take a screenshot
-	{ 0,							XK_Print,				spawn,		SHCMD(SCREENSHOT) },
+	{ 0,							XK_Print,				spawn, SHCMD(SCREENSHOT) },
+	/* ---------------------------------- lock Keys ---------------------------------- */
+	// Lock the screen
+	{ MODKEY|ShiftMask,    	        XK_x,     spawn,          SHCMD("betterlockscreen -l dim") },
 };
 
 /* button definitions */
