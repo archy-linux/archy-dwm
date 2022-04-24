@@ -145,8 +145,11 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute, spawn, {.v = cmdsoundtoggle } },
 	// Media controls (requires playerctl)
 	{ 0,                            XF86XK_AudioPlay,	spawn,	SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioStop,   spawn,  SHCMD("playerctl stop") },
 	{ 0,                            XF86XK_AudioNext,	spawn,	SHCMD("playerctl next") },
 	{ 0,                            XF86XK_AudioPrev,	spawn,	SHCMD("playerctl previous")  },
+    // Mute and unmute mic
+	{ 0,							XF86XK_AudioMicMute,	spawn,		SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 };
 
 /* button definitions */
