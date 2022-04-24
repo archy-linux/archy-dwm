@@ -94,7 +94,7 @@ static Key keys[] = {
 	// Discord
 	{ MODKEY|ShiftMask,             XK_b,        spawn,          SHCMD("discord") },
 	// Jetbrains toolbox
-	{ MODKEY|ShiftMask,             XK_j,        spawn,          SHCMD("jetbrains-toolbox") },
+	{ MODKEY|ShiftMask,             XK_t,        spawn,          SHCMD("jetbrains-toolbox") },
 	/* ---------------------------------- dwm Keys ---------------------------------- */
 	// Full screen mode
 	{ MODKEY,				        XK_f,      fullscreen,     {0} },
