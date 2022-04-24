@@ -3,6 +3,7 @@
 /* def */
 #define WEBBROWSER "google-chrome-stable"
 #define TERMINAL "alacritty"
+#define SCREENSHOT "spectacle"
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 3;        /* gaps size between windows */
@@ -150,6 +151,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioPrev,	spawn,	SHCMD("playerctl previous")  },
     // Mute and unmute mic
 	{ 0,							XF86XK_AudioMicMute,	spawn,		SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	// Take a screenshot
+	{ 0,							XK_Print,				spawn,		SHCMD(SCREENSHOT) },
 };
 
 /* button definitions */
