@@ -16,6 +16,6 @@ jobs:
     - name: install libs
       run: sudo apt-get install libxinerama1 libxinerama-dev
     - name: make install test
-      run: make install 
+      run: sudo make install 
     - name: make uninstall
-      run: make uninstall
+      run: sudo make uninstall
