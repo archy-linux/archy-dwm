@@ -4,6 +4,7 @@
 #define WEBBROWSER		 "google-chrome-stable"
 #define TERMINAL		 "alacritty"
 #define SCREENSHOT		 "spectacle"
+#define GUI_FILEMANAGER	 "dolphin"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -102,7 +103,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,                  {.v = termcmd } },
 	// Start the terminal with tmux
 	{ MODKEY|ShiftMask,             XK_Return, spawn,            SHCMD(TERMINAL " -e tmux")  },
-	// Start the web browser
+	// File browsers
+	{ MODKEY|ShiftMask,             XK_f,      spawn,                  SHCMD(GUI_FILEMANAGER) },
+
+	// Start the web brower
 	{ MODKEY,                       XK_w,      spawn,            SHCMD(WEBBROWSER) },
 	// Discord
 	{ MODKEY|ShiftMask,             XK_b,        spawn,          SHCMD("discord") },
