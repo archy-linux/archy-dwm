@@ -4,6 +4,7 @@
 #define WEBBROWSER		 "google-chrome-stable"
 #define TERMINAL		 "alacritty"
 #define SCREENSHOT		 "spectacle"
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 3;        /* gaps size between windows */
@@ -27,6 +28,11 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
+// Autostart programs
+static const char *const autostart[] = {
+   "st", NULL,
+    NULL /* terminate */
+ };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
