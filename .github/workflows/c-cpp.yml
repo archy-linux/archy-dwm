@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: install libs
+      run: apt-get install libxinerama1 libxinerama-dev
     - name: make install test
       run: make install 
     - name: make uninstall
