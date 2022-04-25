@@ -30,7 +30,8 @@ static const char *colors[][3]      = {
 };
 // Autostart programs
 static const char *const autostart[] = {
-   "st", NULL,
+   "slstatus", NULL,
+    "setxkbmap", "-model", "pc101", "-layout", "us,ru", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
     NULL /* terminate */
  };
 
