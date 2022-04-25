@@ -30,9 +30,12 @@ static const char *colors[][3]      = {
 };
 // Autostart programs
 static const char *const autostart[] = {
+	// Start my build of slstatus
    "slstatus", NULL,
+   // Keyboard layouts switch (requires setxkbmap)
     "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
-	"xcompmgr", NULL,
+	"picom", NULL, // Start compositor , for transparency
+    "nitrogen --restore", NULL, // Restores the wallpaper
     NULL /* terminate */
  };
 
