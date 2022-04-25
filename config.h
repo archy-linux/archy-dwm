@@ -96,6 +96,8 @@ static Key keys[] = {
 	/* ---------------------------------- Apps Keys ---------------------------------- */
 	// Dmenu (launcher)
 	{ MODKEY|ShiftMask,             XK_d,      spawn,                  {.v = dmenucmd } },
+	// Rofi launcher (small)
+	{ MODKEY|ShiftMask|ControlMask, XK_d,      spawn,                  SHCMD("rofi -show drun") }, 
 	// Start the terminal
 	{ MODKEY,                       XK_Return, spawn,                  {.v = termcmd } },
 	// Start the terminal with tmux
