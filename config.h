@@ -112,6 +112,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_b,        spawn,          SHCMD("discord") },
 	// Jetbrains toolbox
 	{ MODKEY|ShiftMask,             XK_t,        spawn,          SHCMD("jetbrains-toolbox") },
+	// Emoji selector (rofi)
+	{ Mod4Mask,                    XK_period,   spawn,          SHCMD("rofi -show emoji") },
 	/* ---------------------------------- dwm Keys ---------------------------------- */
 	// Full screen mode
 	{ MODKEY,				        XK_f,      fullscreen,     {0} },
