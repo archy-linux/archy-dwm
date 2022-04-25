@@ -91,7 +91,7 @@ static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "togg
 
 #include "movestack.c"
 // X11 keysym definitions
-#include <X11/XF86keysym.h>
+#include <X11/XF86keysym.h> // req (libxinerama1 and libxinerama-dev)
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* ---------------------------------- Apps Keys ---------------------------------- */
@@ -102,16 +102,17 @@ static Key keys[] = {
 	// Start the terminal
 	{ MODKEY,                       XK_Return, spawn,                  {.v = termcmd } },
 	// Start the terminal with tmux
-	{ MODKEY|ShiftMask,             XK_Return, spawn,            SHCMD(TERMINAL " -e tmux")  },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,           SHCMD(TERMINAL " -e tmux")  },
 	// File browsers
-	{ MODKEY|ShiftMask,             XK_f,      spawn,                  SHCMD(GUI_FILEMANAGER) },
-    { MODKEY|ShiftMask|ControlMask, XK_f,      spawn,                  SHCMD("rofi -show filebrowser") },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,           SHCMD(GUI_FILEMANAGER) },
+	// Rofi file browser (small)
+    { MODKEY|ShiftMask|ControlMask, XK_f,      spawn,           SHCMD("rofi -show filebrowser") },
 	// Start the web brower
-	{ MODKEY,                       XK_w,      spawn,            SHCMD(WEBBROWSER) },
+	{ MODKEY,                       XK_w,      spawn,           SHCMD(WEBBROWSER) },
 	// Discord
-	{ MODKEY|ShiftMask,             XK_b,        spawn,          SHCMD("discord") },
+	{ MODKEY|ShiftMask,             XK_b,        spawn,         SHCMD("discord") },
 	// Jetbrains toolbox
-	{ MODKEY|ShiftMask,             XK_t,        spawn,          SHCMD("jetbrains-toolbox") },
+	{ MODKEY|ShiftMask,             XK_t,        spawn,         SHCMD("jetbrains-toolbox") },
 	// Emoji selector (rofi)
 	{ Mod4Mask,                    XK_period,   spawn,          SHCMD("rofi -show emoji") },
 	/* ---------------------------------- dwm Keys ---------------------------------- */
