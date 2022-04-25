@@ -105,7 +105,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,            SHCMD(TERMINAL " -e tmux")  },
 	// File browsers
 	{ MODKEY|ShiftMask,             XK_f,      spawn,                  SHCMD(GUI_FILEMANAGER) },
-
+    { MODKEY|ShiftMask|ControlMask, XK_f,      spawn,                  SHCMD("rofi -show filebrowser") },
 	// Start the web brower
 	{ MODKEY,                       XK_w,      spawn,            SHCMD(WEBBROWSER) },
 	// Discord
