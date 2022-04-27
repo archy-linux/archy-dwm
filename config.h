@@ -36,7 +36,7 @@ static const char *const autostart[] = {
 	// Keyboard layouts switch (requires setxkbmap)
 	"setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
 	"picom", NULL, // Start compositor , for transparency
-    "nitrogen --restore", NULL, // Restores the wallpaper
+    "nitrogen", "--restore", NULL, // Restores the wallpaper
      NULL /* terminate */
  };
 
