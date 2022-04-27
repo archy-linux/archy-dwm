@@ -85,9 +85,6 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 
 static const char *brightness_up[] = { "xbacklight", "-inc", "5%"};
 static const char *brightness_down[] = { "xbacklight", "-dec", "5%"};
-static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
-static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
-static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 
 #include "movestack.c"
 // X11 keysym definitions
@@ -166,10 +163,10 @@ static Key keys[] = {
 	// Brightness
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brightness_up } },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightness_down } },
-	// Sound controllers
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = cmdsoundup } },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = cmdsounddown } },
-	{ 0,                            XF86XK_AudioMute,        spawn, {.v = cmdsoundtoggle } },
+	// Sound controllers (requires pamixer)
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --allow-boost -i 4") },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 4") },
+	{ 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
 	// Media controls (requires playerctl)
 	{ 0,                            XF86XK_AudioPlay,	     spawn,	SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioStop,        spawn, SHCMD("playerctl stop") },
