@@ -83,9 +83,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 
-static const char *brightness_up[] = { "xbacklight", "-inc", "5%"};
-static const char *brightness_down[] = { "xbacklight", "-dec", "5%"};
-
 #include "movestack.c"
 // X11 keysym definitions
 #include <X11/XF86keysym.h> // req (libxinerama1 and libxinerama-dev)
@@ -160,9 +157,9 @@ static Key keys[] = {
 	// Kill dwm
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
 	/* ---------------------------------- Control Keys ---------------------------------- */
-	// Brightness
-	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brightness_up } },
-	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightness_down } },
+	// Brightness controllers (requires xbacklight)
+	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
 	// Sound controllers (requires pamixer)
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --allow-boost -i 4") },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 4") },
