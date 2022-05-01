@@ -158,8 +158,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	// Kill dwm
-	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
+	// Kill dwm (super + shift + alt + q)
+	{ MODKEY|ShiftMask|Mod1Mask,             XK_c,      quit,           {0} },
 	/* ---------------------------------- Control Keys ---------------------------------- */
 	// Brightness controllers (requires xbacklight)
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
@@ -180,8 +180,8 @@ static Key keys[] = {
 	/* ---------------------------------- lock Keys ---------------------------------- */
 	// Lock the screen
 	{ MODKEY|ShiftMask,    	        XK_x,     spawn,          SHCMD("betterlockscreen -l dim") },
-	// Plasma screen lock (super + alt + shift + x)
-	{ MODKEY|Mod1Mask|ShiftMask,              XK_x,     spawn,          SHCMD("qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1") }
+	// Plasma screen lock (super + ctrl + shift + x)
+	{ MODKEY|ShiftMask|ControlMask, XK_x,     spawn,          SHCMD("qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1") }
 };
 
 /* button definitions */
