@@ -17,17 +17,16 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=11", "Noto Color Emoji:size=11", "Nerd Font Mono:weight=bold:size=10:antialias=true:hinting=true" };
+static const char *fonts[]          = { "monospace:size=11", "Noto Color Emoji:size=11", "Nerd Font Mono:weight=bold:size=15:antialias=true:hinting=true" };
 static const char dmenufont[]       = "monospace:size=11";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#015537";
+static const char col_1[]       = "#282c34"; // Background color of bar
+static const char col_2[]       = "#282c34"; // Background color of unfocused windows border 
+static const char col_3[]       = "#d7d7d7";
+static const char col_4[]       = "#018858"; // Background color of focused windows border and tags (main color acent)
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_3, col_1, col_2 },
+	[SchemeSel]  = { col_3, col_4,  col_4  },
 };
 // Autostart programs
 static const char *const autostart[] = {
@@ -43,7 +42,7 @@ static const char *const autostart[] = {
 
 /* tagging */
 // static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -85,7 +84,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_1, "-nf", col_3, "-sb", col_4, "-sf", col_1, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 
 #include "movestack.c"
