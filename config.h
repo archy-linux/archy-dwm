@@ -17,7 +17,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=11", "Noto color emoji:size=13" };
+static const char *fonts[]          = { "monospace:size=11", "Noto Color Emoji:size=11" };
 static const char dmenufont[]       = "monospace:size=11";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -36,7 +36,8 @@ static const char *const autostart[] = {
 	// Keyboard layouts switch (requires setxkbmap)
 	"setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
 	"picom", NULL, // Start compositor , for transparency
-    "nitrogen", "--restore", NULL, // Restores the wallpaper
+    // "nitrogen", "--restore", NULL, // Restores the wallpaper
+    "wal", "-i" ,"/mnt/Data/Personalize/Wallpapers/y7r781tsgoa81.png", NULL, // Change backround and color theame
      NULL /* terminate */
  };
 
