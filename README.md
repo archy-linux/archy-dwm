@@ -15,6 +15,7 @@
 - [systray](https://dwm.suckless.org/patches/systray)
 - [sticky](https://dwm.suckless.org/patches/sticky)
 - [noborder](https://dwm.suckless.org/patches/noborder)
+- [fibonacci layouts](https://dwm.suckless.org/patches/fibonacci)
 
 ### Keys
 | Keys                           | Function                                                              |
@@ -48,6 +49,8 @@
 | modkey + s -> f                | Use the float layout                                                  |
 | modkey + s -> m                | Use the monocle layout                                                |
 | modkey + s -> g                | Use the grid layout                                                   |
+| modkey + s -> r                | Use the spial layout (part from fibonacci layouts)                    |
+| modkey + s -> shift + r        | Use the dwindle layout (part from fibonacci layouts)                  |
 | modkey + s -> space            | Toggle between current layout and tile layout                         |
 | modkey + shift + s             | Toggle sticky mode                                                    |
 | modkey + alt + f               | Toggle floating window                                                |

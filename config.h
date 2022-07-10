@@ -60,13 +60,15 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
-#include "layouts.c"
+#include "layouts/layouts.h"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
-	{ "HHH",      grid },
+	{ "[]=",      tile     },    /* first entry is default */
+	{ "><>",      NULL     },    /* no layout function means floating behavior */
+	{ "[M]",      monocle  },
+	{ "HHH",      grid     },
+        { "[@]",      spiral   },
+        { "[\\]",     dwindle  },
 };
 
 /* key definitions */
@@ -155,6 +157,10 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_s},           {0, XK_m}},      setlayout,      {.v = &layouts[2]} },
         // Grid layout
 	{2, {{MODKEY, XK_s},           {0, XK_g}},      setlayout,      {.v = &layouts[3]} },
+        // Spiral layout
+	{2, {{MODKEY, XK_s},           {0, XK_r}},      setlayout,      {.v = &layouts[4]} },
+        // Dwindle layout
+	{2, {{MODKEY, XK_s},           {0, XK_r|ShiftMask}},      setlayout,      {.v = &layouts[5]} },
 
         // Toggle between current layout and tile layout  
 	{2, {{MODKEY, XK_s},             {0, XK_space}},  setlayout,      {0} },
