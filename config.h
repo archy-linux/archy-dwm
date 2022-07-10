@@ -140,7 +140,9 @@ static Keychord keychords[] = {
 	{1, {{MODKEY,                   XK_Tab}},    view,           {0} },
 
 	{1, {{MODKEY|ShiftMask,         XK_j}},      movestack,      {.i = +1 } }, 
-	{1, {{MODKEY|ShiftMask,          XK_k}},      movestack,      {.i = -1 } }, 
+	{1, {{MODKEY|ShiftMask,          XK_k}},     movestack,      {.i = -1 } }, 
+        // Toogle styky mode
+        {1, {{MODKEY|ShiftMask,          XK_s}},     togglesticky,    {0} },
     
 	// Quit from the foucsed window (kill)
 	{2, {{MODKEY, XK_q},            {0, XK_q}},      killclient,     {0} },
