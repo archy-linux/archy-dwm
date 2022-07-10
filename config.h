@@ -61,15 +61,6 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #include "layouts/layouts.h"
-static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[]=",      tile     },    /* first entry is default */
-	{ "><>",      NULL     },    /* no layout function means floating behavior */
-	{ "[M]",      monocle  },
-	{ "HHH",      grid     },
-        { "[@]",      spiral   },
-        { "[\\]",     dwindle  },
-};
 
 /* key definitions */
 #define MODKEY Mod4Mask // win/super key
