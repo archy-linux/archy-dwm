@@ -103,6 +103,6 @@
       ```bash
       yay -S xkblayout
       ```
-      4. Clone this repostory `git clone https://github.com/anas-elgarhy/dwm-anas.git`
-      5. Build and install `sudo make clean install`
-      6. Enjoy 😉
+    4. Clone this repostory `git clone https://github.com/anas-elgarhy/dwm-anas.git`
+    5. Build and install `sudo make clean install`
+    6. Enjoy 😉
