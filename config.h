@@ -30,13 +30,12 @@ static const char *colors[][3]      = {
 };
 // Autostart programs
 static const char *const autostart[] = {
-	// Start my build of slstatus
+    // Start my build of slstatus
     "slstatus", NULL,
-	// Keyboard layouts switch (requires setxkbmap)
-	"setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
-	"picom", NULL, // Start compositor , for transparency
-    // "nitrogen", "--restore", NULL, // Restores the wallpaper
-    "wal", "-i" ,"/mnt/Data/Personalize/Wallpapers/y7r781tsgoa81.png", NULL, // Change backround and color theame
+    // Keyboard layouts switch (requires setxkbmap)
+    "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
+    "picom", NULL, // Start compositor , for transparency
+    "nitrogen", "--restore", NULL, // Restores the wallpaper
      NULL /* terminate */
  };
 
@@ -52,7 +51,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ WEBBROWSER, NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Plasma",   NULL,       NULL,       0,            1,           -1 },
+	{ "Plasma",   NULL,       "Plasma",       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -104,7 +103,7 @@ static Key keys[] = {
 	// File browsers
 	{ MODKEY|ShiftMask,             XK_f,      spawn,           SHCMD(GUI_FILEMANAGER) },
 	// Rofi file browser (small)
-    { MODKEY|ShiftMask|ControlMask, XK_f,      spawn,           SHCMD("rofi -show filebrowser") },
+        { MODKEY|ShiftMask|ControlMask, XK_f,      spawn,           SHCMD("rofi -show filebrowser") },
 	// Start the web brower
 	{ MODKEY,                       XK_w,      spawn,           SHCMD(WEBBROWSER) },
 	// Discord
@@ -170,14 +169,14 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 4") },
 	{ 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
 	// Media controls (requires playerctl)
-	{ 0,                            XF86XK_AudioPlay,	     spawn,	SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioPlay,	 spawn,	SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioStop,        spawn, SHCMD("playerctl stop") },
-	{ 0,                            XF86XK_AudioNext,	     spawn,	SHCMD("playerctl next") },
-	{ 0,                            XF86XK_AudioPrev,	     spawn,	SHCMD("playerctl previous")  },
-    // Mute and unmute mic
-	{ 0,							XF86XK_AudioMicMute,	spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	{ 0,                            XF86XK_AudioNext,	 spawn,	SHCMD("playerctl next") },
+	{ 0,                            XF86XK_AudioPrev,	 spawn,	SHCMD("playerctl previous")  },
+        // Mute and unmute mic
+	{ 0,			        XF86XK_AudioMicMute,	spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 	// Take a screenshot
-	{ 0,							XK_Print,				spawn, SHCMD(SCREENSHOT) },
+	{ 0,			        XK_Print,		spawn, SHCMD(SCREENSHOT) },
 	/* ---------------------------------- lock Keys ---------------------------------- */
 	// Lock the screen
 	{ MODKEY|ShiftMask,    	        XK_x,     spawn,          SHCMD("betterlockscreen -l dim") },
