@@ -87,6 +87,10 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_s},           {0, XK_r}},      setlayout,      {.v = &layouts[4]} },
         // Dwindle layout
 	{2, {{MODKEY, XK_s},           {ShiftMask, XK_r}},      setlayout,      {.v = &layouts[5]} },
+        // Centerd master layout
+	{2, {{MODKEY, XK_s},           {0, XK_c}},      setlayout,      {.v = &layouts[6]} },
+        // Centerd floating master layout
+	{2, {{MODKEY, XK_s},           {ShiftMask, XK_c}},      setlayout,      {.v = &layouts[7]} },
 
         // Toggle between current layout and tile layout  
 	{2, {{MODKEY, XK_s},             {0, XK_space}},  setlayout,      {0} },

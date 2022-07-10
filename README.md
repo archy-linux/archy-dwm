@@ -16,6 +16,7 @@
 - [sticky](https://dwm.suckless.org/patches/sticky)
 - [noborder](https://dwm.suckless.org/patches/noborder)
 - [fibonacci layouts](https://dwm.suckless.org/patches/fibonacci)
+- [centeredmaster](https://dwm.suckless.org/patches/centeredmaster)
 
 ### Keys
 | Keys                           | Function                                                              |
@@ -51,6 +52,8 @@
 | modkey + s -> g                | Use the grid layout                                                   |
 | modkey + s -> r                | Use the spial layout (part from fibonacci layouts)                    |
 | modkey + s -> shift + r        | Use the dwindle layout (part from fibonacci layouts)                  |
+| modkey + s -> c                | Use the centerd master layout                                         |
+| modkey + s -> shift + s        | Use the centerd floating master layout                                | 
 | modkey + s -> space            | Toggle between current layout and tile layout                         |
 | modkey + shift + s             | Toggle sticky mode                                                    |
 | modkey + alt + f               | Toggle floating window                                                |
