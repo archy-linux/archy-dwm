@@ -1,10 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 
 /* def */
-#define WEBBROWSER		 "google-chrome-stable"
-#define TERMINAL		 "alacritty"
-#define SCREENSHOT		 "spectacle"
-#define GUI_FILEMANAGER	 "dolphin"
+#define WEBBROWSER		"google-chrome-stable"
+#define TERMINAL		"alacritty"
+#define SCREENSHOT		"spectacle"
+#define GUI_FILEMANAGER	        "dolphin"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -30,13 +30,12 @@ static const char *colors[][3]      = {
 };
 // Autostart programs
 static const char *const autostart[] = {
-	// Start my build of slstatus
+    // Start my build of slstatus
     "slstatus", NULL,
-	// Keyboard layouts switch (requires setxkbmap)
-	"setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
-	"picom", NULL, // Start compositor , for transparency
-    // "nitrogen", "--restore", NULL, // Restores the wallpaper
-    "wal", "-i" ,"/mnt/Data/Personalize/Wallpapers/y7r781tsgoa81.png", NULL, // Change backround and color theame
+    // Keyboard layouts switch (requires setxkbmap)
+    "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
+    "picom", NULL, // Start compositor , for transparency
+    "nitrogen", "--restore", NULL, // Restores the wallpaper
      NULL /* terminate */
  };
 
@@ -52,7 +51,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ WEBBROWSER, NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Plasma",   NULL,       NULL,       0,            1,           -1 },
+	{ "Plasma",   NULL,       "Plasma",       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -74,10 +73,10 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask // win/super key
 
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+	{1, {{MODKEY,                        KEY}},      view,           {.ui = 1 << TAG} }, \
+	{1, {{MODKEY|ControlMask,            KEY}},      toggleview,     {.ui = 1 << TAG} }, \
+	{1, {{MODKEY|ShiftMask,              KEY}},      tag,            {.ui = 1 << TAG} }, \
+	{1, {{MODKEY|ControlMask|ShiftMask,  KEY}},      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -90,99 +89,118 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 #include "movestack.c"
 // X11 keysym definitions
 #include <X11/XF86keysym.h> // req (libxinerama1 and libxinerama-dev)
-static Key keys[] = {
+static Keychord keychords[] = {
 	/* modifier                     key        function        argument */
 	/* ---------------------------------- Apps Keys ---------------------------------- */
 	// Dmenu (launcher)
-	{ MODKEY|ShiftMask,             XK_d,      spawn,                  {.v = dmenucmd } },
+	{1, {{MODKEY|ShiftMask,             XK_d}},      spawn,                  {.v = dmenucmd } },
 	// Rofi launcher (small)
-	{ MODKEY|ShiftMask|ControlMask, XK_d,      spawn,                  SHCMD("rofi -show drun") }, 
+	{1, {{MODKEY|ShiftMask|ControlMask, XK_d}},      spawn,                  SHCMD("rofi -show drun") }, 
 	// Start the terminal
-	{ MODKEY,                       XK_Return, spawn,                  {.v = termcmd } },
+	{1, {{MODKEY,                       XK_Return}}, spawn,                  {.v = termcmd } },
 	// Start the terminal with tmux
-	{ MODKEY|ShiftMask,             XK_Return, spawn,           SHCMD(TERMINAL " -e tmux")  },
+	{2, {{MODKEY, XK_t},                {0, XK_1}},      spawn,           SHCMD(TERMINAL " -e tmux")  },
 	// File browsers
-	{ MODKEY|ShiftMask,             XK_f,      spawn,           SHCMD(GUI_FILEMANAGER) },
+	{2, {{MODKEY|ShiftMask, XK_f},      {0, XK_g}},     spawn,           SHCMD(GUI_FILEMANAGER) },
 	// Rofi file browser (small)
-    { MODKEY|ShiftMask|ControlMask, XK_f,      spawn,           SHCMD("rofi -show filebrowser") },
-	// Start the web brower
-	{ MODKEY,                       XK_w,      spawn,           SHCMD(WEBBROWSER) },
+        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_r}},     spawn,           SHCMD("rofi -show filebrowser") },
+	/************************************* Start the web browers *************************************/
+        // Google chrome stable
+	{2, {{MODKEY, XK_w},                {0, XK_g}},     spawn,           SHCMD(WEBBROWSER) },
+        // Tor brower
+	{2, {{MODKEY, XK_w},                {0, XK_t}},     spawn,           SHCMD("tor-browser") },
+	/************************************* Start the caht/email apps *************************************/
 	// Discord
-	{ MODKEY|ShiftMask,             XK_b,        spawn,         SHCMD("discord") },
+	{2, {{MODKEY, XK_c},                {0, XK_d}},      spawn,           SHCMD("discord") },
+	/************************************* Start the dev apps *************************************/
 	// Jetbrains toolbox
-	{ MODKEY|ShiftMask,             XK_t,        spawn,         SHCMD("jetbrains-toolbox") },
+	{2, {{MODKEY, XK_a},                {0, XK_j}},     spawn,         SHCMD("jetbrains-toolbox") },
+        // NeoVim
+	{2, {{MODKEY, XK_a},                {0, XK_n}},     spawn,         SHCMD(TERMINAL "-e nvim") },
+        // Vim
+	{2, {{MODKEY, XK_a},                {0, XK_v}},     spawn,         SHCMD(TERMINAL "-e vim") },
+	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)
-	{ Mod4Mask,                    XK_period,   spawn,          SHCMD("rofi -show emoji") },
-	/* ---------------------------------- dwm Keys ---------------------------------- */
+	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
+	/************************************* dwm keys *************************************/
 	// Full screen mode
-	{ MODKEY,				        XK_f,      fullscreen,     {0} },
+	{1, {{MODKEY,			XK_f}},      fullscreen,     {0} },
 	// Toggle the slstatus bar (hide/show)
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{1, {{MODKEY,                   XK_b}},      togglebar,      {0} },
+        // Change the focus
+	{1, {{MODKEY,                   XK_j}},      focusstack,     {.i = +1 } },
+	{1, {{MODKEY,                   XK_k}},      focusstack,     {.i = -1 } },
+        // Change the stack layout (horizontal/virtecal)
+	{1, {{MODKEY,                   XK_i}},      incnmaster,     {.i = +1 } },
+	{1, {{MODKEY,                   XK_d}},      incnmaster,     {.i = -1 } },
+        // Change the focus window size (in the tile mode)
+	{1, {{MODKEY,                   XK_h}},      setmfact,       {.f = -0.05} },
+	{1, {{MODKEY,                   XK_l}},      setmfact,       {.f = +0.05} },
 //	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{1, {{MODKEY,                   XK_Tab}},    view,           {0} },
 
-	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } }, 
-	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } }, 
-
+	{1, {{MODKEY|ShiftMask,         XK_j}},      movestack,      {.i = +1 } }, 
+	{1, {{MODKEY|ShiftMask,          XK_k}},      movestack,      {.i = -1 } }, 
+    
 	// Quit from the foucsed window (kill)
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
+	{2, {{MODKEY, XK_q},            {0, XK_q}},      killclient,     {0} },
+        /************************* Switch between layouts *************************/
 	// Tiled layout
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{2, {{MODKEY, XK_s},           {0, XK_t}},      setlayout,      {.v = &layouts[0]} },
 	// Floating layout
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{2, {{MODKEY, XK_s},           {0, XK_f}},      setlayout,      {.v = &layouts[1]} },
 	// Monocle layout
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[3]} },
+	{2, {{MODKEY, XK_s},           {0, XK_m}},      setlayout,      {.v = &layouts[2]} },
+        // Grid layout
+	{2, {{MODKEY, XK_s},           {0, XK_g}},      setlayout,      {.v = &layouts[3]} },
 
-	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
-	{ MODKEY|Mod1Mask,             XK_f,  togglefloating,     {0} },
-
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+        // Toggle between current layout and tile layout  
+	{2, {{MODKEY, XK_s},             {0, XK_space}},  setlayout,      {0} },
+        // Toggle floating window
+	{1, {{MODKEY|Mod1Mask,           XK_f}},        togglefloating,     {0} },
+        // View all tags
+	{1, {{MODKEY,                    XK_0}},        view,           {.ui = ~0 } },
+        // Mirror the current tagg in all tags
+	{1, {{MODKEY|ShiftMask,          XK_0}},        tag,            {.ui = ~0 } },
+        // I don't know
+	{1, {{MODKEY,                    XK_comma}},    focusmon,       {.i = -1 } },
+	{1, {{MODKEY,                    XK_period}},   focusmon,       {.i = +1 } },
+	{1, {{MODKEY|ShiftMask,          XK_comma}},    tagmon,         {.i = -1 } },
+	{1, {{MODKEY|ShiftMask,          XK_period}},   tagmon,         {.i = +1 } },
+        /************************* Tag keys *************************/
+	TAGKEYS(                         XK_1,                      0)
+	TAGKEYS(                         XK_2,                      1)
+	TAGKEYS(                         XK_3,                      2)
+	TAGKEYS(                         XK_4,                      3)
+	TAGKEYS(                         XK_5,                      4)
+	TAGKEYS(                         XK_6,                      5)
+	TAGKEYS(                         XK_7,                      6)
+	TAGKEYS(                         XK_8,                      7)
+	TAGKEYS(                         XK_9,                      8)
 	// Kill dwm (super + shift + alt + q)
-	{ MODKEY|ShiftMask|Mod1Mask,             XK_c,      quit,           {0} },
+	{1, {{MODKEY|ShiftMask|Mod1Mask,       XK_q}},      quit,           {0} },
 	/* ---------------------------------- Control Keys ---------------------------------- */
 	// Brightness controllers (requires xbacklight)
-	{ 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
-	{ 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
+	{1, {{0,                               XF86XK_MonBrightnessUp}},   spawn, SHCMD("xbacklight -inc 5") },
+	{1, {{0,                               XF86XK_MonBrightnessDown}}, spawn, SHCMD("xbacklight -dec 5") },
 	// Sound controllers (requires pamixer)
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --allow-boost -i 4") },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 4") },
-	{ 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
+	{1, {{0,                               XF86XK_AudioRaiseVolume}}, spawn, SHCMD("pamixer --allow-boost -i 4") },
+	{1, {{0,                               XF86XK_AudioLowerVolume}}, spawn, SHCMD("pamixer --allow-boost -d 4") },
+	{1, {{0,                               XF86XK_AudioMute}},        spawn, SHCMD("pamixer -t") },
 	// Media controls (requires playerctl)
-	{ 0,                            XF86XK_AudioPlay,	     spawn,	SHCMD("playerctl play-pause") },
-	{ 0,                            XF86XK_AudioStop,        spawn, SHCMD("playerctl stop") },
-	{ 0,                            XF86XK_AudioNext,	     spawn,	SHCMD("playerctl next") },
-	{ 0,                            XF86XK_AudioPrev,	     spawn,	SHCMD("playerctl previous")  },
-    // Mute and unmute mic
-	{ 0,							XF86XK_AudioMicMute,	spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	{1, {{0,                               XF86XK_AudioPlay}},	 spawn,	SHCMD("playerctl play-pause") },
+	{1, {{0,                               XF86XK_AudioStop}},       spawn, SHCMD("playerctl stop") },
+	{1, {{0,                               XF86XK_AudioNext}},	 spawn,	SHCMD("playerctl next") },
+	{1, {{0,                               XF86XK_AudioPrev}},	 spawn,	SHCMD("playerctl previous")  },
+        // Mute and unmute mic
+	{1, {{0,			       XF86XK_AudioMicMute}},	spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 	// Take a screenshot
-	{ 0,							XK_Print,				spawn, SHCMD(SCREENSHOT) },
+	{1, {{0,			       XK_Print}},		spawn, SHCMD(SCREENSHOT) },
 	/* ---------------------------------- lock Keys ---------------------------------- */
 	// Lock the screen
-	{ MODKEY|ShiftMask,    	        XK_x,     spawn,          SHCMD("betterlockscreen -l dim") },
+	{1, {{MODKEY|ShiftMask,    	       XK_x}},     spawn,          SHCMD("betterlockscreen -l dim") },
 	// Plasma screen lock (super + ctrl + shift + x)
-	{ MODKEY|ShiftMask|ControlMask, XK_x,     spawn,          SHCMD("qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1") }
+	{1, {{MODKEY|ShiftMask|ControlMask,    XK_x}},     spawn,          SHCMD("qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1") }
 };
 
 /* button definitions */
