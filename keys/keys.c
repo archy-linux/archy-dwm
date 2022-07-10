@@ -86,7 +86,7 @@ static Keychord keychords[] = {
         // Spiral layout
 	{2, {{MODKEY, XK_s},           {0, XK_r}},      setlayout,      {.v = &layouts[4]} },
         // Dwindle layout
-	{2, {{MODKEY, XK_s},           {0, XK_r|ShiftMask}},      setlayout,      {.v = &layouts[5]} },
+	{2, {{MODKEY, XK_s},           {ShiftMask, XK_r}},      setlayout,      {.v = &layouts[5]} },
 
         // Toggle between current layout and tile layout  
 	{2, {{MODKEY, XK_s},             {0, XK_space}},  setlayout,      {0} },
