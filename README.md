@@ -5,14 +5,14 @@
 ![dwm and alacritty](./screenshots/dwm_bpytop_and_ufetch-0.1.0-6.2.png)
 
 ### Applayed patches:
-- [alwayscenter]()
-- [cool autostart]()
-- [fullscreen]()
+- [alwayscenter](https://dwm.suckless.org/patches/alwayscenter)
+- [cool autostart](https://dwm.suckless.org/patches/cool_autostart)
+- [fullscreen](https://dwm.suckless.org/patches/fullscreen)
 - [gridmode]()
-- [keychord]()
-- [movestack]()
-- [pertag]()
-- [systray]()
+- [keychord](https://dwm.suckless.org/patches/keychord)
+- [movestack](https://dwm.suckless.org/patches/movestack)
+- [pertag](https://dwm.suckless.org/patches/pertag)
+- [systray](https://dwm.suckless.org/patches/systray)
 
 ### Keys
 | Keys                           | Function                                           |
