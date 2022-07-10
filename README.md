@@ -8,7 +8,7 @@
 - [alwayscenter](https://dwm.suckless.org/patches/alwayscenter)
 - [cool autostart](https://dwm.suckless.org/patches/cool_autostart)
 - [fullscreen](https://dwm.suckless.org/patches/fullscreen)
-- [gridmode]()
+- [gridmode](https://dwm.suckless.org/patches/gridmode)
 - [keychord](https://dwm.suckless.org/patches/keychord)
 - [movestack](https://dwm.suckless.org/patches/movestack)
 - [pertag](https://dwm.suckless.org/patches/pertag)
