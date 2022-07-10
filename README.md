@@ -63,23 +63,43 @@
 > modkey = win key or super key
 
 ### Dependencies (apps)
-- google-chrome-stable
-- alacritty
-- spectacle 
-- dolphin 
-- rofi
-- dmenu
-- libxinerama1
-- libxinerama-dev
-- tmux\*
-- tor-browser
-- discord
-- jetbrains-toolbox
-- nvim\*
-- vim\*
-- xbacklight
-- pamixer
-- playerctl
-- pactl
-- betterlockscreen
+- `google-chrome-stable` the main web browser
+- `alacritty` the main terminal
+- `spectacle` the main screenshot tool 
+- `dolphin` the GUI file manger
+- `rofi`
+- `dmenu`
+- `libxinerama-dev`\*\*
+- `tmux`\*
+- `tor-browser`
+- `discord`
+- `libxft-bgra` for color emojies support
+- `jetbrains-toolbox`
+- `nvim`\*
+- `vim`\*
+- `xbacklight` for control in the screen brightness
+- `pamixer` for control in the audio level
+- `playerctl` for control in the media
+- `pactl` for control in the mic
+- `betterlockscreen` for lock screen
+- `setxkbmap` for switch between keyboard layouts, like (ar, en)
+- `slstatus` the status bar
+- `picom` compositor , for transparency
+- `nitrogen` for set the wallpaper
 
+> \*\*: build dependencie.
+
+### Install
+- Maniual:
+  1. Run this command to install all avilable dependencies in standerd arch repostory
+    ```bash
+    sudo pacman -S libxft-bgra rofi dmenu tmux tor-browser discord neovim jetbrains-toolbox vim pamixer playerctl betterlockscreen dolphin spectacle alacritty picom nitrogen libxinerama 
+    ```
+    2. Install yay if you not installed it.
+    3. Run this command to install all avilable dependencies in the AUR repostory
+      ```bash
+      yay -S google-chrome xkblayout
+      ```
+      4. Clone this repostory `git clone https://github.com/anas-elgarhy/dwm-anas.git`
+      5. Build and install `sudo make clean install`
+      6. Enjoy 😉
