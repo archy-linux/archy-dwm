@@ -14,6 +14,7 @@
 - [pertag](https://dwm.suckless.org/patches/pertag)
 - [systray](https://dwm.suckless.org/patches/systray)
 - [sticky](https://dwm.suckless.org/patches/sticky)
+- [noborder](https://dwm.suckless.org/patches/noborder)
 
 ### Keys
 | Keys                           | Function                                                              |
