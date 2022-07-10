@@ -47,6 +47,9 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_a},                {0, XK_n}},     spawn,         SHCMD(TERMINAL "-e nvim") },
         // Vim
 	{2, {{MODKEY, XK_a},                {0, XK_v}},     spawn,         SHCMD(TERMINAL "-e vim") },
+	/************************************* Start multi media apps *************************************/
+        // cmus
+        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn          SHCMD(TERMINAL "-e cmus-rpc --link &>/dev/null & cmus") },
 	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)
 	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
