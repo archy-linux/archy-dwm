@@ -24,14 +24,23 @@ static Keychord keychords[] = {
 	{1, {{MODKEY|ShiftMask,             XK_d}},      spawn,                  {.v = dmenucmd } },
 	// Rofi launcher (small)
 	{1, {{MODKEY|ShiftMask|ControlMask, XK_d}},      spawn,                  SHCMD("rofi -show drun") }, 
-	// Start the terminal
+	// Start the main terminal
 	{1, {{MODKEY,                       XK_Return}}, spawn,                  {.v = termcmd } },
-	// Start the terminal with tmux
-	{2, {{MODKEY, XK_t},                {0, XK_1}},      spawn,           SHCMD(TERMINAL " -e tmux")  },
-	// File browsers
+        // Start the alacritty terminal
+	{2, {{MODKEY, XK_t},                {0, XK_a}},      spawn,              SHCMD("alacritty")  },
+	// Start the alacritty terminal with tmux
+	{2, {{MODKEY, XK_t},                {ShiftMask, XK_a}},      spawn,           SHCMD("alacritty -e tmux")  },
+        // konsole
+	{2, {{MODKEY, XK_t},                {0, XK_k}},              spawn,           SHCMD("konsole")  },
+        // konsole with tmux
+	{2, {{MODKEY, XK_t},                {ShiftMask, XK_k}},      spawn,           SHCMD("konsole -e tmux")  },
+	/************************************* File browsers *************************************/
+        // GUI filebrowser (dolphin)
 	{2, {{MODKEY|ShiftMask, XK_f},      {0, XK_g}},     spawn,           SHCMD(GUI_FILEMANAGER) },
 	// Rofi file browser (small)
-        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_r}},     spawn,           SHCMD("rofi -show filebrowser") },
+        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_f}},     spawn,           SHCMD("rofi -show filebrowser") },
+        // ranger
+        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_r}},     spawn,           SHCMD(TERMINAL " -e ranger") },
 	/************************************* Start the web browers *************************************/
         // Google chrome stable
 	{2, {{MODKEY, XK_w},                {0, XK_g}},     spawn,           SHCMD(WEBBROWSER) },

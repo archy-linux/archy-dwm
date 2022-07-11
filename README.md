@@ -25,9 +25,13 @@
 | modkey + shift + d             | Open dmenu (launcher)                                                 |
 | modkey + shift + ctrl          | Open rofi launcher (small size)                                       |
 | modkey + enter                 | Launche the main terminal (alacritty by default)                      |
-| modkey + t -> 1                | Launche the main terminal with tmux                                   |
+| modkey + t -> a                | Launche the alacritty terminal                                        |
+| modkey + t -> shift + a        | Launche the alacritty terminal with tmux                              |
+| modkey + t -> k                | Launche the konsole terminal                                          |
+| modkey + t -> shift + k        | Launche the konsole terminal with tmux                                |
 | modkey + shift + f -> g        | Launche the GUI file manger (dolphin by default)                      |
-| modkey + shift + f -> r        | Launche rofi file file browser (small size)                           |
+| modkey + shift + f -> f        | Launche rofi file file browser (small size)                           |
+| modkey + shift + f -> r        | Launche ranger in the main terminal                                   |
 | modkey + w -> g                | Launche google chrome browser                                         |
 | modkey + w -> t                | Launche tor browser                                                   |
 | modkey + c -> d                | Launche discord                                                       |
