@@ -1,1 +1,0 @@
-- `libxft-bgra` for color emojies support
