@@ -1,8 +1,9 @@
 # Anas Elgarhy's dwm
 ## My fork from dwm 🍴, with a lot of beautiful patches 🥰
 
-![dwm screenshot](./screenshots/dwm-0.1.0-6.2.png)
-![dwm and alacritty](./screenshots/dwm_bpytop_and_ufetch-0.1.0-6.2.png)
+![dwm screenshot](./screenshots/dwm-6.3-0.1.0.png)
+![dwm and 2 alacritty](./screenshots/dwm_bpytop_and_ufetch_tile_layout-6.3-0.1.0.png)
+![dwm and alacritty](./screenshots/dwm_alacritty-6.3-0.1.0.png)
 
 ### Applayed patches:
 - [alwayscenter](https://dwm.suckless.org/patches/alwayscenter)
