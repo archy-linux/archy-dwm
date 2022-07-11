@@ -33,6 +33,9 @@
 | modkey + a -> j                | Launche jetbrains-toolbox                                             |
 | modkey + a -> n                | Launche NeoVim in the main terminal                                   |
 | modkey + a -> v                | Launche Vim in the main terminal                                      |
+| modkey + a -> e                | Launche emacs                                                         |
+| modkey + p -> n                | Launche nitrogen                                                      |
+| modkey + p -> s                | Launche settings manger (plasma-open-settings)                        |
 | modkey + e                     | Launche rofi emoji selector                                           |
 | modkey + f                     | Toggle full screen mode                                               |
 | modkey + b                     | Toggle the status bar (hide/show)                                     |

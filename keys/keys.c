@@ -47,6 +47,13 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_a},                {0, XK_n}},     spawn,         SHCMD(TERMINAL " -e nvim") },
         // Vim
 	{2, {{MODKEY, XK_a},                {0, XK_v}},     spawn,         SHCMD(TERMINAL " -e vim") },
+        // emacs
+	{2, {{MODKEY, XK_a},                {0, XK_e}},     spawn,         SHCMD("emacs") },
+	/************************************* Start personalize apps *************************************/
+        // nitrogen
+        {2, {{MODKEY, XK_p},                 {0, XK_n}},    spawn,         SHCMD("nitrogen") },
+        // Plasma settings manger
+        {2, {{MODKEY, XK_p},                 {0, XK_s}},    spawn,         SHCMD("plasma-open-settings") },
 	/************************************* Start multi media apps *************************************/
         // cmus
         {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD(TERMINAL " -e cmus") },
