@@ -49,9 +49,9 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_a},                {0, XK_v}},     spawn,         SHCMD(TERMINAL " -e vim") },
 	/************************************* Start multi media apps *************************************/
         // cmus
-        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD(TERMINAL " -e cmus-rpc --link &>/dev/null & cmus") },
+        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD(TERMINAL " -e cmus") },
         // vlc
-        {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD(TERMINAL " -e vlc") },
+        {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD("vlc") },
 	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)
 	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
@@ -120,8 +120,6 @@ static Keychord keychords[] = {
 	TAGKEYS(                         XK_7,                      6)
 	TAGKEYS(                         XK_8,                      7)
 	TAGKEYS(                         XK_9,                      8)
-	// Kill dwm (super + shift + alt + q)
-	{1, {{MODKEY|ShiftMask|Mod1Mask,       XK_q}},      quit,           {0} },
 	/* ---------------------------------- Control Keys ---------------------------------- */
 	// Brightness controllers (requires xbacklight)
 	{1, {{0,                               XF86XK_MonBrightnessUp}},   spawn, SHCMD("xbacklight -inc 5") },
@@ -143,7 +141,9 @@ static Keychord keychords[] = {
 	// Lock the screen
 	{1, {{MODKEY|ShiftMask,    	       XK_x}},     spawn,          SHCMD("betterlockscreen -l dim") },
 	// Plasma screen lock (super + ctrl + shift + x)
-	{1, {{MODKEY|ShiftMask|ControlMask,    XK_x}},     spawn,          SHCMD("qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1") }
+	{1, {{MODKEY|ShiftMask|ControlMask,    XK_x}},     spawn,          SHCMD("qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1") },
+	// Kill dwm (super + shift + alt + q)
+	{1, {{MODKEY|ShiftMask|Mod1Mask,       XK_q}},      quit,           {0} },
 };
 
 /* button definitions */
