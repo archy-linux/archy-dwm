@@ -23,7 +23,7 @@
 | Keys                           | Function                                                              |
 |--------------------------------|-----------------------------------------------------------------------|
 | modkey + shift + d             | Open dmenu (launcher)                                                 |
-| modkey + shift + ctrl          | Open rofi launcher (small size)                                       |
+| modkey + shift + ctrl + d      | Open rofi launcher (small size)                                       |
 | modkey + enter                 | Launche the main terminal (alacritty by default)                      |
 | modkey + t -> a                | Launche the alacritty terminal                                        |
 | modkey + t -> shift + a        | Launche the alacritty terminal with tmux                              |
