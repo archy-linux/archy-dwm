@@ -1,5 +1,5 @@
 # dwm-anas version
-VERSION = 6.3-0.1.0
+VERSION = 6.3-0.1.1
 
 # Customize below to fit your system
 
