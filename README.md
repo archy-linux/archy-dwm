@@ -57,6 +57,8 @@
 | modkey + s -> space            | Toggle between current layout and tile layout                         |
 | modkey + shift + s             | Toggle sticky mode                                                    |
 | modkey + alt + f               | Toggle floating window                                                |
+| modekey + m -> c               | Launche the cmus player                                               |
+| modkey + m -> v                | Launche vlc video player                                              |
 | modkey + 0                     | View all tags                                                         |
 | modkey + shift + 0             | Mirror the current tag in all tags                                    |
 | modkey + comma (,)             | -                                                                     |
