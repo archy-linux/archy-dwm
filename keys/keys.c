@@ -44,14 +44,14 @@ static Keychord keychords[] = {
 	// Jetbrains toolbox
 	{2, {{MODKEY, XK_a},                {0, XK_j}},     spawn,         SHCMD("jetbrains-toolbox") },
         // NeoVim
-	{2, {{MODKEY, XK_a},                {0, XK_n}},     spawn,         SHCMD(TERMINAL "-e nvim") },
+	{2, {{MODKEY, XK_a},                {0, XK_n}},     spawn,         SHCMD(TERMINAL " -e nvim") },
         // Vim
-	{2, {{MODKEY, XK_a},                {0, XK_v}},     spawn,         SHCMD(TERMINAL "-e vim") },
+	{2, {{MODKEY, XK_a},                {0, XK_v}},     spawn,         SHCMD(TERMINAL " -e vim") },
 	/************************************* Start multi media apps *************************************/
         // cmus
-        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD(TERMINAL "-e cmus-rpc --link &>/dev/null & cmus") },
+        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD(TERMINAL " -e cmus-rpc --link &>/dev/null & cmus") },
         // vlc
-        {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD(TERMINAL "vlc") },
+        {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD(TERMINAL " -e vlc") },
 	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)
 	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
@@ -72,7 +72,7 @@ static Keychord keychords[] = {
 //	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{1, {{MODKEY,                   XK_Tab}},    view,           {0} },
 
-	{1, {{MODKEY|ShiftMask,         XK_j}},      movestack,      {.i = +1 } }, 
+	{1, {{MODKEY|ShiftMask,          XK_j}},     movestack,      {.i = +1 } }, 
 	{1, {{MODKEY|ShiftMask,          XK_k}},     movestack,      {.i = -1 } }, 
         // Toogle styky mode
         {1, {{MODKEY|ShiftMask,          XK_s}},     togglesticky,    {0} },
