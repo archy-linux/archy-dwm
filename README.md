@@ -1,5 +1,5 @@
 # Anas Elgarhy's dwm
-## My fork from dwm 🍴, with a loat of a beutaful patches 🥰
+## My fork from dwm 🍴, with a lot of beautiful patches 🥰
 
 ![dwm screenshot](./screenshots/dwm-0.1.0-6.2.png)
 ![dwm and alacritty](./screenshots/dwm_bpytop_and_ufetch-0.1.0-6.2.png)
@@ -66,6 +66,9 @@
 | modkey + shift + comma (,)     | -                                                                     |
 | modkey + shift + period (.)    | -                                                                     |
 | modkey + (1..9)                | Navigate between tags                                                 |
+| modkey + shift + (1..9)        | Move the focus window to specific tag                                 |
+| modkey + control + (1..9)      | -                                                                     |
+| modkey + shift + ctrl + (1..9) | Mirror the current tag in specific tag                                |
 | PrtSc                          | Take a screenshot using default screenshot tool (spectacle)           |
 | modkey + shift + x             | Lock the screen (using betterlockscreen)                              |
 | modkey + shift + ctrl + x      | Plasma screen server                                                  |
