@@ -36,6 +36,7 @@ static const char *const autostart[] = {
     "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
     "picom", NULL, // Start compositor , for transparency
     "nitrogen", "--restore", NULL, // Restores the wallpaper
+    "nm-applet", NULL, // Start the network manger
      NULL /* terminate */
  };
 
