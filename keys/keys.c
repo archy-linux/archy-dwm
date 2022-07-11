@@ -65,7 +65,7 @@ static Keychord keychords[] = {
         {2, {{MODKEY, XK_p},                {0, XK_s}},    spawn,         SHCMD("plasma-open-settings") },
 	/************************************* Start multi media apps *************************************/
         // cmus
-        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD(TERMINAL " -e cmus") },
+        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc --link\"") },
         // vlc
         {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD("vlc") },
 	/************************************* Start the emoji piker apps *************************************/
