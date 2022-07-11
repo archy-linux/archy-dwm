@@ -69,6 +69,7 @@
 | modkey + shift + (1..9)        | Move the focus window to specific tag                                 |
 | modkey + control + (1..9)      | -                                                                     |
 | modkey + shift + ctrl + (1..9) | Mirror the current tag in specific tag                                |
+| superkey + space               | Change the keyboard layout (ar, en)                                   |
 | PrtSc                          | Take a screenshot using default screenshot tool (spectacle)           |
 | modkey + shift + x             | Lock the screen (using betterlockscreen)                              |
 | modkey + shift + ctrl + x      | Plasma screen server                                                  |
@@ -104,7 +105,7 @@
 > \*\*: build dependencie.
 
 ### Install
-- Maniual:
+- Manual:
   1. Run this command to install all avilable dependencies in standerd arch repostory
     ```bash
     sudo pacman -S google-chrome libxft-bgra rofi dmenu tmux tor-browser discord neovim jetbrains-toolbox vim pamixer playerctl betterlockscreen dolphin spectacle alacritty picom nitrogen libxinerama 
