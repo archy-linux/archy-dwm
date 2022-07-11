@@ -51,9 +51,9 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_a},                {0, XK_e}},     spawn,         SHCMD("emacs") },
 	/************************************* Start personalize apps *************************************/
         // nitrogen
-        {2, {{MODKEY, XK_p},                 {0, XK_n}},    spawn,         SHCMD("nitrogen") },
+        {2, {{MODKEY, XK_p},                {0, XK_n}},    spawn,         SHCMD("nitrogen") },
         // Plasma settings manger
-        {2, {{MODKEY, XK_p},                 {0, XK_s}},    spawn,         SHCMD("plasma-open-settings") },
+        {2, {{MODKEY, XK_p},                {0, XK_s}},    spawn,         SHCMD("plasma-open-settings") },
 	/************************************* Start multi media apps *************************************/
         // cmus
         {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD(TERMINAL " -e cmus") },
