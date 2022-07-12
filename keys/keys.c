@@ -30,10 +30,10 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_t},                {0, XK_a}},      spawn,              SHCMD("alacritty")  },
 	// Start the alacritty terminal with tmux
 	{2, {{MODKEY, XK_t},                {ShiftMask, XK_a}},      spawn,           SHCMD("alacritty -e tmux")  },
-        // konsole
-	{2, {{MODKEY, XK_t},                {0, XK_k}},              spawn,           SHCMD("konsole")  },
-        // konsole with tmux
-	{2, {{MODKEY, XK_t},                {ShiftMask, XK_k}},      spawn,           SHCMD("konsole -e tmux")  },
+        // kitty
+	{2, {{MODKEY, XK_t},                {0, XK_k}},              spawn,           SHCMD("kitty")  },
+        // kitty with tmux
+	{2, {{MODKEY, XK_t},                {ShiftMask, XK_k}},      spawn,           SHCMD("kitty -e tmux")  },
 	/************************************* File browsers *************************************/
         // GUI filebrowser (pcmanfm)
 	{2, {{MODKEY|ShiftMask, XK_f},      {0, XK_g}},     spawn,           SHCMD(GUI_FILEMANAGER) },
