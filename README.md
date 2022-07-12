@@ -30,7 +30,7 @@
 | modkey + t -> shift + a        | Launche the alacritty terminal with tmux                              |
 | modkey + t -> k                | Launche the konsole terminal                                          |
 | modkey + t -> shift + k        | Launche the konsole terminal with tmux                                |
-| modkey + shift + f -> g        | Launche the GUI file manger (dolphin by default)                      |
+| modkey + shift + f -> g        | Launche the GUI file manger (pcmanfm by default)                      |
 | modkey + shift + f -> f        | Launche rofi file file browser (small size)                           |
 | modkey + shift + f -> r        | Launche ranger in the main terminal                                   |
 | modkey + w -> g                | Launche google chrome browser                                         |
@@ -40,8 +40,8 @@
 | modkey + a -> n                | Launche NeoVim in the main terminal                                   |
 | modkey + a -> v                | Launche Vim in the main terminal                                      |
 | modkey + a -> e                | Launche emacs                                                         |
-| modkey + p -> n                | Launche nitrogen                                                      |
-| modkey + p -> s                | Launche settings manger (plasma-open-settings)                        |
+| modkey + p -> b                | Launche the background manger (nitrogen by default)                   |
+| modkey + p -> n                | Lanuche the network manager (nm-connection-editor)                    |
 | modkey + e                     | Launche rofi emoji selector                                           |
 | modkey + f                     | Toggle full screen mode                                               |
 | modkey + b                     | Toggle the status bar (hide/show)                                     |
@@ -66,8 +66,9 @@
 | modkey + s -> space            | Toggle between current layout and tile layout                         |
 | modkey + shift + s             | Toggle sticky mode                                                    |
 | modkey + alt + f               | Toggle floating window                                                |
-| modekey + m -> c               | Launche the cmus player                                               |
+| modkey + m -> c                | Launche the cmus player                                               |
 | modkey + m -> v                | Launche vlc video player                                              |
+| modkey + m -> shift + v        | Lanuche nvlc in the main terminal                                     |
 | modkey + 0                     | View all tags                                                         |
 | modkey + shift + 0             | Mirror the current tag in all tags                                    |
 | modkey + comma (,)             | -                                                                     |
@@ -81,7 +82,6 @@
 | superkey + space               | Change the keyboard layout (ar, en)                                   |
 | PrtSc                          | Take a screenshot using default screenshot tool (spectacle)           |
 | modkey + shift + x             | Lock the screen (using betterlockscreen)                              |
-| modkey + shift + ctrl + x      | Plasma screen server                                                  |
 | modkey + shift + alt + q       | Kill dwm                                                              |
 
 > modkey = win key or super key
@@ -90,7 +90,7 @@
 - `google-chrome-stable` the main web browser
 - `alacritty` the main terminal
 - `spectacle` the main screenshot tool 
-- `dolphin` the GUI file manger
+- `pcmanfm` the GUI file manger
 - `rofi`
 - `dmenu`
 - `libxinerama-dev`\*\*
@@ -108,8 +108,10 @@
 - `betterlockscreen` for lock screen
 - `setxkbmap` for switch between keyboard layouts, like (ar, en)
 - `slstatus` the status bar
+- `network-manager-applet` 
 - `picom` compositor , for transparency
 - `nitrogen` for set the wallpaper
+- `copyq` clipboard manager
 
 > \*\*: build dependencie.
 
@@ -117,7 +119,7 @@
 - Manual:
   1. Run this command to install all avilable dependencies in standerd arch repostory
     ```bash
-    sudo pacman -S google-chrome libxft-bgra rofi dmenu tmux tor-browser discord neovim jetbrains-toolbox vim pamixer playerctl betterlockscreen dolphin spectacle alacritty picom nitrogen libxinerama 
+    sudo pacman -S google-chrome libxft-bgra rofi dmenu tmux tor-browser discord neovim jetbrains-toolbox vim pamixer playerctl betterlockscreen pcmanfm spectacle alacritty picom nitrogen libxinerama network-manager-applet copyq
     ```
     2. Install yay if you not installed it.
     3. Run this command to install all avilable dependencies in the AUR repostory `yay -S xkblayout`

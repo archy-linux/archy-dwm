@@ -35,7 +35,7 @@ static Keychord keychords[] = {
         // konsole with tmux
 	{2, {{MODKEY, XK_t},                {ShiftMask, XK_k}},      spawn,           SHCMD("konsole -e tmux")  },
 	/************************************* File browsers *************************************/
-        // GUI filebrowser (dolphin)
+        // GUI filebrowser (pcmanfm)
 	{2, {{MODKEY|ShiftMask, XK_f},      {0, XK_g}},     spawn,           SHCMD(GUI_FILEMANAGER) },
 	// Rofi file browser (small)
         {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_f}},     spawn,           SHCMD("rofi -show filebrowser") },
@@ -60,14 +60,16 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_a},                {0, XK_e}},     spawn,         SHCMD("emacs") },
 	/************************************* Start personalize apps *************************************/
         // nitrogen
-        {2, {{MODKEY, XK_p},                {0, XK_n}},    spawn,         SHCMD("nitrogen") },
-        // Plasma settings manger
-        {2, {{MODKEY, XK_p},                {0, XK_s}},    spawn,         SHCMD("plasma-open-settings") },
+        {2, {{MODKEY, XK_p},                {0, XK_b}},    spawn,         SHCMD("nitrogen") },
+        // nm-connection-editor
+        {2, {{MODKEY, XK_p},                {0, XK_n}},    spawn,         SHCMD("nm-connection-editor") },
 	/************************************* Start multi media apps *************************************/
         // cmus
         {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc --link\"") },
         // vlc
         {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD("vlc") },
+        // vlc in the main termcmd
+        {2, {{MODKEY, XK_m},                 {ShiftMask, XK_v}},    spawn,          SHCMD(TERMINAL "nvlc") },
 	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)
 	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
@@ -156,8 +158,6 @@ static Keychord keychords[] = {
 	/* ---------------------------------- lock Keys ---------------------------------- */
 	// Lock the screen
 	{1, {{MODKEY|ShiftMask,    	       XK_x}},     spawn,          SHCMD("betterlockscreen -l dim") },
-	// Plasma screen lock (super + ctrl + shift + x)
-	{1, {{MODKEY|ShiftMask|ControlMask,    XK_x}},     spawn,          SHCMD("qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1") },
 	// Kill dwm (super + shift + alt + q)
 	{1, {{MODKEY|ShiftMask|Mod1Mask,       XK_q}},      quit,           {0} },
 };
