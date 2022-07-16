@@ -14,8 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: install libs
-      run: sudo apt-get install libxinerama1 libxinerama-dev \
-        cd src/
+      run: sudo apt-get install libxinerama1 libxinerama-dev
+    - name: change directory to src dir
+      run: cd src/
     - name: make install test
       run: sudo make install 
     - name: make uninstall
