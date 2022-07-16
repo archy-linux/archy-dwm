@@ -4,7 +4,7 @@
 #define WEBBROWSER		"google-chrome-stable"
 #define TERMINAL		"alacritty"
 #define SCREENSHOT		"spectacle"
-#define GUI_FILEMANAGER	        "dolphin"
+#define GUI_FILEMANAGER	        "pcmanfm"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -34,8 +34,12 @@ static const char *const autostart[] = {
     "slstatus", NULL,
     // Keyboard layouts switch (requires setxkbmap)
     "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
+    // "xkbset", "exp", "=sticky", "-twokey", "-latchlock", NULL, // sticky keys
+    "/bin/stickykeys", NULL, // sticky keys script
     "picom", NULL, // Start compositor , for transparency
     "nitrogen", "--restore", NULL, // Restores the wallpaper
+    "nm-applet", NULL, // Start the network manger
+    "copyq", NULL, // clipboard manger
      NULL /* terminate */
  };
 
@@ -51,7 +55,6 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ WEBBROWSER, NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Plasma",   NULL,       "Plasma",       0,            1,           -1 },
 };
 
 /* layout(s) */
