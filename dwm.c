@@ -277,6 +277,7 @@ static void autostart_exec(void);
 
 /* variables */
 static const char broken[] = "broken";
+static Systray *systray = NULL;
 static char stext[256];
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
