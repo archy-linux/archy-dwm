@@ -46,9 +46,11 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_w},                {0, XK_g}},     spawn,           SHCMD(WEBBROWSER) },
         // Tor brower
 	{2, {{MODKEY, XK_w},                {0, XK_t}},     spawn,           SHCMD("tor-browser") },
-	/************************************* Start the caht/email apps *************************************/
+	/************************************* Start the caht/email/\* apps *************************************/
 	// Discord
 	{2, {{MODKEY, XK_c},                {0, XK_d}},      spawn,           SHCMD("discord") },
+        // Obsidian
+	{2, {{MODKEY, XK_c},                {0, XK_o}},      spawn,           SHCMD("obsidian") },
 	/************************************* Start the dev apps *************************************/
 	// Jetbrains toolbox
 	{2, {{MODKEY, XK_a},                {0, XK_j}},     spawn,         SHCMD("jetbrains-toolbox") },
@@ -68,7 +70,7 @@ static Keychord keychords[] = {
         {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc --link\"") },
         // vlc
         {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD("vlc") },
-        // vlc in the main termcmd
+        // vlc in the main terminal
         {2, {{MODKEY, XK_m},                 {ShiftMask, XK_v}},    spawn,          SHCMD(TERMINAL "nvlc") },
 	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)

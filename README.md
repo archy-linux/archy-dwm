@@ -36,6 +36,7 @@
 | modkey + w -> g                | Launche google chrome browser                                         |
 | modkey + w -> t                | Launche tor browser                                                   |
 | modkey + c -> d                | Launche discord                                                       |
+| modkey + c -> o                | Launche obsidian                                                      |
 | modkey + a -> j                | Launche jetbrains-toolbox                                             |
 | modkey + a -> n                | Launche NeoVim in the main terminal                                   |
 | modkey + a -> v                | Launche Vim in the main terminal                                      |
@@ -112,6 +113,7 @@
 - `picom` compositor , for transparency
 - `nitrogen` for set the wallpaper
 - `copyq` clipboard manager
+- `obsidian`
 
 > \*\*: build dependencie.
 
