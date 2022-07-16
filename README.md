@@ -121,10 +121,11 @@
 - Manual:
   1. Run this command to install all avilable dependencies in standerd arch repostory
     ```bash
-    sudo pacman -S google-chrome libxft-bgra rofi dmenu tmux tor-browser discord neovim jetbrains-toolbox vim pamixer playerctl betterlockscreen pcmanfm spectacle alacritty picom nitrogen libxinerama network-manager-applet copyq
+    sudo pacman -S google-chrome libxft-bgra rofi dmenu tmux tor-browser discord neovim jetbrains-toolbox vim pamixer playerctl betterlockscreen pcmanfm spectacle alacritty picom nitrogen libxinerama network-manager-applet copyq obsidian
     ```
     2. Install yay if you not installed it.
     3. Run this command to install all avilable dependencies in the AUR repostory `yay -S xkblayout`
     4. Clone this repostory `git clone https://github.com/anas-elgarhy/dwm-anas.git`
-    5. Build and install `sudo make clean install`
-    6. Enjoy 😉
+    5. Go to the source directory `cd dwm-anas/src`
+    6. Build and install `sudo make install clean`
+    7. Enjoy 😉
