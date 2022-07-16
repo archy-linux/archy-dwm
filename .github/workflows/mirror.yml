@@ -16,16 +16,16 @@ jobs:
             GIT_USERNAME: Anas-Elgarhy
             GIT_PASSWORD: ${{ secrets.GITLAP_TOKEN }}
 
-       - name: mirror in bitbucket
-         uses: actions/checkout@v3
-         with:
-          fetch-depth: 0
-       - uses: yesolutions/mirror-action@master
-         with:
-            REMOTE: 'https://anas_elgarhy@bitbucket.org/anas_elgarhy/dwm-anas.git'
-            REMOTE_NAME: bitbucket
-            GIT_USERNAME: anas_elgarhy
-            GIT_PASSWORD: ${{ secrets.BITBUCKET_TOKEN }}
+       # - name: mirror in bitbucket
+       #   uses: actions/checkout@v3
+       #   with:
+       #    fetch-depth: 0
+       # - uses: yesolutions/mirror-action@master
+       #   with:
+       #      REMOTE: 'https://anas_elgarhy@bitbucket.org/anas_elgarhy/dwm-anas.git'
+       #      REMOTE_NAME: bitbucket
+       #      GIT_USERNAME: anas_elgarhy
+       #      GIT_PASSWORD: ${{ secrets.BITBUCKET_TOKEN }}
 
        - name: mirror in codeberg
          uses: actions/checkout@v3
