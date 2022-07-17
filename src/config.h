@@ -17,6 +17,12 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+
+static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
+static const char *altbarclass      = "Polybar"; /* Alternate bar class name */
+static const char *alttrayname      = "tray";    /* Polybar tray instance name */
+static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
+
 static const char *fonts[]          = { "monospace:size=11", "Noto Color Emoji:size=11", "Nerd Font Mono:weight=bold:size=15:antialias=true:hinting=true" };
 static const char dmenufont[]       = "monospace:size=11";
 
@@ -24,8 +30,6 @@ static const char dmenufont[]       = "monospace:size=11";
 
 // Autostart programs
 static const char *const autostart[] = {
-    // Start my build of slstatus
-    "slstatus", NULL,
     // Keyboard layouts switch (requires setxkbmap)
     "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
     // "xkbset", "exp", "=sticky", "-twokey", "-latchlock", NULL, // sticky keys
