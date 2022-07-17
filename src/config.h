@@ -19,15 +19,9 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=11", "Noto Color Emoji:size=11", "Nerd Font Mono:weight=bold:size=15:antialias=true:hinting=true" };
 static const char dmenufont[]       = "monospace:size=11";
-static const char col_1[]       = "#282c34"; // Background color of bar
-static const char col_2[]       = "#282c34"; // Background color of unfocused windows border 
-static const char col_3[]       = "#d7d7d7";
-static const char col_4[]       = "#018858"; // Background color of focused windows border and tags (main color acent)
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_3, col_1, col_2 },
-	[SchemeSel]  = { col_3, col_4,  col_4  },
-};
+
+#include "colors.h"
+
 // Autostart programs
 static const char *const autostart[] = {
     // Start my build of slstatus
