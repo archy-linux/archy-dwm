@@ -1,3 +1,6 @@
+#ifndef colors_H
+#define colors_H
+
 #define wal "/home/anas/.cache/wal/colors-wal-dwm.h"
 
 #if __has_include(wal)
@@ -22,3 +25,5 @@ static const char *colors[][3]      = {
     [schemeurg] =  { urg_fg,      urg_bg,    urg_border },
 };
 #endif
+
+#endif // !colors.h
