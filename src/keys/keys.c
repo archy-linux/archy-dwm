@@ -141,6 +141,7 @@ static Keychord keychords[] = {
 	TAGKEYS(                         XK_7,                      6)
 	TAGKEYS(                         XK_8,                      7)
 	TAGKEYS(                         XK_9,                      8)
+        TAGKEYS(                         XK_semicolon,              9)
 	/* ---------------------------------- Control Keys ---------------------------------- */
 	// Brightness controllers (requires xbacklight)
 	{1, {{0,                               XF86XK_MonBrightnessUp}},   spawn, SHCMD("xbacklight -inc 5") },
