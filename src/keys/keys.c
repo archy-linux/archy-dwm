@@ -75,7 +75,7 @@ static Keychord keychords[] = {
         {2, {{MODKEY, XK_m},                 {ShiftMask, XK_v}},    spawn,          SHCMD(TERMINAL "nvlc") },
 	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)
-	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
+	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofimoji") },
 	/************************************* dwm keys *************************************/
 	// Full screen mode
 	{1, {{MODKEY,			XK_f}},      fullscreen,     {0} },
