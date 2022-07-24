@@ -161,6 +161,7 @@ static Keychord keychords[] = {
 	/* ---------------------------------- lock Keys ---------------------------------- */
 	// Lock the screen
 	{1, {{MODKEY|ShiftMask,    	       XK_x}},     spawn,          SHCMD("betterlockscreen -l dim") },
+	{1, {{0,                     XF86XK_Suspend}},     spawn,          SHCMD("betterlockscreen -l dim") },
 	// Kill dwm (super + shift + alt + q)
 	{1, {{MODKEY|ShiftMask|Mod1Mask,       XK_q}},      quit,           {0} },
 };
