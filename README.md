@@ -32,7 +32,7 @@
 | modkey + t -> shift + k        | Launche the kitty terminal with tmux                                  |
 | modkey + shift + f -> g        | Launche the GUI file manger (pcmanfm by default)                      |
 | modkey + shift + f -> f        | Launche rofi file file browser (small size)                           |
-| modkey + shift + f -> r        | Launche ranger in the main terminal                                   |
+| modkey + shift + f -> t        | Launche the terminal file manger (ranger) in the main terminal        |
 | modkey + w -> g                | Launche google chrome browser                                         |
 | modkey + w -> t                | Launche tor browser                                                   |
 | modkey + c -> d                | Launche discord                                                       |

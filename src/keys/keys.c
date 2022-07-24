@@ -40,8 +40,8 @@ static Keychord keychords[] = {
 	{2, {{MODKEY|ShiftMask, XK_f},      {0, XK_g}},     spawn,           SHCMD(GUI_FILEMANAGER) },
 	// Rofi file browser (small)
         {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_f}},     spawn,           SHCMD("rofi -show filebrowser") },
-        // ranger
-        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_r}},     spawn,           SHCMD(TERMINAL " -e ranger") },
+        // Terminal file manager (ranger)
+        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_t}},     spawn,           SHCMD(TERMINAL " -e ranger") },
 	/************************************* Start the web browers *************************************/
         // Google chrome stable
 	{2, {{MODKEY, XK_w},                {0, XK_g}},     spawn,           SHCMD(WEBBROWSER) },
