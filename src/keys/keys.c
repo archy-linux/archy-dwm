@@ -24,7 +24,7 @@ static Key keys[] = {
 	// Dmenu (launcher)
 	{ MODKEY|ShiftMask,             XK_d,      spawn,                  {.v = dmenucmd } },
 	// Rofi launcher (small)
-	{ MODKEY|ShiftMask|ControlMask, XK_d,      spawn,                  SHCMD("rofi -show drun") }, 
+	{ MODKEY|ShiftMask|ControlMask, XK_d,      spawn,                  SHCMD("rofi -show drun") },
 	// Start the main terminal
 	{ MODKEY,                       XK_Return, spawn,                  {.v = termcmd } },
         // Start the alacritty terminal
@@ -40,8 +40,8 @@ static Key keys[] = {
 // 	{2, {{MODKEY|ShiftMask, XK_f},      {0, XK_g}},     spawn,           SHCMD(GUI_FILEMANAGER) },
 // 	// Rofi file browser (small)
 //         {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_f}},     spawn,           SHCMD("rofi -show filebrowser") },
-//         // ranger
-//         {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_r}},     spawn,           SHCMD(TERMINAL " -e ranger") },
+//        // Terminal file manager (ranger)
+//        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_t}},     spawn,           SHCMD(TERMINAL " -e ranger") },
 // 	/************************************* Start the web browers *************************************/
 //         // Google chrome stable
 // 	{2, {{MODKEY, XK_w},                {0, XK_g}},     spawn,           SHCMD(WEBBROWSER) },
@@ -75,7 +75,7 @@ static Key keys[] = {
 //         {2, {{MODKEY, XK_m},                 {ShiftMask, XK_v}},    spawn,          SHCMD(TERMINAL "nvlc") },
 // 	/************************************* Start the emoji piker apps *************************************/
 // 	// Emoji selector (rofi)
-// 	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
+//	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofimoji") },
 // 	/************************************* dwm keys *************************************/
 // 	// Full screen mode
 // 	{1, {{MODKEY,			XK_f}},      fullscreen,     {0} },
@@ -93,11 +93,11 @@ static Key keys[] = {
 // //	{ MODKEY,                       XK_Return, zoom,           {0} },
 // 	{1, {{MODKEY,                   XK_Tab}},    view,           {0} },
 //
-// 	{1, {{MODKEY|ShiftMask,          XK_j}},     movestack,      {.i = +1 } }, 
-// 	{1, {{MODKEY|ShiftMask,          XK_k}},     movestack,      {.i = -1 } }, 
+// 	{1, {{MODKEY|ShiftMask,          XK_j}},     movestack,      {.i = +1 } },
+// 	{1, {{MODKEY|ShiftMask,          XK_k}},     movestack,      {.i = -1 } },
 //         // Toogle styky mode
 //         {1, {{MODKEY|ShiftMask,          XK_s}},     togglesticky,    {0} },
-//     
+//
 // 	// Quit from the foucsed window (kill)
 // 	{2, {{MODKEY, XK_q},            {0, XK_q}},      killclient,     {0} },
 //         /************************* Switch between layouts *************************/
@@ -118,7 +118,7 @@ static Key keys[] = {
 //         // Centerd floating master layout
 // 	{2, {{MODKEY, XK_s},           {ShiftMask, XK_c}},      setlayout,      {.v = &layouts[7]} },
 //
-//         // Toggle between current layout and tile layout  
+//         // Toggle between current layout and tile layout
 // 	{2, {{MODKEY, XK_s},             {0, XK_space}},  setlayout,      {0} },
 //         // Toggle floating window
 // 	{1, {{MODKEY|Mod1Mask,           XK_f}},        togglefloating,     {0} },
@@ -141,6 +141,7 @@ static Key keys[] = {
 	TAGKEYS(                         XK_7,                      6)
 	TAGKEYS(                         XK_8,                      7)
 	TAGKEYS(                         XK_9,                      8)
+        TAGKEYS(                         XK_semicolon,              9)
 	/* ---------------------------------- Control Keys ---------------------------------- */
 	// // Brightness controllers (requires xbacklight)
 	// {1, {{0,                               XF86XK_MonBrightnessUp}},   spawn, SHCMD("xbacklight -inc 5") },
@@ -161,6 +162,7 @@ static Key keys[] = {
 	// /* ---------------------------------- lock Keys ---------------------------------- */
 	// // Lock the screen
 	// {1, {{MODKEY|ShiftMask,    	       XK_x}},     spawn,          SHCMD("betterlockscreen -l dim") },
+//	{1, {{0,                     XF86XK_Suspend}},     spawn,          SHCMD("betterlockscreen -l dim") },
 	// // Kill dwm (super + shift + alt + q)
 	// {1, {{MODKEY|ShiftMask|Mod1Mask,       XK_q}},      quit,           {0} },
 };

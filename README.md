@@ -32,7 +32,7 @@
 | modkey + t -> shift + k        | Launche the kitty terminal with tmux                                  |
 | modkey + shift + f -> g        | Launche the GUI file manger (pcmanfm by default)                      |
 | modkey + shift + f -> f        | Launche rofi file file browser (small size)                           |
-| modkey + shift + f -> r        | Launche ranger in the main terminal                                   |
+| modkey + shift + f -> t        | Launche the terminal file manger (ranger) in the main terminal        |
 | modkey + w -> g                | Launche google chrome browser                                         |
 | modkey + w -> t                | Launche tor browser                                                   |
 | modkey + c -> d                | Launche discord                                                       |
@@ -138,4 +138,5 @@
 [![BitBucket](https://img.shields.io/badge/BitBucket-Mirror%20repo-brightgreen?style=for-the-badge&logo=BitBucket)](https://bitbucket.org/anas_elgarhy/dwm-anas)
 [![Codeberg](https://img.shields.io/badge/Codeberg-Mirror%20repo-brightgreen?style=for-the-badge&logo=Codeberg)](https://codeberg.org/anas-elgarhy/dwm-anas)
 
-
+### Refrences:
+- [XF86keysym](https://cgit.freedesktop.org/xorg/proto/x11proto/tree/XF86keysym.h)
