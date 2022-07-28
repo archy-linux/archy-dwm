@@ -1,0 +1,307 @@
+diff --git a/config.def.h b/config.def.h
+index a2ac963..3bde49d 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -47,10 +47,10 @@ static const Layout layouts[] = {
+ /* key definitions */
+ #define MODKEY Mod1Mask
+ #define TAGKEYS(KEY,TAG) \
+-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
++	{ {0,0,0,0},                     {KEY,0,0,0},      view,           {.ui = 1 << TAG} }, \
++	{ {ControlMask,0,0,0},           {KEY,0,0,0},      toggleview,     {.ui = 1 << TAG} }, \
++	{ {ShiftMask,0,0,0},             {KEY,0,0,0},      tag,            {.ui = 1 << TAG} }, \
++	{ {ControlMask|ShiftMask,0,0,0}, {KEY,0,0,0},      toggletag,      {.ui = 1 << TAG} },
+ 
+ /* helper for spawning shell commands in the pre dwm-5.0 fashion */
+ #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+@@ -62,39 +62,50 @@ static const char *termcmd[]  = { "st", NULL };
+ 
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+-	{ MODKEY,                       XK_Return, zoom,           {0} },
+-	{ MODKEY,                       XK_Tab,    view,           {0} },
+-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+-	TAGKEYS(                        XK_1,                      0)
+-	TAGKEYS(                        XK_2,                      1)
+-	TAGKEYS(                        XK_3,                      2)
+-	TAGKEYS(                        XK_4,                      3)
+-	TAGKEYS(                        XK_5,                      4)
+-	TAGKEYS(                        XK_6,                      5)
+-	TAGKEYS(                        XK_7,                      6)
+-	TAGKEYS(                        XK_8,                      7)
+-	TAGKEYS(                        XK_9,                      8)
+-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
++	{ MODKEY,                       XK_Escape, setkeymode,     {.ui = ModeCommand} },
++};
++
++static Key cmdkeys[] = {
++	/* modifier                    keys                     function         argument */
++	{ 0,                           XK_Escape,               clearcmd,        {0} },
++	{ ControlMask,                 XK_g,                    clearcmd,        {0} },
++	{ 0,                           XK_i,                    setkeymode,      {.ui = ModeInsert} },
++};
++static Command commands[] = {
++	/* modifier (4 keys)         keysyms (4 keys)         function        argument */
++	{ {0,           0, 0, 0},    { XK_p,      0, 0, 0},   spawn,          {.v = dmenucmd } },
++	{ {ShiftMask,   0, 0, 0},    { XK_Return, 0, 0, 0},   spawn,          {.v = termcmd } },
++	{ {0,           0, 0, 0},    { XK_b,      0, 0, 0},   togglebar,      {0} },
++	{ {0,           0, 0, 0},    { XK_j,      0, 0, 0},   focusstack,     {.i = +1 } },
++	{ {0,           0, 0, 0},    { XK_k,      0, 0, 0},   focusstack,     {.i = -1 } },
++	{ {0,           0, 0, 0},    { XK_i,      0, 0, 0},   incnmaster,     {.i = +1 } },
++	{ {0,           0, 0, 0},    { XK_d,      0, 0, 0},   incnmaster,     {.i = -1 } },
++	{ {0,           0, 0, 0},    { XK_h,      0, 0, 0},   setmfact,       {.f = -0.05} },
++	{ {0,           0, 0, 0},    { XK_l,      0, 0, 0},   setmfact,       {.f = +0.05} },
++	{ {0,           0, 0, 0},    { XK_Return, 0, 0, 0},   zoom,           {0} },
++	{ {ControlMask, 0, 0, 0},    { XK_i,      0, 0, 0},   view,           {0} },
++	{ {ShiftMask,   0, 0, 0},    { XK_k,      0, 0, 0},   killclient,     {0} },
++	{ {0,           0, 0, 0},    { XK_t,      0, 0, 0},   setlayout,      {.v = &layouts[0]} },
++	{ {0,           0, 0, 0},    { XK_f,      0, 0, 0},   setlayout,      {.v = &layouts[1]} },
++	{ {0,           0, 0, 0},    { XK_m,      0, 0, 0},   setlayout,      {.v = &layouts[2]} },
++	{ {0,           0, 0, 0},    { XK_space,  0, 0, 0},   setlayout,      {0} },
++	{ {ShiftMask,   0, 0, 0},    { XK_space,  0, 0, 0},   togglefloating, {0} },
++	{ {0,           0, 0, 0},    { XK_0,      0, 0, 0},   view,           {.ui = ~0 } },
++	{ {ShiftMask,   0, 0, 0},    { XK_0,      0, 0, 0},   tag,            {.ui = ~0 } },
++	{ {0,           0, 0, 0},    { XK_comma,  0, 0, 0},   focusmon,       {.i = -1 } },
++	{ {0,           0, 0, 0},    { XK_period, 0, 0, 0},   focusmon,       {.i = +1 } },
++	{ {ShiftMask,   0, 0, 0},    { XK_comma,  0, 0, 0},   tagmon,         {.i = -1 } },
++	{ {ShiftMask,   0, 0, 0},    { XK_period, 0, 0, 0},   tagmon,         {.i = +1 } },
++	TAGKEYS(XK_1, 0)
++	TAGKEYS(XK_2, 1)
++	TAGKEYS(XK_3, 2)
++	TAGKEYS(XK_4, 3)
++	TAGKEYS(XK_5, 4)
++	TAGKEYS(XK_6, 5)
++	TAGKEYS(XK_7, 6)
++	TAGKEYS(XK_8, 7)
++	TAGKEYS(XK_9, 8)
++	{ {ShiftMask,   0, 0, 0},    { XK_q,      0, 0, 0},   quit,           {0} },
+ };
+ 
+ /* button definitions */
+@@ -113,4 +124,3 @@ static Button buttons[] = {
+ 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+ 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+ };
+-
+diff --git a/dwm.c b/dwm.c
+index 0fc328a..487484e 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -60,6 +60,7 @@
+ /* enums */
+ enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
+ enum { SchemeNorm, SchemeSel }; /* color schemes */
++enum { ModeCommand, ModeInsert };
+ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
+        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
+        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
+@@ -99,6 +100,13 @@ struct Client {
+ 	Window win;
+ };
+ 
++typedef struct {
++	unsigned int mod[4];
++	KeySym keysym[4];
++	void (*func)(const Arg *);
++	const Arg arg;
++} Command;
++
+ typedef struct {
+ 	unsigned int mod;
+ 	KeySym keysym;
+@@ -152,6 +160,7 @@ static void buttonpress(XEvent *e);
+ static void checkotherwm(void);
+ static void cleanup(void);
+ static void cleanupmon(Monitor *mon);
++static void clearcmd(const Arg *arg);
+ static void clientmessage(XEvent *e);
+ static void configure(Client *c);
+ static void configurenotify(XEvent *e);
+@@ -177,6 +186,7 @@ static void grabbuttons(Client *c, int focused);
+ static void grabkeys(void);
+ static void incnmaster(const Arg *arg);
+ static void keypress(XEvent *e);
++static void keypresscmd(XEvent *e);
+ static void killclient(const Arg *arg);
+ static void manage(Window w, XWindowAttributes *wa);
+ static void mappingnotify(XEvent *e);
+@@ -200,6 +210,8 @@ static void sendmon(Client *c, Monitor *m);
+ static void setclientstate(Client *c, long state);
+ static void setfocus(Client *c);
+ static void setfullscreen(Client *c, int fullscreen);
++static void setinsertmode(void);
++static void setkeymode(const Arg *arg);
+ static void setlayout(const Arg *arg);
+ static void setmfact(const Arg *arg);
+ static void setup(void);
+@@ -243,6 +255,8 @@ static int sw, sh;           /* X display screen geometry width, height */
+ static int bh, blw = 0;      /* bar geometry */
+ static int lrpad;            /* sum of left and right padding for text */
+ static int (*xerrorxlib)(Display *, XErrorEvent *);
++static unsigned int cmdmod[4];
++static unsigned int keymode = ModeCommand;
+ static unsigned int numlockmask = 0;
+ static void (*handler[LASTEvent]) (XEvent *) = {
+ 	[ButtonPress] = buttonpress,
+@@ -266,6 +280,7 @@ static Cur *cursor[CurLast];
+ static Clr **scheme;
+ static Display *dpy;
+ static Drw *drw;
++static KeySym cmdkeysym[4];
+ static Monitor *mons, *selmon;
+ static Window root, wmcheckwin;
+ 
+@@ -513,6 +528,17 @@ cleanupmon(Monitor *mon)
+ 	free(mon);
+ }
+ 
++void
++clearcmd(const Arg *arg)
++{
++	unsigned int i;
++
++	for (i = 0; i < LENGTH(cmdkeysym); i++) {
++		cmdkeysym[i] = 0;
++		cmdmod[i] = 0;
++	}
++}
++
+ void
+ clientmessage(XEvent *e)
+ {
+@@ -955,6 +981,13 @@ grabbuttons(Client *c, int focused)
+ void
+ grabkeys(void)
+ {
++	if (keymode == ModeCommand) {
++		XUngrabKey(dpy, AnyKey, AnyModifier, root);
++		XGrabKeyboard(dpy, root, True, GrabModeAsync, GrabModeAsync, CurrentTime);
++		return;
++	}
++
++	XUngrabKeyboard(dpy, CurrentTime);
+ 	updatenumlockmask();
+ 	{
+ 		unsigned int i, j;
+@@ -996,6 +1029,11 @@ keypress(XEvent *e)
+ 	KeySym keysym;
+ 	XKeyEvent *ev;
+ 
++	if (keymode == ModeCommand) {
++		keypresscmd(e);
++		return;
++	}
++
+ 	ev = &e->xkey;
+ 	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
+ 	for (i = 0; i < LENGTH(keys); i++)
+@@ -1005,6 +1043,53 @@ keypress(XEvent *e)
+ 			keys[i].func(&(keys[i].arg));
+ }
+ 
++void
++keypresscmd(XEvent *e) {
++	unsigned int i, j;
++	int matches = 0;
++	KeySym keysym;
++	XKeyEvent *ev;
++
++	ev = &e->xkey;
++	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
++	if (XK_Shift_L <= keysym && keysym <= XK_Hyper_R) {
++		return;
++	}
++
++	for (i = 0; i < LENGTH(cmdkeys); i++) {
++		if (keysym == cmdkeys[i].keysym
++		&& CLEANMASK(cmdkeys[i].mod) == CLEANMASK(ev->state)
++		&& cmdkeys[i].func) {
++			cmdkeys[i].func(&(cmdkeys[i].arg));
++			return;
++		}
++	}
++
++	for (j = 0; j < LENGTH(cmdkeysym); j++) {
++		if (cmdkeysym[j] == 0) {
++			cmdkeysym[j] = keysym;
++			cmdmod[j] = ev->state;
++			break;
++		}
++	}
++
++	for (i = 0; i < LENGTH(commands); i++) {
++		matches = 0;
++		for (j = 0; j < LENGTH(cmdkeysym); j++) {
++			if (cmdkeysym[j] == commands[i].keysym[j]
++			&& CLEANMASK(cmdmod[j]) == CLEANMASK(commands[i].mod[j]))
++				matches++;
++		}
++		if (matches == LENGTH(cmdkeysym)) {
++			if (commands[i].func)
++				commands[i].func(&(commands[i].arg));
++			clearcmd(NULL);
++			return;
++		}
++	}
++}
++
++
+ void
+ killclient(const Arg *arg)
+ {
+@@ -1438,6 +1523,24 @@ setclientstate(Client *c, long state)
+ 		PropModeReplace, (unsigned char *)data, 2);
+ }
+ 
++void
++setinsertmode()
++{
++	keymode = ModeInsert;
++	clearcmd(NULL);
++	grabkeys();
++}
++
++void
++setkeymode(const Arg *arg)
++{
++	if(!arg)
++		return;
++	keymode = arg->ui;
++	clearcmd(NULL);
++	grabkeys();
++}
++
+ int
+ sendevent(Client *c, Atom proto)
+ {
+@@ -1645,6 +1748,7 @@ sigchld(int unused)
+ void
+ spawn(const Arg *arg)
+ {
++	setinsertmode();
+ 	if (arg->v == dmenucmd)
+ 		dmenumon[0] = '0' + selmon->num;
+ 	if (fork() == 0) {
