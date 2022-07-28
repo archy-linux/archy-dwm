@@ -11,7 +11,6 @@
 - [cool autostart](https://dwm.suckless.org/patches/cool_autostart)
 - [fullscreen](https://dwm.suckless.org/patches/fullscreen)
 - [gridmode](https://dwm.suckless.org/patches/gridmode)
-- [keychord](https://dwm.suckless.org/patches/keychord)
 - [movestack](https://dwm.suckless.org/patches/movestack)
 - [pertag](https://dwm.suckless.org/patches/pertag)
 - [systray](https://dwm.suckless.org/patches/systray)
@@ -19,6 +18,7 @@
 - [noborder](https://dwm.suckless.org/patches/noborder)
 - [fibonacci layouts](https://dwm.suckless.org/patches/fibonacci)
 - [centeredmaster](https://dwm.suckless.org/patches/centeredmaster)
+- [keychain](https://dwm.suckless.org/patches/keychain)
 
 ### Keys
 | Keys                           | Function                                                              |
@@ -27,9 +27,9 @@
 | modkey + shift + ctrl + d      | Open rofi launcher (small size)                                       |
 | modkey + enter                 | Launche the main terminal (alacritty by default)                      |
 | modkey + t -> a                | Launche the alacritty terminal                                        |
-| modkey + t -> shift + a        | Launche the alacritty terminal with tmux                              |
+<!-- | modkey + t -> shift + a        | Launche the alacritty terminal with tmux                              | -->
 | modkey + t -> k                | Launche the kitty terminal                                            |
-| modkey + t -> shift + k        | Launche the kitty terminal with tmux                                  |
+<!-- | modkey + t -> shift + k        | Launche the kitty terminal with tmux                                  | -->
 | modkey + shift + f -> g        | Launche the GUI file manger (pcmanfm by default)                      |
 | modkey + shift + f -> f        | Launche rofi file file browser (small size)                           |
 | modkey + shift + f -> t        | Launche the terminal file manger (ranger) in the main terminal        |
@@ -61,15 +61,15 @@
 | modkey + s -> m                | Use the monocle layout                                                |
 | modkey + s -> g                | Use the grid layout                                                   |
 | modkey + s -> r                | Use the spial layout (part from fibonacci layouts)                    |
-| modkey + s -> shift + r        | Use the dwindle layout (part from fibonacci layouts)                  |
+| modkey + s -> d                | Use the dwindle layout (part from fibonacci layouts)                  |
 | modkey + s -> c                | Use the centerd master layout                                         |
-| modkey + s -> shift + s        | Use the centerd floating master layout                                | 
-| modkey + s -> space            | Toggle between current layout and tile layout                         |
+| modkey + s -> x                | Use the centerd floating master layout                                | 
+| modkey + s -> s                | Toggle between current layout and tile layout                         |
 | modkey + shift + s             | Toggle sticky mode                                                    |
 | modkey + alt + f               | Toggle floating window                                                |
 | modkey + m -> c                | Launche the cmus player                                               |
 | modkey + m -> v                | Launche vlc video player                                              |
-| modkey + m -> shift + v        | Lanuche nvlc in the main terminal                                     |
+<!-- | modkey + m -> shift + v        | Lanuche nvlc in the main terminal                                     | -->
 | modkey + 0                     | View all tags                                                         |
 | modkey + shift + 0             | Mirror the current tag in all tags                                    |
 | modkey + comma (,)             | -                                                                     |
