@@ -116,11 +116,15 @@ struct Client {
 
 typedef struct {
 	unsigned int mod;
-    KeySym chain;
 	KeySym keysym;
+} Key;
+
+typedef struct {
+	unsigned int n;
+	const Key keys[5];
 	void (*func)(const Arg *);
 	const Arg arg;
-} Key;
+} Keychord;
 
 typedef struct {
 	const char *symbol;
@@ -210,7 +214,7 @@ static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
-static void pop(Client *);
+static void pop(Client *c);
 static void propertynotify(XEvent *e);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
@@ -239,7 +243,7 @@ static void spawn(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
-static void tile(Monitor *);
+static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglesticky(const Arg *arg);
@@ -272,8 +276,8 @@ static void zoom(const Arg *arg);
 static void autostart_exec(void);
 
 /* variables */
-static Systray *systray = NULL;
 static const char broken[] = "broken";
+static Systray *systray = NULL;
 static char stext[256];
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
@@ -306,7 +310,7 @@ static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
-static KeySym keychain = -1;
+unsigned int currentkey = 0;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -1134,21 +1138,16 @@ grabkeys(void)
 {
 	updatenumlockmask();
 	{
-		unsigned int i, j;
+		unsigned int i, k;
 		unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
 		KeyCode code;
-		KeyCode chain;
 
 		XUngrabKey(dpy, AnyKey, AnyModifier, root);
-		for (i = 0; i < LENGTH(keys); i++)
-			if ((code = XKeysymToKeycode(dpy, keys[i].keysym))) {
-				if (keys[i].chain != -1 &&
-					((chain = XKeysymToKeycode(dpy, keys[i].chain))))
-						code = chain;
-				for (j = 0; j < LENGTH(modifiers); j++)
-					XGrabKey(dpy, code, keys[i].mod | modifiers[j], root,
-						True, GrabModeAsync, GrabModeAsync);
-			}
+		for (i = 0; i < LENGTH(keychords); i++)
+			if ((code = XKeysymToKeycode(dpy, keychords[i].keys[currentkey].keysym)))
+				for (k = 0; k < LENGTH(modifiers); k++)
+					XGrabKey(dpy, code, keychords[i].keys[currentkey].mod | modifiers[k], root,
+							 True, GrabModeAsync, GrabModeAsync);
 	}
 }
 
@@ -1174,37 +1173,48 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
 void
 keypress(XEvent *e)
 {
-	unsigned int i, j;
+	XEvent event = *e;
+	Keychord *keychord;
+	unsigned int ran = 0;
 	KeySym keysym;
 	XKeyEvent *ev;
-	int current = 0;
-	unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
+	Keychord *newoptions;
+	Keychord *oldoptions = (Keychord *)malloc(sizeof(keychords));
 
-	ev = &e->xkey;
-	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
-	for (i = 0; i < LENGTH(keys); i++) {
-		if (keysym == keys[i].keysym && keys[i].chain == -1
-				&& CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
-				&& keys[i].func)
-			keys[i].func(&(keys[i].arg));
-		else if (keysym == keys[i].chain && keychain == -1
-				&& CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
-				&& keys[i].func) {
-			current = 1;
-			keychain = keysym;
-			for (j = 0; j < LENGTH(modifiers); j++)
-				XGrabKey(dpy, AnyKey, 0 | modifiers[j], root,
-						True, GrabModeAsync, GrabModeAsync);
-		} else if (!current && keysym == keys[i].keysym
-				&& keychain != -1
-				&& keys[i].chain == keychain
-				&& keys[i].func)
-			keys[i].func(&(keys[i].arg));
-	}
-	if (!current) {
-		keychain = -1;
+	memcpy(oldoptions, keychords, sizeof(keychords));
+	size_t numoption = 0;
+	while(!ran){
+		ev = &event.xkey;
+		keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
+		newoptions = (Keychord *)malloc(0);
+		numoption = 0;
+		for (keychord = oldoptions; keychord->n != 0 && currentkey < 5; keychord = (Keychord *)((char *)keychord + sizeof(Keychord))){
+			if(keysym == keychord->keys[currentkey].keysym
+			   && CLEANMASK(keychord->keys[currentkey].mod) == CLEANMASK(ev->state)
+			   && keychord->func){
+				if(keychord->n == currentkey +1){
+					keychord->func(&(keychord->arg));
+					ran = 1;
+				}else{
+					numoption++;
+					newoptions = (Keychord *)realloc(newoptions, numoption * sizeof(Keychord));
+					memcpy((char *)newoptions + (numoption -1) * sizeof(Keychord),keychord, sizeof(Keychord));
+				}
+			}
+		}
+		currentkey++;
+		if(numoption == 0)
+			break;
 		grabkeys();
+		while (running && !XNextEvent(dpy, &event) && !ran)
+			if(event.type == KeyPress)
+				break;
+		free(oldoptions);
+		oldoptions = newoptions;
 	}
+	free(newoptions);
+	currentkey = 0;
+	grabkeys();
 }
 
 void
@@ -1813,7 +1823,7 @@ setmfact(const Arg *arg)
 	f = arg->f < 1.0 ? arg->f + selmon->mfact : arg->f - 1.0;
 	if (f < 0.05 || f > 0.95)
 		return;
-	selmon->mfact = selmon->pertag->mfacts[selmon->pertag->curtag] = f;
+	selmon->mfact = f;
 	arrange(selmon);
 }
 
@@ -1825,6 +1835,8 @@ setup(void)
 	Atom utf8string;
 
 	/* clean up any zombies immediately */
+	if (signal(SIGCHLD, sigchld) == SIG_ERR)
+		die("can't install SIGCHLD handler:");
 	sigchld(0);
 
 	/* init screen */
