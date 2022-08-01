@@ -10,159 +10,161 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 /* key definitions */
 #define MODKEY Mod4Mask // win/super key
 
-#define TAGKEYS(KEY,TAG) \
-	{1, {{MODKEY,                        KEY}},      view,           {.ui = 1 << TAG} }, \
-	{1, {{MODKEY|ControlMask,            KEY}},      toggleview,     {.ui = 1 << TAG} }, \
-	{1, {{MODKEY|ShiftMask,              KEY}},      tag,            {.ui = 1 << TAG} }, \
-	{1, {{MODKEY|ControlMask|ShiftMask,  KEY}},      toggletag,      {.ui = 1 << TAG} },
-
+#define TAGKEYS(CHAIN,KEY,TAG) \
+   { MODKEY,                       CHAIN,    KEY,      view,           {.ui = 1 << TAG} }, \
+   { MODKEY|ControlMask,           CHAIN,    KEY,      toggleview,     {.ui = 1 << TAG} }, \
+   { MODKEY|ShiftMask,             CHAIN,    KEY,      tag,            {.ui = 1 << TAG} }, \
+   { MODKEY|ControlMask|ShiftMask, CHAIN,    KEY,      toggletag,      {.ui = 1 << TAG} },
+ 
 // X11 keysym definitions
 #include <X11/XF86keysym.h> // req (libxinerama1 and libxinerama-dev)
-static Keychord keychords[] = {
-	/* modifier                     key        function        argument */
+static Key keys[] = {
+	/* modifier                     chain key         key        function        argument */
 	/* ---------------------------------- Apps Keys ---------------------------------- */
 	// Dmenu (launcher)
-	{1, {{MODKEY|ShiftMask,             XK_d}},      spawn,                  {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             -1,              XK_d,      spawn,                  {.v = dmenucmd } },
 	// Rofi launcher (small)
-	{1, {{MODKEY|ShiftMask|ControlMask, XK_d}},      spawn,                  SHCMD("rofi -show drun") }, 
+	{ MODKEY|ShiftMask|ControlMask, -1,              XK_d,      spawn,                  SHCMD("rofi -show drun") },
 	// Start the main terminal
-	{1, {{MODKEY,                       XK_Return}}, spawn,                  {.v = termcmd } },
+	{ MODKEY,                       -1,              XK_Return, spawn,                  {.v = termcmd } },
         // Start the alacritty terminal
-	{2, {{MODKEY, XK_t},                {0, XK_a}},      spawn,              SHCMD("alacritty")  },
+	{ MODKEY,                        XK_t,            XK_a,           spawn,              SHCMD("alacritty")  },
 	// Start the alacritty terminal with tmux
-	{2, {{MODKEY, XK_t},                {ShiftMask, XK_a}},      spawn,           SHCMD("alacritty -e tmux")  },
+	// { MODKEY,                        XK_t,            XK_a|ShiftMask, spawn,           SHCMD("alacritty -e tmux")  },
         // kitty
-	{2, {{MODKEY, XK_t},                {0, XK_k}},              spawn,           SHCMD("kitty")  },
+	{ MODKEY,                        XK_t,            XK_k,      spawn,           SHCMD("kitty")  },
         // kitty with tmux
-	{2, {{MODKEY, XK_t},                {ShiftMask, XK_k}},      spawn,           SHCMD("kitty -e tmux")  },
+	// { MODKEY,                        XK_t,            ShiftMask|XK_k,      spawn,           SHCMD("kitty -e tmux")  },
 	/************************************* File browsers *************************************/
         // GUI filebrowser (pcmanfm)
-	{2, {{MODKEY|ShiftMask, XK_f},      {0, XK_g}},     spawn,           SHCMD(GUI_FILEMANAGER) },
+	{ MODKEY|ShiftMask,             XK_f,             XK_g,     spawn,           SHCMD(GUI_FILEMANAGER) },
 	// Rofi file browser (small)
-        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_f}},     spawn,           SHCMD("rofi -show filebrowser") },
-        // ranger
-        {2, {{MODKEY|ShiftMask, XK_f},      {0, XK_r}},     spawn,           SHCMD(TERMINAL " -e ranger") },
+        { MODKEY|ShiftMask,             XK_f,             XK_f,     spawn,           SHCMD("rofi -show filebrowser") },
+        // Terminal file manager (ranger)
+        { MODKEY|ShiftMask,             XK_f,             XK_t,     spawn,           SHCMD(TERMINAL " -e ranger") },
 	/************************************* Start the web browers *************************************/
         // Google chrome stable
-	{2, {{MODKEY, XK_w},                {0, XK_g}},     spawn,           SHCMD(WEBBROWSER) },
+	{ MODKEY,                       XK_w,             XK_g,     spawn,           SHCMD(WEBBROWSER) },
         // Tor brower
-	{2, {{MODKEY, XK_w},                {0, XK_t}},     spawn,           SHCMD("tor-browser") },
+	{ MODKEY,                       XK_w,             XK_t,     spawn,           SHCMD("tor-browser") },
 	/************************************* Start the caht/email/\* apps *************************************/
 	// Discord
-	{2, {{MODKEY, XK_c},                {0, XK_d}},      spawn,           SHCMD("discord") },
+	{ MODKEY,                       XK_c,             XK_d,      spawn,           SHCMD("discord") },
         // Obsidian
-	{2, {{MODKEY, XK_c},                {0, XK_o}},      spawn,           SHCMD("obsidian") },
+	{ MODKEY,                       XK_c,             XK_o,      spawn,           SHCMD("obsidian") },
 	/************************************* Start the dev apps *************************************/
 	// Jetbrains toolbox
-	{2, {{MODKEY, XK_a},                {0, XK_j}},     spawn,         SHCMD("jetbrains-toolbox") },
+	{ MODKEY,                       XK_a,              XK_j,     spawn,         SHCMD("jetbrains-toolbox") },
         // NeoVim
-	{2, {{MODKEY, XK_a},                {0, XK_n}},     spawn,         SHCMD(TERMINAL " -e nvim") },
+	{ MODKEY,                       XK_a,              XK_n,     spawn,         SHCMD(TERMINAL " -e nvim") },
         // Vim
-	{2, {{MODKEY, XK_a},                {0, XK_v}},     spawn,         SHCMD(TERMINAL " -e vim") },
+	{ MODKEY,                       XK_a,              XK_v,     spawn,         SHCMD(TERMINAL " -e vim") },
         // emacs
-	{2, {{MODKEY, XK_a},                {0, XK_e}},     spawn,         SHCMD("emacs") },
+	{ MODKEY,                       XK_a,              XK_e,     spawn,         SHCMD("emacs") },
 	/************************************* Start personalize apps *************************************/
         // nitrogen
-        {2, {{MODKEY, XK_p},                {0, XK_b}},    spawn,         SHCMD("nitrogen") },
+        { MODKEY,                       XK_p,             XK_b,    spawn,         SHCMD("nitrogen") },
         // nm-connection-editor
-        {2, {{MODKEY, XK_p},                {0, XK_n}},    spawn,         SHCMD("nm-connection-editor") },
+        { MODKEY,                       XK_p,             XK_n,    spawn,         SHCMD("nm-connection-editor") },
 	/************************************* Start multi media apps *************************************/
         // cmus
-        {2, {{MODKEY, XK_m},                 {0, XK_c}},    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc --link\"") },
+        { MODKEY,                       XK_m,             XK_c,    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc --link\"") },
         // vlc
-        {2, {{MODKEY, XK_m},                 {0, XK_v}},    spawn,          SHCMD("vlc") },
+        { MODKEY,                       XK_m,             XK_v,    spawn,          SHCMD("vlc") },
         // vlc in the main terminal
-        {2, {{MODKEY, XK_m},                 {ShiftMask, XK_v}},    spawn,          SHCMD(TERMINAL "nvlc") },
+        // { MODKEY|ShiftMask,             XK_m,             XK_v,    spawn,          SHCMD(TERMINAL "nvlc") },
 	/************************************* Start the emoji piker apps *************************************/
 	// Emoji selector (rofi)
-	{1, {{Mod4Mask,                    XK_e}},    spawn,          SHCMD("rofi -show emoji") },
+        { Mod4Mask,                     -1,               XK_e,    spawn,          SHCMD("rofimoji") },
 	/************************************* dwm keys *************************************/
 	// Full screen mode
-	{1, {{MODKEY,			XK_f}},      fullscreen,     {0} },
+	{ MODKEY,			-1,               XK_f,    fullscreen,     {0} },
 	// Toggle the slstatus bar (hide/show)
-	{1, {{MODKEY,                   XK_b}},      togglebar,      {0} },
+	{ MODKEY,                       -1,               XK_b,    togglebar,      {0} },
         // Change the focus
-	{1, {{MODKEY,                   XK_j}},      focusstack,     {.i = +1 } },
-	{1, {{MODKEY,                   XK_k}},      focusstack,     {.i = -1 } },
+	{ MODKEY,                       -1,               XK_j,    focusstack,     {.i = +1 } },
+	{ MODKEY,                       -1,               XK_k,    focusstack,     {.i = -1 } },
         // Change the stack layout (horizontal/virtecal)
-	{1, {{MODKEY,                   XK_i}},      incnmaster,     {.i = +1 } },
-	{1, {{MODKEY,                   XK_d}},      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       -1,               XK_i,    incnmaster,     {.i = +1 } },
+	{ MODKEY,                       -1,               XK_d,    incnmaster,     {.i = -1 } },
         // Change the focus window size (in the tile mode)
-	{1, {{MODKEY,                   XK_h}},      setmfact,       {.f = -0.05} },
-	{1, {{MODKEY,                   XK_l}},      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       -1,               XK_h,    setmfact,       {.f = -0.05} },
+	{ MODKEY,                       -1,               XK_l,    setmfact,       {.f = +0.05} },
 //	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{1, {{MODKEY,                   XK_Tab}},    view,           {0} },
+	{ MODKEY,                       -1,               XK_Tab,  view,           {0} },
 
-	{1, {{MODKEY|ShiftMask,          XK_j}},     movestack,      {.i = +1 } }, 
-	{1, {{MODKEY|ShiftMask,          XK_k}},     movestack,      {.i = -1 } }, 
+	{ MODKEY|ShiftMask,             -1,               XK_j,    movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             -1,               XK_k,    movestack,      {.i = -1 } },
         // Toogle styky mode
-        {1, {{MODKEY|ShiftMask,          XK_s}},     togglesticky,    {0} },
-    
+        { MODKEY|ShiftMask,             -1,               XK_s,   togglesticky,    {0} },
+
 	// Quit from the foucsed window (kill)
-	{2, {{MODKEY, XK_q},            {0, XK_q}},      killclient,     {0} },
+	{ MODKEY,                      XK_q,              XK_q,   killclient,     {0} },
         /************************* Switch between layouts *************************/
 	// Tiled layout
-	{2, {{MODKEY, XK_s},           {0, XK_t}},      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                     XK_s,              XK_t,    setlayout,      {.v = &layouts[0]} },
 	// Floating layout
-	{2, {{MODKEY, XK_s},           {0, XK_f}},      setlayout,      {.v = &layouts[1]} },
+        { MODKEY,                     XK_s,              XK_f,    setlayout,      {.v = &layouts[1]} },
 	// Monocle layout
-	{2, {{MODKEY, XK_s},           {0, XK_m}},      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                     XK_s,              XK_m,    setlayout,      {.v = &layouts[2]} },
         // Grid layout
-	{2, {{MODKEY, XK_s},           {0, XK_g}},      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                     XK_s,              XK_g,    setlayout,      {.v = &layouts[3]} },
         // Spiral layout
-	{2, {{MODKEY, XK_s},           {0, XK_r}},      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                     XK_s,              XK_r,    setlayout,      {.v = &layouts[4]} },
         // Dwindle layout
-	{2, {{MODKEY, XK_s},           {ShiftMask, XK_r}},      setlayout,      {.v = &layouts[5]} },
+	{ MODKEY,                     XK_s,              XK_d,    setlayout,      {.v = &layouts[5]} },
         // Centerd master layout
-	{2, {{MODKEY, XK_s},           {0, XK_c}},      setlayout,      {.v = &layouts[6]} },
+	{ MODKEY,                     XK_s,              XK_c,    setlayout,      {.v = &layouts[6]} },
         // Centerd floating master layout
-	{2, {{MODKEY, XK_s},           {ShiftMask, XK_c}},      setlayout,      {.v = &layouts[7]} },
+	{ MODKEY,                     XK_s,              XK_x,    setlayout,      {.v = &layouts[7]} },
+        // Toggle between current layout and tile layout
+	{ MODKEY,                     XK_s,              XK_s,    setlayout,      {0} },
 
-        // Toggle between current layout and tile layout  
-	{2, {{MODKEY, XK_s},             {0, XK_space}},  setlayout,      {0} },
         // Toggle floating window
-	{1, {{MODKEY|Mod1Mask,           XK_f}},        togglefloating,     {0} },
+	{ MODKEY|Mod1Mask,           -1,                XK_f,     togglefloating,     {0} },
         // View all tags
-	{1, {{MODKEY,                    XK_0}},        view,           {.ui = ~0 } },
+	{ MODKEY,                    -1,                XK_0,      view,           {.ui = ~0 } },
         // Mirror the current tagg in all tags
-	{1, {{MODKEY|ShiftMask,          XK_0}},        tag,            {.ui = ~0 } },
+	{ MODKEY|ShiftMask,          -1,                XK_0,      tag,            {.ui = ~0 } },
         // I don't know
-	{1, {{MODKEY,                    XK_comma}},    focusmon,       {.i = -1 } },
-	{1, {{MODKEY,                    XK_period}},   focusmon,       {.i = +1 } },
-	{1, {{MODKEY|ShiftMask,          XK_comma}},    tagmon,         {.i = -1 } },
-	{1, {{MODKEY|ShiftMask,          XK_period}},   tagmon,         {.i = +1 } },
+	{ MODKEY,                    -1,                XK_comma,  focusmon,       {.i = -1 } },
+	{ MODKEY,                    -1,                XK_period, focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,          -1,                XK_comma,  tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,          -1,                XK_period, tagmon,         {.i = +1 } },
         /************************* Tag keys *************************/
-	TAGKEYS(                         XK_1,                      0)
-	TAGKEYS(                         XK_2,                      1)
-	TAGKEYS(                         XK_3,                      2)
-	TAGKEYS(                         XK_4,                      3)
-	TAGKEYS(                         XK_5,                      4)
-	TAGKEYS(                         XK_6,                      5)
-	TAGKEYS(                         XK_7,                      6)
-	TAGKEYS(                         XK_8,                      7)
-	TAGKEYS(                         XK_9,                      8)
+	TAGKEYS(                     -1,                XK_1,                      0)
+	TAGKEYS(                     -1,                XK_2,                      1)
+	TAGKEYS(                     -1,                XK_3,                      2)
+	TAGKEYS(                     -1,                XK_4,                      3)
+	TAGKEYS(                     -1,                XK_5,                      4)
+	TAGKEYS(                     -1,                XK_6,                      5)
+	TAGKEYS(                     -1,                XK_7,                      6)
+	TAGKEYS(                     -1,                XK_8,                      7)
+	TAGKEYS(                     -1,                XK_9,                      8)
+        TAGKEYS(                     -1,                XK_semicolon,              9)
 	/* ---------------------------------- Control Keys ---------------------------------- */
 	// Brightness controllers (requires xbacklight)
-	{1, {{0,                               XF86XK_MonBrightnessUp}},   spawn, SHCMD("xbacklight -inc 5") },
-	{1, {{0,                               XF86XK_MonBrightnessDown}}, spawn, SHCMD("xbacklight -dec 5") },
+	{ 0,                            -1,      XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
+	{ 0,                            -1,      XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
 	// Sound controllers (requires pamixer)
-	{1, {{0,                               XF86XK_AudioRaiseVolume}}, spawn, SHCMD("pamixer --allow-boost -i 4") },
-	{1, {{0,                               XF86XK_AudioLowerVolume}}, spawn, SHCMD("pamixer --allow-boost -d 4") },
-	{1, {{0,                               XF86XK_AudioMute}},        spawn, SHCMD("pamixer -t") },
+	{ 0,                            -1,      XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --allow-boost -i 4") },
+	{ 0,                            -1,      XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 4") },
+	{ 0,                            -1,      XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
 	// Media controls (requires playerctl)
-	{1, {{0,                               XF86XK_AudioPlay}},	 spawn,	SHCMD("playerctl play-pause") },
-	{1, {{0,                               XF86XK_AudioStop}},       spawn, SHCMD("playerctl stop") },
-	{1, {{0,                               XF86XK_AudioNext}},	 spawn,	SHCMD("playerctl next") },
-	{1, {{0,                               XF86XK_AudioPrev}},	 spawn,	SHCMD("playerctl previous")  },
+	{ 0,                            -1,      XF86XK_AudioPlay,	 spawn,	SHCMD("playerctl play-pause") },
+	{ 0,                            -1,      XF86XK_AudioStop,       spawn, SHCMD("playerctl stop") },
+	{ 0,                            -1,      XF86XK_AudioNext,	 spawn,	SHCMD("playerctl next") },
+	{ 0,                            -1,      XF86XK_AudioPrev,	 spawn,	SHCMD("playerctl previous")  },
         // Mute and unmute mic
-	{1, {{0,			       XF86XK_AudioMicMute}},	spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	{ 0, 			        -1,      XF86XK_AudioMicMute,	 spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 	// Take a screenshot
-	{1, {{0,			       XK_Print}},		spawn, SHCMD(SCREENSHOT) },
+	{ 0,                            -1,      XK_Print,		 spawn, SHCMD(SCREENSHOT) },
 	/* ---------------------------------- lock Keys ---------------------------------- */
 	// Lock the screen
-	{1, {{MODKEY|ShiftMask,    	       XK_x}},     spawn,          SHCMD("betterlockscreen -l dim") },
-	// Kill dwm (super + shift + alt + q)
-	{1, {{MODKEY|ShiftMask|Mod1Mask,       XK_q}},      quit,           {0} },
+	{ MODKEY|ShiftMask,             -1,      XK_x,                   spawn,          SHCMD("betterlockscreen -l dim") },
+        { 0,                            -1,      XF86XK_Suspend,         spawn,          SHCMD("betterlockscreen -l dim") },
+	// // Kill dwm (super + shift + alt + q)
+	// { MODKEY|ShiftMask|Mod1Mask,    -1,      XK_q,                   quit,           {0} },
 };
 
 /* button definitions */
