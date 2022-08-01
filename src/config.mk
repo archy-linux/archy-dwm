@@ -1,5 +1,5 @@
-# dwm-anas version
-VERSION = 6.3-0.1.2
+# yo-dwm version
+VERSION = 6.3-0.2.0
 
 # Customize below to fit your system
 
