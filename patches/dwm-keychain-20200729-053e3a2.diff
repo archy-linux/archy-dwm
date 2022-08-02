@@ -1,0 +1,266 @@
+From e6c2d5fdc6010a22d6cd74485cb0b3e74467d0da Mon Sep 17 00:00:00 2001
+From: braunbearded <braunbearded1@gmail.com>
+Date: Wed, 29 Jul 2020 18:37:47 +0200
+Subject: [PATCH 1/4] chain key bindings
+
+---
+ dwm.c | 34 +++++++++++++++++++++++++++++-----
+ 1 file changed, 29 insertions(+), 5 deletions(-)
+
+diff --git a/dwm.c b/dwm.c
+index 9fd0286..7298c5e 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -101,6 +101,7 @@ struct Client {
+ 
+ typedef struct {
+ 	unsigned int mod;
++    KeySym chain;
+ 	KeySym keysym;
+ 	void (*func)(const Arg *);
+ 	const Arg arg;
+@@ -268,6 +269,7 @@ static Display *dpy;
+ static Drw *drw;
+ static Monitor *mons, *selmon;
+ static Window root, wmcheckwin;
++static KeySym keychain = -1;
+ 
+ /* configuration, allows nested code to access above variables */
+ #include "config.h"
+@@ -954,13 +956,18 @@ grabkeys(void)
+ 		unsigned int i, j;
+ 		unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
+ 		KeyCode code;
++		KeyCode chain;
+ 
+ 		XUngrabKey(dpy, AnyKey, AnyModifier, root);
+ 		for (i = 0; i < LENGTH(keys); i++)
+-			if ((code = XKeysymToKeycode(dpy, keys[i].keysym)))
++			if ((code = XKeysymToKeycode(dpy, keys[i].keysym))) {
++				if (keys[i].chain != -1 &&
++					((chain = XKeysymToKeycode(dpy, keys[i].chain))))
++						code = chain;
+ 				for (j = 0; j < LENGTH(modifiers); j++)
+ 					XGrabKey(dpy, code, keys[i].mod | modifiers[j], root,
+ 						True, GrabModeAsync, GrabModeAsync);
++			}
+ 	}
+ }
+ 
+@@ -989,14 +996,31 @@ keypress(XEvent *e)
+ 	unsigned int i;
+ 	KeySym keysym;
+ 	XKeyEvent *ev;
++	int current = 0;
+ 
+ 	ev = &e->xkey;
+ 	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
+-	for (i = 0; i < LENGTH(keys); i++)
+-		if (keysym == keys[i].keysym
+-		&& CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
+-		&& keys[i].func)
++	for (i = 0; i < LENGTH(keys); i++) {
++		if (keysym == keys[i].keysym && keys[i].chain == -1
++				&& CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
++				&& keys[i].func)
++			keys[i].func(&(keys[i].arg));
++		else if (keysym == keys[i].chain && keychain == -1
++				&& CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
++				&& keys[i].func) {
++			current = 1;
++			keychain = keysym;
++			XGrabKey(dpy, AnyKey, AnyModifier, root, True, GrabModeAsync,
++					GrabModeAsync);
++		} else if (!current && keysym == keys[i].keysym
++				&& keys[i].chain == keychain
++				&& keys[i].func)
+ 			keys[i].func(&(keys[i].arg));
++	}
++	if (!current) {
++		keychain = -1;
++		grabkeys();
++	}
+ }
+ 
+ void
+-- 
+2.28.0
+
+
+From ad3d15cf7df3286d35728afef823c3163898e2db Mon Sep 17 00:00:00 2001
+From: braunbearded <braunbearded1@gmail.com>
+Date: Wed, 29 Jul 2020 18:38:15 +0200
+Subject: [PATCH 2/4] update default bindings
+
+---
+ config.def.h | 80 +++++++++++++++++++++++++++-------------------------
+ 1 file changed, 41 insertions(+), 39 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 1c0b587..c7cab16 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -45,11 +45,11 @@ static const Layout layouts[] = {
+ 
+ /* key definitions */
+ #define MODKEY Mod1Mask
+-#define TAGKEYS(KEY,TAG) \
+-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
++#define TAGKEYS(CHAIN,KEY,TAG) \
++	{ MODKEY,                       CHAIN,    KEY,      view,           {.ui = 1 << TAG} }, \
++	{ MODKEY|ControlMask,           CHAIN,    KEY,      toggleview,     {.ui = 1 << TAG} }, \
++	{ MODKEY|ShiftMask,             CHAIN,    KEY,      tag,            {.ui = 1 << TAG} }, \
++	{ MODKEY|ControlMask|ShiftMask, CHAIN,    KEY,      toggletag,      {.ui = 1 << TAG} },
+ 
+ /* helper for spawning shell commands in the pre dwm-5.0 fashion */
+ #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+@@ -60,40 +60,42 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
+ static const char *termcmd[]  = { "st", NULL };
+ 
+ static Key keys[] = {
+-	/* modifier                     key        function        argument */
+-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+-	{ MODKEY,                       XK_Return, zoom,           {0} },
+-	{ MODKEY,                       XK_Tab,    view,           {0} },
+-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+-	TAGKEYS(                        XK_1,                      0)
+-	TAGKEYS(                        XK_2,                      1)
+-	TAGKEYS(                        XK_3,                      2)
+-	TAGKEYS(                        XK_4,                      3)
+-	TAGKEYS(                        XK_5,                      4)
+-	TAGKEYS(                        XK_6,                      5)
+-	TAGKEYS(                        XK_7,                      6)
+-	TAGKEYS(                        XK_8,                      7)
+-	TAGKEYS(                        XK_9,                      8)
+-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
++	/* modifier                     chain key   key        function        argument */
++	{ MODKEY,                       -1,         XK_p,      spawn,          {.v = dmenucmd } },
++	{ MODKEY|ShiftMask,             -1,         XK_Return, spawn,          {.v = termcmd } },
++	{ MODKEY,                       -1,         XK_b,      togglebar,      {0} },
++	{ MODKEY,                       -1,         XK_j,      focusstack,     {.i = +1 } },
++	{ MODKEY,                       -1,         XK_k,      focusstack,     {.i = -1 } },
++	{ MODKEY,                       -1,         XK_i,      incnmaster,     {.i = +1 } },
++	{ MODKEY,                       -1,         XK_d,      incnmaster,     {.i = -1 } },
++	{ MODKEY,                       -1,         XK_h,      setmfact,       {.f = -0.05} },
++	{ MODKEY,                       -1,         XK_l,      setmfact,       {.f = +0.05} },
++	{ MODKEY,                       -1,         XK_Return, zoom,           {0} },
++	{ MODKEY,                       -1,         XK_Tab,    view,           {0} },
++	{ MODKEY|ShiftMask,             -1,         XK_c,      killclient,     {0} },
++	{ MODKEY,                       -1,         XK_t,      setlayout,      {.v = &layouts[0]} },
++	{ MODKEY,                       -1,         XK_f,      setlayout,      {.v = &layouts[1]} },
++	{ MODKEY,                       -1,         XK_m,      setlayout,      {.v = &layouts[2]} },
++	{ MODKEY,                       -1,         XK_space,  setlayout,      {0} },
++	{ MODKEY|ShiftMask,             -1,         XK_space,  togglefloating, {0} },
++	{ MODKEY,                       -1,         XK_0,      view,           {.ui = ~0 } },
++	{ MODKEY|ShiftMask,             -1,         XK_0,      tag,            {.ui = ~0 } },
++	{ MODKEY,                       -1,         XK_comma,  focusmon,       {.i = -1 } },
++	{ MODKEY,                       -1,         XK_period, focusmon,       {.i = +1 } },
++	{ MODKEY|ShiftMask,             -1,         XK_comma,  tagmon,         {.i = -1 } },
++	{ MODKEY|ShiftMask,             -1,         XK_period, tagmon,         {.i = +1 } },
++	TAGKEYS(                        -1,         XK_1,                      0)
++	TAGKEYS(                        -1,         XK_2,                      1)
++	TAGKEYS(                        -1,         XK_3,                      2)
++	TAGKEYS(                        -1,         XK_4,                      3)
++	TAGKEYS(                        -1,         XK_5,                      4)
++	TAGKEYS(                        -1,         XK_6,                      5)
++	TAGKEYS(                        -1,         XK_7,                      6)
++	TAGKEYS(                        -1,         XK_8,                      7)
++	TAGKEYS(                        -1,         XK_9,                      8)
++	{ MODKEY|ShiftMask,             -1,         XK_q,      quit,           {0} },
++	{ MODKEY,                       XK_a,       XK_d,      spawn,          {.v = dmenucmd } },
++	{ MODKEY,                       XK_a,       XK_t,      spawn,          {.v = termcmd } },
+ };
+ 
+ /* button definitions */
+-- 
+2.28.0
+
+
+From e9f3eec82010fd6083dc57f058902a1aab2d14ea Mon Sep 17 00:00:00 2001
+From: braunbearded <braunbearded1@gmail.com>
+Date: Wed, 29 Jul 2020 19:07:07 +0200
+Subject: [PATCH 3/4] fix bug for mod key ignore
+
+---
+ dwm.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/dwm.c b/dwm.c
+index 7298c5e..aee56d4 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1013,6 +1013,7 @@ keypress(XEvent *e)
+ 			XGrabKey(dpy, AnyKey, AnyModifier, root, True, GrabModeAsync,
+ 					GrabModeAsync);
+ 		} else if (!current && keysym == keys[i].keysym
++				&& keychain != -1
+ 				&& keys[i].chain == keychain
+ 				&& keys[i].func)
+ 			keys[i].func(&(keys[i].arg));
+-- 
+2.28.0
+
+
+From 053e3a2b2ff87805a15f3fe2f82a7d8bf0ab9b7a Mon Sep 17 00:00:00 2001
+From: braunbearded <braunbearded1@gmail.com>
+Date: Wed, 29 Jul 2020 21:25:23 +0200
+Subject: [PATCH 4/4] listen for all keys inkl modifier after prefix
+
+---
+ dwm.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/dwm.c b/dwm.c
+index aee56d4..dea8f6a 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -993,10 +993,11 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
+ void
+ keypress(XEvent *e)
+ {
+-	unsigned int i;
++	unsigned int i, j;
+ 	KeySym keysym;
+ 	XKeyEvent *ev;
+ 	int current = 0;
++	unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
+ 
+ 	ev = &e->xkey;
+ 	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
+@@ -1010,8 +1011,9 @@ keypress(XEvent *e)
+ 				&& keys[i].func) {
+ 			current = 1;
+ 			keychain = keysym;
+-			XGrabKey(dpy, AnyKey, AnyModifier, root, True, GrabModeAsync,
+-					GrabModeAsync);
++			for (j = 0; j < LENGTH(modifiers); j++)
++				XGrabKey(dpy, AnyKey, 0 | modifiers[j], root,
++						True, GrabModeAsync, GrabModeAsync);
+ 		} else if (!current && keysym == keys[i].keysym
+ 				&& keychain != -1
+ 				&& keys[i].chain == keychain
+-- 
+2.28.0
+
