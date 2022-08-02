@@ -44,6 +44,17 @@ install: all
 	sed "s/VERSION/${VERSION}/g" < ../dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 
+desktopfile:
+	full_path=/usr/share/xsessions/dwm-anas.desktop
+	mkdir -p /usr/share/xsessions
+	cat <<EOT >> ${full_path}
+	[Desktop Entry]
+	Type=XSession
+	Exec=/usr/local/bin/dwm
+	DesktopNames=dwm-anas
+	Name=dwm-anas
+	Comment=Anas Elgarhy dwm fork, with a lot of beautiful patches
+
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
