@@ -27,9 +27,7 @@
 | modkey + shift + ctrl + d      | Open rofi launcher (small size)                                       |
 | modkey + enter                 | Launche the main terminal (alacritty by default)                      |
 | modkey + t -> a                | Launche the alacritty terminal                                        |
-<!-- | modkey + t -> shift + a        | Launche the alacritty terminal with tmux                              | -->
 | modkey + t -> k                | Launche the kitty terminal                                            |
-<!-- | modkey + t -> shift + k        | Launche the kitty terminal with tmux                                  | -->
 | modkey + shift + f -> g        | Launche the GUI file manger (pcmanfm by default)                      |
 | modkey + shift + f -> f        | Launche rofi file file browser (small size)                           |
 | modkey + shift + f -> t        | Launche the terminal file manger (ranger) in the main terminal        |
@@ -69,7 +67,6 @@
 | modkey + alt + f               | Toggle floating window                                                |
 | modkey + m -> c                | Launche the cmus player                                               |
 | modkey + m -> v                | Launche vlc video player                                              |
-<!-- | modkey + m -> shift + v        | Lanuche nvlc in the main terminal                                     | -->
 | modkey + 0                     | View all tags                                                         |
 | modkey + shift + 0             | Mirror the current tag in all tags                                    |
 | modkey + comma (,)             | -                                                                     |
