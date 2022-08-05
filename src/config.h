@@ -2,7 +2,7 @@
 
 /* def */
 #define WEBBROWSER		"google-chrome-stable"
-#define TERMINAL		"alacritty"
+#define TERMINAL		"kitty"
 #define SCREENSHOT		"spectacle"
 #define GUI_FILEMANAGER	        "pcmanfm"
 
@@ -30,7 +30,7 @@ static const char *const autostart[] = {
     "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,", "-option", "grp:win_space_toggle", NULL,
     // "xkbset", "exp", "=sticky", "-twokey", "-latchlock", NULL, // sticky keys
     "/bin/stickykeys", NULL, // sticky keys script
-    "picom", NULL, // Start compositor , for transparency
+    // "picom", NULL, // Start compositor , for transparency
     "nitrogen", "--restore", NULL, // Restores the wallpaper
     "nm-applet", NULL, // Start the network manger
     "copyq", NULL, // clipboard manger
