@@ -68,7 +68,7 @@ static Key keys[] = {
         { MODKEY,                       XK_p,             XK_n,    spawn,         SHCMD("nm-connection-editor") },
 	/************************************* Start multi media apps *************************************/
         // cmus
-        { MODKEY,                       XK_m,             XK_c,    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc --link\"") },
+        { MODKEY,                       XK_m,             XK_c,    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc-rs --link\"") },
         // vlc
         { MODKEY,                       XK_m,             XK_v,    spawn,          SHCMD("vlc") },
         // vlc in the main terminal
