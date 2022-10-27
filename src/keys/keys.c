@@ -36,15 +36,17 @@ static Key keys[] = {
         // kitty with tmux
 	// { MODKEY,                        XK_t,            ShiftMask|XK_k,      spawn,           SHCMD("kitty -e tmux")  },
 	/************************************* File browsers *************************************/
-        // GUI filebrowser (pcmanfm)
-	{ MODKEY|ShiftMask,             XK_f,             XK_g,     spawn,           SHCMD(GUI_FILEMANAGER) },
+        // GUI filebrowser
+	{ MODKEY|ShiftMask,             XK_f,             XK_g,     spawn,           SHCMD("~/.scripts/filebrowser") },
 	// Rofi file browser (small)
         { MODKEY|ShiftMask,             XK_f,             XK_f,     spawn,           SHCMD("rofi -show filebrowser") },
         // Terminal file manager (ranger)
         { MODKEY|ShiftMask,             XK_f,             XK_t,     spawn,           SHCMD(TERMINAL " -e ranger") },
 	/************************************* Start the web browers *************************************/
         // Google chrome stable
-	{ MODKEY,                       XK_w,             XK_g,     spawn,           SHCMD(WEBBROWSER) },
+	{ MODKEY,                       XK_w,             XK_g,     spawn,           SHCMD("google-chrome-stable") },
+	// Firefox-developer-edition
+ { MODKEY,                       XK_w,             XK_f,     spawn,           SHCMD("firefox-developer-edition") },
         // Tor brower
 	{ MODKEY,                       XK_w,             XK_t,     spawn,           SHCMD("tor-browser") },
 	/************************************* Start the caht/email/\* apps *************************************/
@@ -67,10 +69,11 @@ static Key keys[] = {
         // nm-connection-editor
         { MODKEY,                       XK_p,             XK_n,    spawn,         SHCMD("nm-connection-editor") },
 	/************************************* Start multi media apps *************************************/
-        // cmus
-        { MODKEY,                       XK_m,             XK_c,    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc-rs --link\"") },
+				{ MODKEY, 													-1, 						  XK_m, 	 spawn,         SHCMD("~/.scripts/luncher") },
+				// cmus
+        // { MODKEY,                       XK_m,             XK_c,    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc-rs --link\"") },
         // vlc
-        { MODKEY,                       XK_m,             XK_v,    spawn,          SHCMD("vlc") },
+        // { MODKEY,                       XK_m,             XK_v,    spawn,          SHCMD("vlc") },
         // vlc in the main terminal
         // { MODKEY|ShiftMask,             XK_m,             XK_v,    spawn,          SHCMD(TERMINAL "nvlc") },
 	/************************************* Start the emoji piker apps *************************************/
@@ -144,21 +147,28 @@ static Key keys[] = {
         TAGKEYS(                     -1,                XK_semicolon,              9)
 	/* ---------------------------------- Control Keys ---------------------------------- */
 	// Brightness controllers (requires xbacklight)
-	{ 0,                            -1,      XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5") },
-	{ 0,                            -1,      XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5") },
+	{ 0,                            -1,      XF86XK_MonBrightnessUp,   spawn, SHCMD("~/.scripts/brightness up") },
+	{ 0,                            -1,      XF86XK_MonBrightnessDown, spawn, SHCMD("~/.scripts/brightness down") },
 	// Sound controllers (requires pamixer)
-	{ 0,                            -1,      XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --allow-boost -i 4") },
-	{ 0,                            -1,      XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 4") },
-	{ 0,                            -1,      XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
+	{ 0,                            -1,      XF86XK_AudioRaiseVolume, spawn, SHCMD("~/.scripts/volume up") },
+	{ 0,                            -1,      XF86XK_AudioLowerVolume, spawn, SHCMD("~/.scripts/volume down") },
+	{ 0,                            -1,      XF86XK_AudioMute,         spawn, SHCMD("~/.scripts/volume mute") },
 	// Media controls (requires playerctl)
 	{ 0,                            -1,      XF86XK_AudioPlay,	 spawn,	SHCMD("playerctl play-pause") },
 	{ 0,                            -1,      XF86XK_AudioStop,       spawn, SHCMD("playerctl stop") },
 	{ 0,                            -1,      XF86XK_AudioNext,	 spawn,	SHCMD("playerctl next") },
 	{ 0,                            -1,      XF86XK_AudioPrev,	 spawn,	SHCMD("playerctl previous")  },
+
+	{ Mod1Mask, 										 -1,     XK_F1,  							spawn, SHCMD("playerctl volume 0.0") },
+	{ Mod1Mask, 										 -1,     XK_F2,  							spawn, SHCMD("playerctl volume 0.1-") },
+	{ Mod1Mask, 										 -1,     XK_F3,  							spawn, SHCMD("playerctl volume 0.1+") },
         // Mute and unmute mic
 	{ 0, 			        -1,      XF86XK_AudioMicMute,	 spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 	// Take a screenshot
-	{ 0,                            -1,      XK_Print,		 spawn, SHCMD(SCREENSHOT) },
+	{ 0,                            -1,      XK_Print,		 spawn, SHCMD("~/.scripts/screenshot") },
+	{ Mod1Mask,                     -1,      XK_Print,		 spawn, SHCMD("~/.scripts/screenshot --region") },
+	{ Mod2Mask,                     -1,      XK_Print,		 spawn, SHCMD("~/.scripts/screenshot --activewindow") },
+	{ Mod1Mask|Mod2Mask,            -1,      XK_Print,		 spawn, SHCMD("~/.scripts/screenshot --fullscreen --background --copy-image") },
 	/* ---------------------------------- lock Keys ---------------------------------- */
 	// Lock the screen
 	{ MODKEY|ShiftMask,             -1,      XK_x,                   spawn,          SHCMD("betterlockscreen -l dim") },

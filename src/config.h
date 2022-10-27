@@ -1,10 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* def */
-#define WEBBROWSER		"google-chrome-stable"
+#define WEBBROWSER		"firefox-developer-edition"
 #define TERMINAL		"kitty"
-#define SCREENSHOT		"spectacle"
-#define GUI_FILEMANAGER	        "pcmanfm"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -16,7 +14,7 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=7", "Noto Color Emoji:size=8", "Nerd Font Mono:size=16:antialias=true:hinting=true" };
 static const char dmenufont[]       = "monospace:size=8";
 
@@ -48,8 +46,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ WEBBROWSER, NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",     NULL,       NULL,       9,            1,           -1 },
+	// { WEBBROWSER, NULL,       NULL,       1 << 8,       0,           -1 },
+  { "Tor Browser", NULL,       NULL,       10,       0,             -1 },
+  { "keepassxc",   NULL,       NULL,       10,       0,             -1 },
+  { "firefoxdeveloperedition", NULL,    NULL, 1 << 6,     0,             -1 },
+  { "discord",    NULL,        NULL,       4 << 5,        0,             -1 },
+
 };
 
 /* layout(s) */
