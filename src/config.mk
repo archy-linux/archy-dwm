@@ -1,5 +1,5 @@
 # yo-dwm version
-VERSION = 6.3-0.2.0
+VERSION = 6.4-0.2.1
 
 # Customize below to fit your system
 
