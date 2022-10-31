@@ -14,7 +14,7 @@
 #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
 
-#define XEMBED_EMBEDDED_VERSION (VERSION_MAJOR << 16) | VERSION_MINOR
+#define XEMBED_EMBEDDED_VERSION ((VERSION_MAJOR << 16) | VERSION_MINOR)
 #define MAX(A, B)               ((A) > (B) ? (A) : (B))
 #define MIN(A, B)               ((A) < (B) ? (A) : (B))
 #define BETWEEN(X, A, B)        ((A) <= (X) && (X) <= (B))
