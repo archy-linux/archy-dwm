@@ -7,4 +7,4 @@ static void centeredfloatingmaster(Monitor *m);
 #include "centeredmaster.c"
 
 
-#endif // !centeredmaster.h
+#endif // centeredmaster_H
