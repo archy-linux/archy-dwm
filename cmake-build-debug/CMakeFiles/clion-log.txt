@@ -1,4 +1,0 @@
-/home/anas/.local/share/JetBrains/Toolbox/apps/CLion/ch-1/222.4345.21/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/anas/.local/share/JetBrains/Toolbox/apps/CLion/ch-1/222.4345.21/bin/ninja/linux/ninja -G Ninja -S /home/anas/suckless_utils/yo-dwm -B /home/anas/suckless_utils/yo-dwm/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/anas/suckless_utils/yo-dwm/cmake-build-debug

@@ -1,3 +1,0 @@
-ToolSet: 1.0 (local)Options: 
-
-Options:-DCMAKE_MAKE_PROGRAM=/home/anas/.local/share/JetBrains/Toolbox/apps/CLion/ch-1/222.4345.21/bin/ninja/linux/ninja
