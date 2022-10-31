@@ -1,0 +1,3 @@
+/home/anas/suckless_utils/yo-dwm/cmake-build-debug/CMakeFiles/yo_dwm.dir
+/home/anas/suckless_utils/yo-dwm/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/anas/suckless_utils/yo-dwm/cmake-build-debug/CMakeFiles/rebuild_cache.dir
