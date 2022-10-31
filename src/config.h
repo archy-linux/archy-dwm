@@ -20,7 +20,9 @@ static const char *fonts[] = {"monospace:size=7", "Noto Color Emoji:size=8",
 static const char dmenufont[] = "monospace:size=8";
 
 #ifndef STDDEF_H
+
 #include <stddef.h>
+
 #endif
 
 #include "colors/defualt.h"
@@ -51,13 +53,13 @@ static const Rule rules[] = {
          *	WM_NAME(STRING) = title
          */
         /* class      instance    title       tags mask     isfloating   monitor */
-        {"Gimp",                    NULL, NULL, 9 << 9,      1, -1},
-        // { WEBBROWSER, NULL,       NULL,       1 << 8,       0,           -1 },
-        {"Tor Browser",             NULL, NULL, 9,     0, -1},
-        {"keepassxc",               NULL, NULL, 9,     0, -1},
-        {"firefoxdeveloperedition", NULL, NULL, 6 << 9, 0, -1},
-        {"discord",                 NULL, NULL, 4 << 9, 0, -1},
-
+        {"Gimp", NULL, NULL, 9 << 8, 1, -1}, // 0100000000
+        {"Tor Browser", "Navigator", NULL, 9 << 9, 0, -1}, // Open it in tag 10 (9 in array)
+        {"KeePassXC", "keepassxc", NULL, 9 << 9, 0, -1}, // 1000000000
+        {"firefoxdeveloperedition", "Navigator",  NULL, 1 << 0, 0, -1}, // 0000000001
+        {"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000
+        {"Virt-manager", "virt-manager", NULL, 9 << 7, 0, -1}, // 0010000000
+        {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0, -1}, // 0010000000
 };
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
