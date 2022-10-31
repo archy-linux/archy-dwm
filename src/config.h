@@ -23,7 +23,7 @@ static const char dmenufont[] = "monospace:size=8";
 #include <stddef.h>
 #endif
 
-#include "colors.h"
+#include "colors/defualt.h"
 
 // Autostart programs
 static const char *const autostart[] = {
@@ -51,12 +51,12 @@ static const Rule rules[] = {
          *	WM_NAME(STRING) = title
          */
         /* class      instance    title       tags mask     isfloating   monitor */
-        {"Gimp",                    NULL, NULL, 9,      1, -1},
+        {"Gimp",                    NULL, NULL, 9 << 9,      1, -1},
         // { WEBBROWSER, NULL,       NULL,       1 << 8,       0,           -1 },
-        {"Tor Browser",             NULL, NULL, 10,     0, -1},
-        {"keepassxc",               NULL, NULL, 10,     0, -1},
-        {"firefoxdeveloperedition", NULL, NULL, 1 << 6, 0, -1},
-        {"discord",                 NULL, NULL, 4 << 5, 0, -1},
+        {"Tor Browser",             NULL, NULL, 9,     0, -1},
+        {"keepassxc",               NULL, NULL, 9,     0, -1},
+        {"firefoxdeveloperedition", NULL, NULL, 6 << 9, 0, -1},
+        {"discord",                 NULL, NULL, 4 << 9, 0, -1},
 
 };
 
@@ -69,7 +69,7 @@ static const char *dmenucmd[] = {"dmenu_run", "-m", dmenumon, "-fn", dmenufont, 
                                  "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL};
 static const char *termcmd[] = {TERMINAL, NULL};
 /* layout(s) */
-static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact = 0.55f; /* factor of master area size [0.05..0.95] */
 static const int nmaster = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
