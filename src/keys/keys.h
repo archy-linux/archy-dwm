@@ -1,12 +1,31 @@
-#ifndef keys_H
-#define keys_H
+#ifndef KEYS_H
+#define KEYS_H
 
-// X11 keysym definitions
-#include <X11/XF86keysym.h> // req (libxinerama1 and libxinerama-dev)
-
-#include <X11/keysym.h>
 #include <X11/X.h>
+#include "../dwm.h"
 
+typedef struct {
+    unsigned int mod;
+    KeySym chain;
+    KeySym keysym;
+
+    void (*func)(const Arg *);
+
+    const Arg arg;
+} Key;
+
+/* key definitions */
+#define MODKEY Mod4Mask // win/super key
+
+#define TAGKEYS(CHAIN, KEY, TAG) \
+   { MODKEY,                       CHAIN,    KEY,      view,           {.ui = 1 << TAG} }, \
+   { MODKEY|ControlMask,           CHAIN,    KEY,      toggleview,     {.ui = 1 << TAG} }, \
+   { MODKEY|ShiftMask,             CHAIN,    KEY,      tag,            {.ui = 1 << TAG} }, \
+   { MODKEY|ControlMask|ShiftMask, CHAIN,    KEY,      toggletag,      {.ui = 1 << TAG} },
+
+// Include all the key bindings
+#ifndef KEYS_C
 #include "keys.c"
+#endif
 
 #endif // keys_H

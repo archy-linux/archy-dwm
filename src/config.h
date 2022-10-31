@@ -20,9 +20,7 @@ static const char *fonts[] = {"monospace:size=7", "Noto Color Emoji:size=8",
 static const char dmenufont[] = "monospace:size=8";
 
 #ifndef STDDEF_H
-
 #include <stddef.h>
-
 #endif
 
 #include "colors.h"

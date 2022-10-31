@@ -26,4 +26,6 @@ add_executable(yo_dwm
         src/movestack.c
         src/transient.c
         src/util.c
-        src/util.h)
+        src/util.h src/keys/mouse.c src/keys/mouse.h src/keys/functions.h src/dwm.h)
+
+target_link_libraries(yo_dwm X11 Xft Xinerama)

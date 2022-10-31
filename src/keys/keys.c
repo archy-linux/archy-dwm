@@ -1,15 +1,11 @@
 #include "../config.h"
 #include "keys.h"
+#include "functions.h"
+#include "../layouts/layouts.h"
+// X11 keysym definitions
+#include <X11/XF86keysym.h> // req (libxinerama1 and libxinerama-dev)
 
-/* key definitions */
-#define MODKEY Mod4Mask // win/super key
-
-#define TAGKEYS(CHAIN, KEY, TAG) \
-   { MODKEY,                       CHAIN,    KEY,      view,           {.ui = 1 << TAG} }, \
-   { MODKEY|ControlMask,           CHAIN,    KEY,      toggleview,     {.ui = 1 << TAG} }, \
-   { MODKEY|ShiftMask,             CHAIN,    KEY,      tag,            {.ui = 1 << TAG} }, \
-   { MODKEY|ControlMask|ShiftMask, CHAIN,    KEY,      toggletag,      {.ui = 1 << TAG} },
-
+#include <X11/keysym.h>
 
 static Key keys[] = {
         /* modifier                     chain key         key        function        argument */
@@ -84,8 +80,8 @@ static Key keys[] = {
         {MODKEY, -1, XK_i, incnmaster, {.i = +1}},
         {MODKEY, -1, XK_d, incnmaster, {.i = -1}},
         // Change the focus window size (in the tile mode)
-        {MODKEY, -1, XK_h, setmfact, {.f = -0.05}},
-        {MODKEY, -1, XK_l, setmfact, {.f = +0.05}},
+        {MODKEY, -1, XK_h, setmfact, {.f = -0.05f}},
+        {MODKEY, -1, XK_l, setmfact, {.f = +0.05f}},
 //	{ MODKEY,                       XK_Return, zoom,           {0} },
         {MODKEY, -1, XK_Tab, view, {0}},
 
@@ -171,20 +167,4 @@ static Key keys[] = {
         // { MODKEY|ShiftMask|Mod1Mask,    -1,      XK_q,                   quit,           {0} },
 };
 
-/* button definitions */
-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
-        /* click                event mask      button          function        argument */
-        {ClkTagBar,    MODKEY, Button1, tag,            {0}},
-        {ClkTagBar,    MODKEY, Button3, toggletag,      {0}},
-        {ClkWinTitle,   0,     Button2, zoom,           {0}},
-        {ClkStatusText, 0,     Button2, spawn,          {.v = termcmd}},
-        {ClkClientWin, MODKEY, Button1, movemouse,      {0}},
-        {ClkClientWin, MODKEY, Button2, togglefloating, {0}},
-        {ClkClientWin, MODKEY, Button3, resizemouse,    {0}},
-        {ClkTagBar,     0,     Button1, view,           {0}},
-        {ClkTagBar,     0,     Button3, toggleview,     {0}},
-        {ClkTagBar,    MODKEY, Button1, tag,            {0}},
-        {ClkTagBar,    MODKEY, Button3, toggletag,      {0}},
-};
 
