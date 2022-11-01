@@ -32,10 +32,12 @@ static Key keys[] = {
         // Terminal file manager (ranger)
         {MODKEY | ShiftMask, XK_f, XK_t, spawn, SHCMD(TERMINAL " -e ranger")},
         /************************************* Start the web browers *************************************/
-        // Google chrome stable
-        {MODKEY, XK_w, XK_g, spawn, SHCMD("google-chrome-stable")},
         // Firefox-developer-edition
         {MODKEY, XK_w, XK_f, spawn, SHCMD("firefox-developer-edition")},
+        // brave-beta
+        {MODKEY, XK_w, XK_b, spawn, SHCMD("brave-beta")},
+        // Google chrome stable
+        {MODKEY, XK_w, XK_g, spawn, SHCMD("google-chrome-stable")},
         // Tor brower
         {MODKEY, XK_w, XK_t, spawn, SHCMD("tor-browser")},
         /************************************* Start the caht/email/\* apps *************************************/
@@ -46,6 +48,10 @@ static Key keys[] = {
         /************************************* Start the dev apps *************************************/
         // Jetbrains toolbox
         {MODKEY, XK_a, XK_j, spawn, SHCMD("jetbrains-toolbox")},
+        // IntelliJ IDEA
+        {MODKEY, XK_a, XK_i, spawn, SHCMD("~/.scripts/idea")},
+        // Clion
+        {MODKEY, XK_a, XK_c, spawn, SHCMD("~/.scripts/clion")},
         // NeoVim
         {MODKEY, XK_a, XK_n, spawn, SHCMD(TERMINAL " -e nvim")},
         // Vim
@@ -61,10 +67,6 @@ static Key keys[] = {
         {MODKEY, -1, XK_m, spawn, SHCMD("~/.scripts/luncher")},
         // cmus
         // { MODKEY,                       XK_m,             XK_c,    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc-rs --link\"") },
-        // vlc
-        // { MODKEY,                       XK_m,             XK_v,    spawn,          SHCMD("vlc") },
-        // vlc in the main terminal
-        // { MODKEY|ShiftMask,             XK_m,             XK_v,    spawn,          SHCMD(TERMINAL "nvlc") },
         /************************************* Start the emoji piker apps *************************************/
         // Emoji selector (rofi)
         {Mod4Mask, -1, XK_e, spawn, SHCMD("rofimoji")},
