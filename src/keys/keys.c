@@ -7,6 +7,18 @@
 
 #include <X11/keysym.h>
 
+/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
+/* commands */
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = {"dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg,
+                                 "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL};
+static const char *termcmd[] = {TERMINAL, NULL};
+// Music
+static const char *CMUS[] = {TERMINAL, "--class=cmus", "-e", "fish", "-c", "cmus"}; // Just start cmus from the shell alias :)
+static const char *SPOTIFY[] = {"brave-browser-beta", "--app=https://open.spotify.com"};    // because I love music :D
+
 static Key keys[] = {
         /* modifier                     chain key         key        function        argument */
         /* ---------------------------------- Apps Keys ---------------------------------- */
@@ -18,12 +30,8 @@ static Key keys[] = {
         {MODKEY, -1, XK_Return, spawn, {.v = termcmd}},
         // Start the alacritty terminal
         {MODKEY, XK_t, XK_a, spawn, SHCMD("alacritty")},
-        // Start the alacritty terminal with tmux
-        // { MODKEY,                        XK_t,            XK_a|ShiftMask, spawn,           SHCMD("alacritty -e tmux")  },
         // kitty
         {MODKEY, XK_t, XK_k, spawn, SHCMD("kitty")},
-        // kitty with tmux
-        // { MODKEY,                        XK_t,            ShiftMask|XK_k,      spawn,           SHCMD("kitty -e tmux")  },
         /************************************* File browsers *************************************/
         // GUI filebrowser
         {MODKEY | ShiftMask, XK_f, XK_g, spawn, SHCMD("~/.scripts/filebrowser")},
@@ -64,9 +72,11 @@ static Key keys[] = {
         // nm-connection-editor
         {MODKEY, XK_p, XK_n, spawn, SHCMD("nm-connection-editor")},
         /************************************* Start multi media apps *************************************/
-        {MODKEY, -1, XK_m, spawn, SHCMD("~/.scripts/luncher")},
+        {MODKEY, -1, XK_l, spawn, SHCMD("~/.scripts/luncher")},
         // cmus
-        // { MODKEY,                       XK_m,             XK_c,    spawn,          SHCMD("sh -c \"" TERMINAL " -e cmus\" & sh -c \"cmus-rpc-rs --link\"") },
+        {MODKEY, XK_m, XK_c, spawn, {.v = CMUS}},
+        // Spotify
+        {MODKEY, XK_m, XK_s, spawn, {.v = SPOTIFY}},
         /************************************* Start the emoji piker apps *************************************/
         // Emoji selector (rofi)
         {Mod4Mask, -1, XK_e, spawn, SHCMD("rofimoji")},
@@ -84,9 +94,7 @@ static Key keys[] = {
         // Change the focus window size (in the tile mode)
         {MODKEY, -1, XK_h, setmfact, {.f = -0.05f}},
         {MODKEY, -1, XK_l, setmfact, {.f = +0.05f}},
-//	{ MODKEY,                       XK_Return, zoom,           {0} },
         {MODKEY, -1, XK_Tab, view, {0}},
-
         {MODKEY | ShiftMask, -1, XK_j, movestack, {.i = +1}},
         {MODKEY | ShiftMask, -1, XK_k, movestack, {.i = -1}},
         // Toogle styky mode

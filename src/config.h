@@ -76,14 +76,7 @@ static const Rule rules[] = {
         {"PacketTracer", NULL, NULL, 1 << 4, 0, -1} // 0000010000 (lab tag)
 };
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-/* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = {"dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg,
-                                 "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL};
-static const char *termcmd[] = {TERMINAL, NULL};
 /* layout(s) */
 static const float mfact = 0.55f; /* factor of master area size [0.05..0.95] */
 static const int nmaster = 1;    /* number of clients in master area */
