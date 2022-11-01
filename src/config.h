@@ -50,15 +50,19 @@ static const Rule rules[] = {
         /* xprop(1):
          *	WM_CLASS(STRING) = instance, class
          *	WM_NAME(STRING) = title
+         *	It's just a bitwise shift. Binary of 5 is 101, then you shift it left on 6 and get 101000000,
+         *	which means 7 and 9 in dwm ( because 1-s are on 7 and 9 position from right).
+         *	https://www.reddit.com/r/dwm/comments/f2omo9/comment/fjr93yt/?utm_source=share&utm_medium=web2x&context=3
          */
         /* class      instance    title       tags mask     isfloating   monitor */
-        {"Gimp", NULL, NULL, 9 << 8, 1, -1}, // 0100000000
-        {"Tor Browser", "Navigator", NULL, 9 << 9, 0, -1}, // Open it in tag 10 (9 in array)
-        {"KeePassXC", "keepassxc", NULL, 9 << 9, 0, -1}, // 1000000000
-        {"firefoxdeveloperedition", "Navigator",  NULL, 1 << 0, 0, -1}, // 0000000001
-        {"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000
-        {"Virt-manager", "virt-manager", NULL, 9 << 7, 0, -1}, // 0010000000
-        {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0, -1}, // 0010000000
+        {"Gimp", NULL, NULL, 9 << 8, 1, -1}, // 0100000000 (gfx tag)
+        {"Tor Browser", "Navigator", NULL, 9 << 9, 0, -1}, // Open it in tag 10 (9 in array) (; tag)
+        {"KeePassXC", "keepassxc", NULL, 9 << 9, 0, -1}, // 1000000000 (; tag)
+        {"firefoxdeveloperedition", "Navigator",  NULL, 1 << 0, 0, -1}, // 0000000001 (www tag)
+        {"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000 (chat tag)
+        {"Virt-manager", "virt-manager", NULL, 9 << 7, 0, -1}, // 0010000000 (vbox tag)
+        {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0, -1}, // 0010000000 (vbox tag)
+        {NULL, "open.spotify.com", NULL, 8 << 3, 0, -1}, // 0001000000 (mus tag)
 };
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
