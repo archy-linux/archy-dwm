@@ -1449,7 +1449,7 @@ setclientstate(Client *c, long state) {
     long data[] = {state, None};
 
     XChangeProperty(dpy, c->win, wmatom[WMState], wmatom[WMState], 32,
-                    PropModeReplace, (unsigned char *) data, 2);
+                    PropModeReplace, (  unsigned char *) data, 2);
 }
 
 int
@@ -1557,8 +1557,8 @@ setmfact(const Arg *arg) {
 
     if (!arg || !selmon->lt[selmon->sellt]->arrange)
         return;
-    f = arg->f < 1.0 ? arg->f + selmon->mfact : arg->f - 1.0;
-    if (f < 0.05 || f > 0.95)
+    f = arg->f < 1.0f ? arg->f + selmon->mfact : arg->f - 1.0f;
+    if (f < 0.05f || f > 0.95f)
         return;
     selmon->mfact = selmon->pertag->mfacts[selmon->pertag->curtag] = f;
     arrange(selmon);
@@ -1581,8 +1581,8 @@ setup(void) {
     drw = drw_create(dpy, screen, root, sw, sh);
     if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
         die("no fonts could be loaded.");
-    lrpad = drw->fonts->h;
-    bh = drw->fonts->h + 2;
+    lrpad = (int) drw->fonts->h;
+    bh = (int) drw->fonts->h + 2;
     updategeom();
     /* init atoms */
     utf8string = XInternAtom(dpy, "UTF8_STRING", False);
