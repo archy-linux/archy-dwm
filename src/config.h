@@ -44,7 +44,7 @@ static const char *const autostart[] = {
 /* tagging */
 // static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 // static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
-static const char *tags[] = {"www", "dev", "sys", "chat", "img", "vid", "mus", "vbox", "gfx", ";"};
+static const char *tags[] = {"www", "dev", "sys", "chat", "lab", "vid", "mus", "vbox", "gfx", ";"};
 
 static const Rule rules[] = {
         /* xprop(1):
@@ -63,6 +63,17 @@ static const Rule rules[] = {
         {"Virt-manager", "virt-manager", NULL, 9 << 7, 0, -1}, // 0010000000 (vbox tag)
         {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0, -1}, // 0010000000 (vbox tag)
         {NULL, "open.spotify.com", NULL, 8 << 3, 0, -1}, // 0001000000 (mus tag)
+        {"cmus", NULL, NULL, 8 << 3, 0, -1}, // 0001000000 (mus tag)
+        {"jetbrains-clion", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-idea", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-pycharm", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-studio", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-webstorm", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-phpstorm", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-rubymine", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-goland", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"jetbrains-datagrip", NULL, NULL, 1 << 1, 0, -1}, // 0000000010 (dev tag)
+        {"PacketTracer", NULL, NULL, 1 << 4, 0, -1} // 0000010000 (lab tag)
 };
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
