@@ -16,7 +16,7 @@ static const char *dmenucmd[] = {"dmenu_run", "-m", dmenumon, "-fn", dmenufont, 
                                  "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL};
 static const char *termcmd[] = {TERMINAL, NULL};
 // Music
-static const char *CMUS[] = {TERMINAL, "--class=cmus", "-e", "fish", "-c", "cmus"}; // Just start cmus from the shell alias :)
+static const char *CMUS[] = {TERMINAL, "--class=cmus", "-e", "cmus"}; // Just start cmus :)
 static const char *SPOTIFY[] = {"brave-browser-beta", "--app=https://open.spotify.com"};    // because I love music :D
 
 static Key keys[] = {
