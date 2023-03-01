@@ -15,7 +15,7 @@ typedef struct {
 } Key;
 
 /* key definitions */
-#define MODKEY Mod4Mask // win/super key
+#define MODKEY LockMask // The modifier key is: Caps Lock :P
 
 #define TAGKEYS(CHAIN, KEY, TAG) \
    { MODKEY,                       CHAIN,    KEY,      view,           {.ui = 1 << TAG} }, \
