@@ -37,8 +37,8 @@ static const char *const autostart[] = {
     // Start my build of slstatus
     "slstatus", NULL,
     // Keyboard layouts switch (requires setxkbmap)
-    // "setxkbmap", "-model", "pc101", "-layout", "us,ar", "-variant", ",,",
-    // "-option", "grp:win_space_toggle", NULL,
+    "setxkbmap", "-model", "pc104", "-layout", "jp,kr,us,ar", "-variant",
+    ",,dvorak-l", "-option", "grp:win_space_toggle", NULL,
     // "xkbset", "exp", "=sticky", "-twokey", "-latchlock", NULL, // sticky keys
     "/bin/stickykeys", NULL,       // sticky keys script
     "picom", NULL,                 // Start compositor , for transparency
