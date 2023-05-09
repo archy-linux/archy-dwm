@@ -72,7 +72,7 @@ static Key keys[] = {
         // nm-connection-editor
         {MODKEY, XK_p, XK_n, spawn, SHCMD("nm-connection-editor")},
         /************************************* Start multi media apps *************************************/
-        {MODKEY, -1, XK_l, spawn, SHCMD("~/.scripts/luncher")},
+        {MODKEY, -1, XK_l, spawn, SHCMD("luncher")},
         // cmus
         {MODKEY, XK_m, XK_c, spawn, {.v = CMUS}},
         // Spotify
@@ -146,12 +146,12 @@ static Key keys[] = {
         TAGKEYS(-1, XK_semicolon, 9)
         /* ---------------------------------- Control Keys ---------------------------------- */
         // Brightness controllers (requires xbacklight)
-        {0, -1, XF86XK_MonBrightnessUp, spawn, SHCMD("~/.scripts/brightness up")},
-        {0, -1, XF86XK_MonBrightnessDown, spawn, SHCMD("~/.scripts/brightness down")},
+        {0, -1, XF86XK_MonBrightnessUp, spawn, SHCMD("brightness up")},
+        {0, -1, XF86XK_MonBrightnessDown, spawn, SHCMD("brightness down")},
         // Sound controllers (requires pamixer)
-        {0, -1, XF86XK_AudioRaiseVolume, spawn, SHCMD("~/.scripts/volume up")},
-        {0, -1, XF86XK_AudioLowerVolume, spawn, SHCMD("~/.scripts/volume down")},
-        {0, -1, XF86XK_AudioMute, spawn, SHCMD("~/.scripts/volume mute")},
+        {0, -1, XF86XK_AudioRaiseVolume, spawn, SHCMD("volume-control up")},
+        {0, -1, XF86XK_AudioLowerVolume, spawn, SHCMD("volume-control down")},
+        {0, -1, XF86XK_AudioMute, spawn, SHCMD("volume-control mute")},
         // Media controls (requires playerctl)
         {0, -1, XF86XK_AudioPlay, spawn, SHCMD("playerctl play-pause")},
         {0, -1, XF86XK_AudioStop, spawn, SHCMD("playerctl stop")},
@@ -164,11 +164,10 @@ static Key keys[] = {
         // Mute and unmute mic
         {0, -1, XF86XK_AudioMicMute, spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle")},
         // Take a screenshot
-        {0, -1, XK_Print, spawn, SHCMD("~/.scripts/screenshot")},
-        {Mod1Mask, -1, XK_Print, spawn, SHCMD("~/.scripts/screenshot --region")},
-        {Mod2Mask, -1, XK_Print, spawn, SHCMD("~/.scripts/screenshot --activewindow")},
-        {Mod1Mask | Mod2Mask, -1, XK_Print, spawn,
-         SHCMD("~/.scripts/screenshot --fullscreen --background --copy-image")},
+        {0, -1, XK_Print, spawn, SHCMD("~/take-screenshot")},
+        {Mod1Mask, -1, XK_Print, spawn, SHCMD("take-screenshot --region")},
+        {Mod2Mask, -1, XK_Print, spawn, SHCMD("take-screenshot --activewindow")},
+        {Mod1Mask | Mod2Mask, -1, XK_Print, spawn, SHCMD("take-screenshot --fullscreen --background --copy-image")},
         /* ---------------------------------- lock Keys ---------------------------------- */
         // Lock the screen
         {MODKEY | ShiftMask, -1, XK_x, spawn, SHCMD("betterlockscreen -l dim")},
