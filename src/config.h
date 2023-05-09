@@ -7,21 +7,16 @@
 static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int gappx = 3;    /* gaps size between windows */
 static const unsigned int snap = 32;    /* snap pixel */
-static const unsigned int systraypinning =
-    0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
-          X */
-static const unsigned int systrayonleft =
-    0; /* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systraypinning = 0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft = -1; /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2; /* systray spacing */
-static const int systraypinningfailfirst =
-    1; /* 1: if pinning fails, display systray on the first monitor, False:
-          display systray on the last monitor*/
+static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1;     /* 0 means no bar */
-static const int topbar = 1;      /* 0 means bottom bar */
+static const int topbar = 0;      /* 0 means bottom bar */
 static const char *fonts[] = {
-    "monospace:size=7", "Noto Color Emoji:size=8",
-    "Nerd Font Mono:size=16:antialias=true:hinting=true"};
+    "monospace:size=6", "Noto Color Emoji:size=7",
+    "Nerd Font Mono:size=10:antialias=true:hinting=true"};
 static const char dmenufont[] = "monospace:size=8";
 
 #ifndef STDDEF_H
@@ -37,8 +32,7 @@ static const char *const autostart[] = {
     // Start my build of slstatus
     "slstatus", NULL,
     // Keyboard layouts switch (requires setxkbmap)
-    "setxkbmap", "-model", "pc104", "-layout", "jp,kr,us,ar", "-variant",
-    ",,dvorak-l", "-option", "grp:win_space_toggle", NULL,
+    // "setxkbmap", "-model", "pc104", "-layout", "us,ar,jp,kr", "-variant", "dvorak-l,,,", "-option", "grp:win_space_toggle", NULL,
     // "xkbset", "exp", "=sticky", "-twokey", "-latchlock", NULL, // sticky keys
     "/bin/stickykeys", NULL,       // sticky keys script
     "picom", NULL,                 // Start compositor , for transparency
@@ -52,8 +46,7 @@ static const char *const autostart[] = {
 // static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII",
 // "VIII", "IX" }; static const char *tags[] = { "", "", "", "",
 // "", "", "", "", "" };
-static const char *tags[] = {"www", "dev", "sys",  "chat", "lab",
-                             "vid", "mus", "vbox", "gfx",  ";"};
+static const char *tags[] = {"www", "dev", "sys",  "chat", "lab", "vid", "mus", "vbox", "gfx",  ";"};
 
 static const Rule rules[] = {
     /* xprop(1):
