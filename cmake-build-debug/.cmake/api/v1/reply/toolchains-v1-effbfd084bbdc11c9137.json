@@ -10,14 +10,14 @@
 				{
 					"includeDirectories" : 
 					[
-						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include",
+						"/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include",
 						"/usr/local/include",
-						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed",
+						"/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include-fixed",
 						"/usr/include"
 					],
 					"linkDirectories" : 
 					[
-						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0",
+						"/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1",
 						"/usr/lib",
 						"/lib"
 					],
@@ -32,7 +32,7 @@
 					]
 				},
 				"path" : "/usr/bin/cc",
-				"version" : "12.2.0"
+				"version" : "13.1.1"
 			},
 			"language" : "C",
 			"sourceFileExtensions" : 

@@ -18,7 +18,6 @@ add_executable(yo_dwm
         src/layouts/layouts.h
         src/layouts/monocle.c
         src/layouts/tile.c
-        src/colors.h
         src/config.h
         src/drw.c
         src/drw.h
@@ -26,6 +25,12 @@ add_executable(yo_dwm
         src/movestack.c
         src/transient.c
         src/util.c
-        src/util.h src/keys/mouse.c src/keys/mouse.h src/keys/functions.h src/yo_dwm.h src/colors/dracula.h)
+        src/util.h
+        src/keys/mouse.c
+        src/keys/mouse.h
+        src/keys/functions.h
+        src/yo_dwm.h
+        src/colors/dracula.h
+        )
 
 target_link_libraries(yo_dwm X11 Xft Xinerama)
