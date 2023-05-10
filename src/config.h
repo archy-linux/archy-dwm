@@ -26,26 +26,18 @@ static const char dmenufont[] = "monospace:size=8";
 #endif
 
 #include "colors/dracula.h"
+#include "yo_dwm.h"
 
 // Autostart programs
 static const char *const autostart[] = {
     // Start my build of slstatus
-    "slstatus", NULL,
-    // Keyboard layouts switch (requires setxkbmap)
-    // "setxkbmap", "-model", "pc104", "-layout", "us,ar,jp,kr", "-variant", "dvorak-l,,,", "-option", "grp:win_space_toggle", NULL,
-    // "xkbset", "exp", "=sticky", "-twokey", "-latchlock", NULL, // sticky keys
-    "/bin/stickykeys", NULL,       // sticky keys script
-    "picom", NULL,                 // Start compositor , for transparency
-    "nitrogen", "--restore", NULL, // Restores the wallpaper
-    "nm-applet", NULL,             // Start the network manger
-    "copyq", NULL,                 // clipboard manger
+    "yo-slstatus", NULL,
     NULL                           /* terminate */
 };
 
 /* tagging */
-// static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII",
-// "VIII", "IX" }; static const char *tags[] = { "", "", "", "",
-// "", "", "", "", "" };
+// static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+// static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 static const char *tags[] = {"www", "dev", "sys",  "chat", "lab", "vid", "mus", "vbox", "gfx",  ";"};
 
 static const Rule rules[] = {
@@ -59,16 +51,12 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     {"Gimp", NULL, NULL, 9 << 8, 1, -1}, // 0100000000 (gfx tag)
-    {"Tor Browser", "Navigator", NULL, 9 << 9, 0,
-     -1}, // Open it in tag 10 (9 in array) (; tag)
+    {"Tor Browser", "Navigator", NULL, 9 << 9, 0,-1}, // Open it in tag 10 (9 in array) (; tag)
     {"KeePassXC", "keepassxc", NULL, 9 << 9, 0, -1}, // 1000000000 (; tag)
-    {"firefoxdeveloperedition", "Navigator", NULL, 1 << 0, 0,
-     -1},                                   // 0000000001 (www tag)
+    {"firefoxdeveloperedition", "Navigator", NULL, 1 << 0, 0,-1},                                   // 0000000001 (www tag)
     {"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000 (chat tag)
-    {"Virt-manager", "virt-manager", NULL, 9 << 7, 0,
-     -1}, // 0010000000 (vbox tag)
-    {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0,
-     -1},                                              // 0010000000 (vbox tag)
+    {"Virt-manager", "virt-manager", NULL, 9 << 7, 0,-1}, // 0010000000 (vbox tag)
+    {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0,1},                                              // 0010000000 (vbox tag)
     {NULL, "open.spotify.com", NULL, 8 << 3, 0, -1},   // 0001000000 (mus tag)
     {"cmus", NULL, NULL, 8 << 3, 0, -1},               // 0001000000 (mus tag)
     {"jetbrains-clion", NULL, NULL, 1 << 1, 0, -1},    // 0000000010 (dev tag)
@@ -86,9 +74,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact = 0.55f; /* factor of master area size [0.05..0.95] */
 static const int nmaster = 1;     /* number of clients in master area */
-static const int resizehints =
-    1; /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen =
-    1; /* 1 will force focus on the fullscreen window */
+static const int resizehints = 1; /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #endif // CONFIG_H
