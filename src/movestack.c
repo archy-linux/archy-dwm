@@ -1,4 +1,4 @@
-#include "dwm.h"
+#include "yo_dwm.h"
 #include "util.h"
 
 static void

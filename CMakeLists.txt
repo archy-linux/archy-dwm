@@ -22,10 +22,10 @@ add_executable(yo_dwm
         src/config.h
         src/drw.c
         src/drw.h
-        src/dwm.c
+        src/yo_dwm.c
         src/movestack.c
         src/transient.c
         src/util.c
-        src/util.h src/keys/mouse.c src/keys/mouse.h src/keys/functions.h src/dwm.h src/colors/dracula.h)
+        src/util.h src/keys/mouse.c src/keys/mouse.h src/keys/functions.h src/yo_dwm.h src/colors/dracula.h)
 
 target_link_libraries(yo_dwm X11 Xft Xinerama)
