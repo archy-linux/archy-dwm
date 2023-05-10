@@ -44,7 +44,7 @@
 
 #include "drw.h"
 #include "util.h"
-#include "dwm.h"
+#include "yo_dwm.h"
 
 /* macros */
 #define SYSTEM_TRAY_REQUEST_DOCK    0
