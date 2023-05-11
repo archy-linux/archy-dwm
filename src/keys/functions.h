@@ -5,7 +5,7 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-#include "../yo_dwm.h"
+#include "../archy_dwm.h"
 
 static void spawn(const Arg *arg);
 

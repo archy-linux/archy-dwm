@@ -26,7 +26,7 @@ static const char dmenufont[] = "monospace:size=8";
 #endif
 
 #include "colors/dracula.h"
-#include "yo_dwm.h"
+#include "archy_dwm.h"
 
 // Autostart programs
 static const char *const autostart[] = {
