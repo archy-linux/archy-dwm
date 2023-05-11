@@ -1,4 +1,4 @@
-#include "../yo_dwm.h"
+#include "../archy_dwm.h"
 
 void
 fibonacci(Monitor *mon, int s) {

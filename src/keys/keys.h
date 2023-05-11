@@ -1,7 +1,7 @@
 #ifndef KEYS_H
 #define KEYS_H
 
-#include "../yo_dwm.h"
+#include "../archy_dwm.h"
 #include <X11/X.h>
 
 typedef struct {
