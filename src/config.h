@@ -31,7 +31,7 @@ static const char dmenufont[] = "monospace:size=8";
 // Autostart programs
 static const char *const autostart[] = {
     // Start my build of slstatus
-    "yo-slstatus", NULL,
+    "archy-slstatus", NULL,
     NULL                           /* terminate */
 };
 
