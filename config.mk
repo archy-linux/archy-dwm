@@ -1,5 +1,5 @@
-# yo-dwm version
-VERSION = 6.4-0.2.1
+# Archy DWM version
+VERSION = 1.0.0
 
 # Customize below to fit your system
 
