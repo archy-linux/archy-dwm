@@ -3,15 +3,15 @@ on: [ push ]
 
 jobs:
   gitdab-mirror:
-  runs-on: ubuntu-latest
-  steps:
-    - name: mirror in Gitdab
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - uses: yesolutions/mirror-action@master
-      with:
-        REMOTE: 'https://gitdab.com/archy-linux/archy-dwm.git'
-        REMOTE_NAME: gitdab
-        GIT_USERNAME: anas-elgarhy
-        GIT_PASSWORD: ${{ secrets.PAGURE_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: mirror in Gitdab
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: 'https://gitdab.com/archy-linux/archy-dwm.git'
+          REMOTE_NAME: gitdab
+          GIT_USERNAME: anas-elgarhy
+
