@@ -31,15 +31,17 @@ ${BUILD_DIR}: ${OBJ}
 clean:
 	rm -rf ${OBJ_DIR}
 
-dist: build/archy-dwm archy-dwm.desktop
+dist: ${BUILD_DIR} archy-dwm.desktop
 	mkdir -p archy-dwm_${VERSION}
-	cp -R LICENSE ${BUILD_DIR} ${OBJ_DIR}/archy-dwm.desktop archy-dwm.1 dwm.png archy-dwm_${VERSION}
+	cp -R LICENSE README.md ${BUILD_DIR} ${OBJ_DIR}/archy-dwm.desktop archy-dwm.1 dwm.png archy-dwm_${VERSION}
 	tar -cf archy-dwm_${VERSION}.tar archy-dwm_${VERSION}
 	gzip archy-dwm_${VERSION}.tar
 	rm -rf archy-dwm_${VERSION}
+	mkdir -p dist
+	mv archy-dwm_${VERSION}.tar.gz dist
 	echo "The tarball is ready."
-	printf "Tarball size: %s\n" $$(du -h archy-dwm_${VERSION}.tar.gz | cut -f1)
-	printf "Tarball hash: %s\n" $$(sha256sum archy-dwm_${VERSION}.tar.gz | cut -d' ' -f1)
+	printf "Tarball size: %s\n" $$(du -h dist/archy-dwm_${VERSION}.tar.gz | cut -f1)
+	printf "Tarball hash: %s\n" $$(sha256sum dist/archy-dwm_${VERSION}.tar.gz)
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
