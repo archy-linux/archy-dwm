@@ -1,0 +1,17 @@
+name: Mirror the repo to bitbucket
+on: [push]
+
+jobs:
+  bitbucket-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mirror in bitbucket
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: 'https://anas-elgarhy@bitbucket.org/anas_elgarhy/archy-dwm.git.git'
+          REMOTE_NAME: bitbucket
+          GIT_USERNAME: anas_elgarhy
+          GIT_PASSWORD: ${{ secrets.BITBUCKET_TOKEN }}

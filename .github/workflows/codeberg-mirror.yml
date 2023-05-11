@@ -1,0 +1,17 @@
+name: Mirror the repo to codeberg
+on: [push]
+
+jobs:
+  codeberg-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mirror in codeberg
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: 'https://codeberg.org/archy-linux/archy-dwm.git'
+          REMOTE_NAME: codeberg
+          GIT_USERNAME: anas-elgarhy
+          GIT_PASSWORD: ${{ secrets.CODEBERG_TOKEN }}

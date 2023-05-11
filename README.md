@@ -20,11 +20,16 @@
 - `libxft-bgra` for color emojies support
 - `archy-slstatus` the status bar
 
-### Available in
-[![GitHub](https://img.shields.io/badge/GitHub-Main%20repo-brightgreen?style=for-the-badge&logo=GitHub)](https://github.com/anas-elgarhy/dwm-anas)
-[![GitLab](https://img.shields.io/badge/GitLab-Mirror%20repo-brightgreen?style=for-the-badge&logo=GitLab)](https://gitlab.com/anas-elgarhy/dwm-anas)
-[![BitBucket](https://img.shields.io/badge/BitBucket-Mirror%20repo-brightgreen?style=for-the-badge&logo=BitBucket)](https://bitbucket.org/anas_elgarhy/dwm-anas)
-[![Codeberg](https://img.shields.io/badge/Codeberg-Mirror%20repo-brightgreen?style=for-the-badge&logo=Codeberg)](https://codeberg.org/anas-elgarhy/dwm-anas)
+### Mirrors
+* [GitHub](https://github.com/archy-linux/archy-dwm) - The upstream repository
+* [GitLab](https://gitlab.com/archy-linux/archy-dwm)
+* [NotABug](https://notabug.org/archy-linux/archy-dwm) - Not instant updates
+* [Codeberg](https://codeberg.org/archy-linux/archy-dwm)
+* [Gitea](https://gitea.com/archy-linux/archy-dwm)
+* [Gitdab](https://gitdab.com/archy-linux/archy-dwm)
+* [Pagure](https://pagure.io/archy-dwm)
+* [Bitbucket](https://bitbucket.org/anas_elgarhy/archy-dwm)
+* [disroot](https://git.disroot.org/archy-linux/archy-dwm)
 
 ### References:
 - [XF86keysym](https://cgit.freedesktop.org/xorg/proto/x11proto/tree/XF86keysym.h)
