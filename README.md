@@ -1,7 +1,7 @@
-# yo-dwm
+# archy-dwm
 ## DWM but cleaner and more usable
 
-### Applayed patches:
+### Patches
 - [alwayscenter](https://dwm.suckless.org/patches/alwayscenter)
 - [cool autostart](https://dwm.suckless.org/patches/cool_autostart)
 - [fullscreen](https://dwm.suckless.org/patches/fullscreen)
@@ -18,7 +18,7 @@
 ### Dependencies
 - `libxinerama-dev`
 - `libxft-bgra` for color emojies support
-- `yo-slstatus` the status bar
+- `archy-slstatus` the status bar
 
 ### Available in
 [![GitHub](https://img.shields.io/badge/GitHub-Main%20repo-brightgreen?style=for-the-badge&logo=GitHub)](https://github.com/anas-elgarhy/dwm-anas)
@@ -26,5 +26,5 @@
 [![BitBucket](https://img.shields.io/badge/BitBucket-Mirror%20repo-brightgreen?style=for-the-badge&logo=BitBucket)](https://bitbucket.org/anas_elgarhy/dwm-anas)
 [![Codeberg](https://img.shields.io/badge/Codeberg-Mirror%20repo-brightgreen?style=for-the-badge&logo=Codeberg)](https://codeberg.org/anas-elgarhy/dwm-anas)
 
-### Refrences:
+### References:
 - [XF86keysym](https://cgit.freedesktop.org/xorg/proto/x11proto/tree/XF86keysym.h)
