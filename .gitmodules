@@ -1,3 +1,6 @@
 [submodule "archpackage/archy-dwm/archy-dwm-aur"]
 	path = archpackage/archy-dwm/archy-dwm-aur
 	url = ssh://aur@aur.archlinux.org/archy-dwm.git
+[submodule "archpackage/archy-dwm-git/archy-dwm-git-aur"]
+	path = archpackage/archy-dwm-git/archy-dwm-git-aur
+	url = ssh://aur@aur.archlinux.org/archy-dwm-git.git
