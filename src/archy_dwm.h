@@ -96,6 +96,7 @@ struct Systray {
 
 /* function declarations */
 static void applyrules(Client *c);
+static void apply_fribidi(char *str);
 
 static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);
 

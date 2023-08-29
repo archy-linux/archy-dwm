@@ -14,6 +14,7 @@
 - [fibonacci layouts](https://dwm.suckless.org/patches/fibonacci)
 - [centeredmaster](https://dwm.suckless.org/patches/centeredmaster)
 - [keychain](https://dwm.suckless.org/patches/keychain)
+- [Bidirectional](https://dwm.suckless.org/patches/bidi)
 
 ### Dependencies
 - `libxinerama-dev`
