@@ -54,7 +54,7 @@ static const Rule rules[] = {
     {"Tor Browser", "Navigator", NULL, 9 << 9, 0,-1}, // Open it in tag 10 (9 in array) (; tag)
     {"KeePassXC", "keepassxc", NULL, 9 << 9, 0, -1}, // 1000000000 (; tag)
     {"firefoxdeveloperedition", "Navigator", NULL, 1 << 0, 0,-1},                                   // 0000000001 (www tag)
-    {"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000 (chat tag)
+    //{"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000 (chat tag)
     {"Virt-manager", "virt-manager", NULL, 9 << 7, 0,-1}, // 0010000000 (vbox tag)
     {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0,1},                                              // 0010000000 (vbox tag)
     {NULL, "open.spotify.com", NULL, 8 << 3, 0, -1},   // 0001000000 (mus tag)
