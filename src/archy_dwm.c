@@ -97,7 +97,6 @@ static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
-static KeySym keychain = -1;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -909,14 +908,10 @@ grabkeys(void) {
         unsigned int i, j;
         unsigned int modifiers[] = {0, LockMask, numlockmask, numlockmask | LockMask};
         KeyCode code;
-        KeyCode chain;
 
         XUngrabKey(dpy, AnyKey, AnyModifier, root);
         for (i = 0; i < LENGTH(keys); i++)
             if ((code = XKeysymToKeycode(dpy, keys[i].keysym))) {
-                if (keys[i].chain != -1 &&
-                    ((chain = XKeysymToKeycode(dpy, keys[i].chain))))
-                    code = chain;
                 for (j = 0; j < LENGTH(modifiers); j++)
                     XGrabKey(dpy, code, keys[i].mod | modifiers[j], root,
                              True, GrabModeAsync, GrabModeAsync);
@@ -944,36 +939,16 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
 
 void
 keypress(XEvent *e) {
-    unsigned int i, j;
+    unsigned int i;
     KeySym keysym;
     XKeyEvent *ev;
-    int current = 0;
-    unsigned int modifiers[] = {0, LockMask, numlockmask, numlockmask | LockMask};
-
     ev = &e->xkey;
     keysym = XKeycodeToKeysym(dpy, (KeyCode) ev->keycode, 0);
     for (i = 0; i < LENGTH(keys); i++) {
-        if (keysym == keys[i].keysym && keys[i].chain == -1
+        if (keysym == keys[i].keysym 
             && CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
             && keys[i].func)
             keys[i].func(&(keys[i].arg));
-        else if (keysym == keys[i].chain && keychain == -1
-                 && CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
-                 && keys[i].func) {
-            current = 1;
-            keychain = keysym;
-            for (j = 0; j < LENGTH(modifiers); j++)
-                XGrabKey(dpy, AnyKey, 0 | modifiers[j], root,
-                         True, GrabModeAsync, GrabModeAsync);
-        } else if (!current && keysym == keys[i].keysym
-                   && keychain != -1
-                   && keys[i].chain == keychain
-                   && keys[i].func)
-            keys[i].func(&(keys[i].arg));
-    }
-    if (!current) {
-        keychain = -1;
-        grabkeys();
     }
 }
 
