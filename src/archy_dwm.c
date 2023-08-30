@@ -97,7 +97,6 @@ static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
-static KeySym keychain = -1;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -143,7 +142,7 @@ autostart_exec() {
         if ((autostart_pids[i] = fork()) == 0) {
             setsid();
             execvp(*p, (char *const *) p);
-            fprintf(stderr, "dwm: execvp %s\n", *p);
+            fprintf(stderr, "archy-dwm: execvp %s\n", *p);
             perror(" failed");
             _exit(EXIT_FAILURE);
         }
@@ -909,14 +908,10 @@ grabkeys(void) {
         unsigned int i, j;
         unsigned int modifiers[] = {0, LockMask, numlockmask, numlockmask | LockMask};
         KeyCode code;
-        KeyCode chain;
 
         XUngrabKey(dpy, AnyKey, AnyModifier, root);
         for (i = 0; i < LENGTH(keys); i++)
             if ((code = XKeysymToKeycode(dpy, keys[i].keysym))) {
-                if (keys[i].chain != -1 &&
-                    ((chain = XKeysymToKeycode(dpy, keys[i].chain))))
-                    code = chain;
                 for (j = 0; j < LENGTH(modifiers); j++)
                     XGrabKey(dpy, code, keys[i].mod | modifiers[j], root,
                              True, GrabModeAsync, GrabModeAsync);
@@ -944,36 +939,16 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
 
 void
 keypress(XEvent *e) {
-    unsigned int i, j;
+    unsigned int i;
     KeySym keysym;
     XKeyEvent *ev;
-    int current = 0;
-    unsigned int modifiers[] = {0, LockMask, numlockmask, numlockmask | LockMask};
-
     ev = &e->xkey;
     keysym = XKeycodeToKeysym(dpy, (KeyCode) ev->keycode, 0);
     for (i = 0; i < LENGTH(keys); i++) {
-        if (keysym == keys[i].keysym && keys[i].chain == -1
+        if (keysym == keys[i].keysym 
             && CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
             && keys[i].func)
             keys[i].func(&(keys[i].arg));
-        else if (keysym == keys[i].chain && keychain == -1
-                 && CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
-                 && keys[i].func) {
-            current = 1;
-            keychain = keysym;
-            for (j = 0; j < LENGTH(modifiers); j++)
-                XGrabKey(dpy, AnyKey, 0 | modifiers[j], root,
-                         True, GrabModeAsync, GrabModeAsync);
-        } else if (!current && keysym == keys[i].keysym
-                   && keychain != -1
-                   && keys[i].chain == keychain
-                   && keys[i].func)
-            keys[i].func(&(keys[i].arg));
-    }
-    if (!current) {
-        keychain = -1;
-        grabkeys();
     }
 }
 
@@ -1624,7 +1599,7 @@ setup(void) {
     XChangeProperty(dpy, wmcheckwin, netatom[NetWMCheck], XA_WINDOW, 32,
                     PropModeReplace, (unsigned char *) &wmcheckwin, 1);
     XChangeProperty(dpy, wmcheckwin, netatom[NetWMName], utf8string, 8,
-                    PropModeReplace, (unsigned char *) "dwm", 3);
+                    PropModeReplace, (unsigned char *) "archy-dwm", 3);
     XChangeProperty(dpy, root, netatom[NetWMCheck], XA_WINDOW, 32,
                     PropModeReplace, (unsigned char *) &wmcheckwin, 1);
     /* EWMH support per view */
@@ -1704,7 +1679,7 @@ spawn(const Arg *arg) {
             close(ConnectionNumber(dpy));
         setsid();
         execvp(((char **) arg->v)[0], (char **) arg->v);
-        fprintf(stderr, "dwm: execvp %s", ((char **) arg->v)[0]);
+        fprintf(stderr, "archy-dwm: execvp %s", ((char **) arg->v)[0]);
         perror(" failed");
         exit(EXIT_SUCCESS);
     }
@@ -1878,7 +1853,7 @@ updatebars(void) {
             .background_pixmap = ParentRelative,
             .event_mask = ButtonPressMask | ExposureMask
     };
-    XClassHint ch = {"dwm", "dwm"};
+    XClassHint ch = {"archy-dwm", "archy-dwm"};
     for (m = mons; m; m = m->next) {
         if (m->barwin)
             continue;
@@ -2059,7 +2034,7 @@ updatesizehints(Client *c) {
 void
 updatestatus(void) {
     if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-        strcpy(stext, "dwm-"
+        strcpy(stext, "archy dwm-"
     VERSION);
     drawbar(selmon);
     updatesystray();
@@ -2146,7 +2121,7 @@ updatesystray(void) {
                       0);
             XSync(dpy, False);
         } else {
-            fprintf(stderr, "dwm: unable to obtain system tray.\n");
+            fprintf(stderr, "archy-dwm: unable to obtain system tray.\n");
             free(systray);
             systray = NULL;
             return;
@@ -2309,7 +2284,7 @@ xerror(Display *dpy, XErrorEvent *ee) {
         || (ee->request_code == X_GrabKey && ee->error_code == BadAccess)
         || (ee->request_code == X_CopyArea && ee->error_code == BadDrawable))
         return 0;
-    fprintf(stderr, "dwm: fatal error: request code=%d, error code=%d\n",
+    fprintf(stderr, "archy-dwm: fatal error: request code=%d, error code=%d\n",
             ee->request_code, ee->error_code);
     return xerrorxlib(dpy, ee); /* may call exit */
 }
@@ -2323,7 +2298,7 @@ xerrordummy(Display *dpy, XErrorEvent *ee) {
  * is already running. */
 int
 xerrorstart(Display *dpy, XErrorEvent *ee) {
-    die("dwm: another window manager is already running");
+    die("archy-dwm: another window manager is already running");
     return -1;
 }
 

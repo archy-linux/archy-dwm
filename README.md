@@ -13,7 +13,6 @@
 - [noborder](https://dwm.suckless.org/patches/noborder)
 - [fibonacci layouts](https://dwm.suckless.org/patches/fibonacci)
 - [centeredmaster](https://dwm.suckless.org/patches/centeredmaster)
-- [keychain](https://dwm.suckless.org/patches/keychain)
 
 ### Dependencies
 - `libxinerama-dev`
