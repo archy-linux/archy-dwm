@@ -14,7 +14,7 @@ typedef struct {
 } Key;
 
 /* key definitions */
-#define MODKEY Mod4Mask // Super key
+#define MODKEY Mod1Mask // The alt key
 
 #define TAGKEYS(KEY, TAG)                                               \
       {MODKEY, KEY, view, {.ui = 1 << TAG}},                                \

@@ -23,9 +23,9 @@ static Key keys[] = {
         /* modifier                     chain key         key        function        argument */
         /* ---------------------------------- Apps Keys ---------------------------------- */
         // Dmenu (launcher)
-        {MODKEY | ShiftMask, XK_d, spawn, {.v = dmenucmd}},
+        {MODKEY, XK_p, spawn, {.v = dmenucmd}},
         // Rofi launcher (small)
-        {MODKEY | ShiftMask | ControlMask, XK_d, spawn, SHCMD("rofi -show drun")},
+        {MODKEY, XK_r, spawn, SHCMD("rofi -show drun")},
         {MODKEY, XK_Return, spawn, {.v = termcmd}},
         /************************************* Start the web browers *************************************/
         // Firefox-developer-edition
