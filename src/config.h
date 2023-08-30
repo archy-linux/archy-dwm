@@ -25,13 +25,15 @@ static const char dmenufont[] = "monospace:size=8";
 
 #endif
 
-#include "colors/dracula.h"
+#include "colors/gruvbox_dark_hard.h"
 #include "archy_dwm.h"
 
 // Autostart programs
 static const char *const autostart[] = {
     // Start my build of slstatus
     "archy-slstatus", NULL,
+  // Start the terminal with tmux
+  TERMINAL, "-e", "tmux", NULL,
     NULL                           /* terminate */
 };
 
