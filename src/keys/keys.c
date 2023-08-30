@@ -26,19 +26,7 @@ static Key keys[] = {
         {MODKEY | ShiftMask, -1, XK_d, spawn, {.v = dmenucmd}},
         // Rofi launcher (small)
         {MODKEY | ShiftMask | ControlMask, -1, XK_d, spawn, SHCMD("rofi -show drun")},
-        // Start the main terminal
         {MODKEY, -1, XK_Return, spawn, {.v = termcmd}},
-        // Start the alacritty terminal
-        {MODKEY, XK_t, XK_a, spawn, SHCMD("alacritty")},
-        // kitty
-        {MODKEY, XK_t, XK_k, spawn, SHCMD("kitty")},
-        /************************************* File browsers *************************************/
-        // GUI filebrowser
-        {MODKEY | ShiftMask, XK_f, XK_g, spawn, SHCMD("~/.scripts/filebrowser")},
-        // Rofi file browser (small)
-        {MODKEY | ShiftMask, XK_f, XK_f, spawn, SHCMD("rofi -show filebrowser")},
-        // Terminal file manager (ranger)
-        {MODKEY | ShiftMask, XK_f, XK_t, spawn, SHCMD(TERMINAL " -e ranger")},
         /************************************* Start the web browers *************************************/
         // Firefox-developer-edition
         {MODKEY, XK_w, XK_f, spawn, SHCMD("firefox-developer-edition")},
@@ -56,21 +44,7 @@ static Key keys[] = {
         /************************************* Start the dev apps *************************************/
         // Jetbrains toolbox
         {MODKEY, XK_a, XK_j, spawn, SHCMD("jetbrains-toolbox")},
-        // IntelliJ IDEA
-        {MODKEY, XK_a, XK_i, spawn, SHCMD("~/.scripts/idea")},
-        // Clion
-        {MODKEY, XK_a, XK_c, spawn, SHCMD("~/.scripts/clion")},
-        // NeoVim
-        {MODKEY, XK_a, XK_n, spawn, SHCMD(TERMINAL " -e nvim")},
-        // Vim
-        {MODKEY, XK_a, XK_v, spawn, SHCMD(TERMINAL " -e vim")},
-        // emacs
-        {MODKEY, XK_a, XK_e, spawn, SHCMD("emacs")},
-        /************************************* Start personalize apps *************************************/
-        // nitrogen
-        {MODKEY, XK_p, XK_b, spawn, SHCMD("nitrogen")},
-        // nm-connection-editor
-        {MODKEY, XK_p, XK_n, spawn, SHCMD("nm-connection-editor")},
+        
         /************************************* Start multi media apps *************************************/
         {MODKEY, -1, XK_l, spawn, SHCMD("luncher")},
         // cmus
@@ -171,7 +145,6 @@ static Key keys[] = {
         /* ---------------------------------- lock Keys ---------------------------------- */
         // Lock the screen
         {MODKEY | ShiftMask, -1, XK_x, spawn, SHCMD("betterlockscreen -l dim")},
-        {0, -1, XF86XK_Suspend, spawn, SHCMD("betterlockscreen -l dim")},
         // // Kill dwm (super + shift + alt + q)
         // { MODKEY|ShiftMask|Mod1Mask,    -1,      XK_q,                   quit,           {0} },
 };
