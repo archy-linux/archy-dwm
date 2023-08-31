@@ -16,6 +16,7 @@
 - [keychain](https://dwm.suckless.org/patches/keychain)
 - [Bidirectional](https://dwm.suckless.org/patches/bidi)
 
+
 ### Dependencies
 - `libxinerama-dev`
 - `libxft-bgra` for color emojies support

@@ -6,7 +6,6 @@
 
 typedef struct {
   unsigned int mod;
-  KeySym chain;
   KeySym keysym;
 
   void (*func)(const Arg *);
@@ -15,17 +14,13 @@ typedef struct {
 } Key;
 
 /* key definitions */
-#define MODKEY Mod4Mask // Super key
+#define MODKEY Mod1Mask // The alt key
 
-#define TAGKEYS(CHAIN, KEY, TAG)                                               \
-  {MODKEY, CHAIN, KEY, view, {.ui = 1 << TAG}},                                \
-      {MODKEY | ControlMask, CHAIN, KEY, toggleview, {.ui = 1 << TAG}},        \
-      {MODKEY | ShiftMask, CHAIN, KEY, tag, {.ui = 1 << TAG}},                 \
-      {MODKEY | ControlMask | ShiftMask,                                       \
-       CHAIN,                                                                  \
-       KEY,                                                                    \
-       toggletag,                                                              \
-       {.ui = 1 << TAG}},
+#define TAGKEYS(KEY, TAG)                                               \
+      {MODKEY, KEY, view, {.ui = 1 << TAG}},                                \
+      {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},        \
+      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                 \
+      {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
 
 // Include all the key bindings
 #ifndef KEYS_C

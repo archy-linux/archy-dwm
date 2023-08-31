@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 /* def */
-#define TERMINAL "kitty"
+#define TERMINAL "st"
 
 /* appearance */
 static const unsigned int borderpx = 1; /* border pixel of windows */
@@ -25,13 +25,15 @@ static const char dmenufont[] = "monospace:size=8";
 
 #endif
 
-#include "colors/dracula.h"
+#include "colors/gruvbox_dark_hard.h"
 #include "archy_dwm.h"
 
 // Autostart programs
 static const char *const autostart[] = {
     // Start my build of slstatus
     "archy-slstatus", NULL,
+  // Start the terminal with tmux
+  TERMINAL, "-e", "tmux", NULL,
     NULL                           /* terminate */
 };
 
@@ -54,7 +56,7 @@ static const Rule rules[] = {
     {"Tor Browser", "Navigator", NULL, 9 << 9, 0,-1}, // Open it in tag 10 (9 in array) (; tag)
     {"KeePassXC", "keepassxc", NULL, 9 << 9, 0, -1}, // 1000000000 (; tag)
     {"firefoxdeveloperedition", "Navigator", NULL, 1 << 0, 0,-1},                                   // 0000000001 (www tag)
-    {"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000 (chat tag)
+    //{"discord", NULL, NULL, 4 << 1, 0, -1}, // 0000001000 (chat tag)
     {"Virt-manager", "virt-manager", NULL, 9 << 7, 0,-1}, // 0010000000 (vbox tag)
     {"VirtualBox Manager", "VirtualBox Manager", NULL, 9 << 7, 0,1},                                              // 0010000000 (vbox tag)
     {NULL, "open.spotify.com", NULL, 8 << 3, 0, -1},   // 0001000000 (mus tag)
