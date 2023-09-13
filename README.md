@@ -11,9 +11,9 @@
 - [systray](https://dwm.suckless.org/patches/systray)
 - [sticky](https://dwm.suckless.org/patches/sticky)
 - [noborder](https://dwm.suckless.org/patches/noborder)
+- [notitle](https://dwm.suckless.org/patches/notitle)
 - [fibonacci layouts](https://dwm.suckless.org/patches/fibonacci)
 - [centeredmaster](https://dwm.suckless.org/patches/centeredmaster)
-- [notitle](https://dwm.suckless.org/patches/notitle)
 
 ### Dependencies
 - `libxinerama-dev`
