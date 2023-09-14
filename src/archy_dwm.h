@@ -25,6 +25,7 @@ enum {
     WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast
 }; /* default atoms */
 
+
 typedef union {
     int i;
     unsigned int ui;
