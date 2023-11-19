@@ -1654,20 +1654,6 @@ sigchld(int unused) {
     }
 }
 
-void
-spawn(const Arg *arg) {
-    if (arg->v == dmenucmd)
-        dmenumon[0] = '0' + selmon->num;
-    if (fork() == 0) {
-        if (dpy)
-            close(ConnectionNumber(dpy));
-        setsid();
-        execvp(((char **) arg->v)[0], (char **) arg->v);
-        fprintf(stderr, "archy-dwm: execvp %s", ((char **) arg->v)[0]);
-        perror(" failed");
-        exit(EXIT_SUCCESS);
-    }
-}
 
 void
 tag(const Arg *arg) {
