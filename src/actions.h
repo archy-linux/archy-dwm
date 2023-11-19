@@ -7,8 +7,6 @@
 
 #include "archy_dwm.h"
 
-static void spawn(const Arg *arg);
-
 static void focusmon(const Arg *arg);
 
 static void fullscreen(const Arg *arg);
