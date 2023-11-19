@@ -4,11 +4,11 @@
 #ifndef GRUVBOX_DARK_HARD_H
 #define GRUVBOX_DARK_HARD_H
 
-static const char norm_fg[] = "#EBDBB2"; // light1
+static const char norm_fg[] = "#D5C4A1"; // light2
 static const char norm_bg[] = "#1D2021"; // dark0_hard
 static const char norm_border[] = "#504945"; // dark2
 
-static const char sel_fg[] = "#FE8019"; // bright_orange
+static const char sel_fg[] = "#D79921"; // neutral_yellow
 static const char sel_bg[] = "#1D2021"; // dark0_hard
 static const char sel_border[] = "#7C6F64"; // dark4
 
