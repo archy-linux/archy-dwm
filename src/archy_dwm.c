@@ -99,15 +99,11 @@ static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 
 /* configuration, allows nested code to access above variables */
-#include "config.h"
+#include "config/config.h"
 /* Layouts */
 #include "layouts/layouts.h"
 /* Movestack patch */
 #include "movestack.c"
-/* Keys bindings */
-#include "keys/keys.h"
-/* Mouse bindings */
-#include "keys/mouse.h"
 
 struct Pertag {
     unsigned int curtag, prevtag; /* current and previous tag */
