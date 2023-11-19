@@ -2,8 +2,8 @@
 // Created by anas on 10/31/22.
 //
 
-#ifndef DWM_H
-#define DWM_H
+#ifndef ARCHY_DWM_H
+#define ARCHY_DWM_H
 
 /* enums */
 enum {
@@ -270,4 +270,4 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 
 static void autostart_exec(void);
 
-#endif //DWM_H
+#endif //ARCHY_DWM_H

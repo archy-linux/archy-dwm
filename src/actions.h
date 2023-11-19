@@ -2,10 +2,10 @@
 // Created by anas on 10/31/22.
 //
 
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
+#ifndef ACTIONS_H
+#define ACTIONS_H
 
-#include "../archy_dwm.h"
+#include "archy_dwm.h"
 
 static void spawn(const Arg *arg);
 
@@ -43,4 +43,4 @@ static void zoom(const Arg *arg);
 
 static void quit(const Arg *arg);
 
-#endif //FUNCTIONS_H
+#endif //ACTIONS_H

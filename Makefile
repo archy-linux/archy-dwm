@@ -20,7 +20,7 @@ ${OBJ_DIR}/%.o: %.c
 	mkdir -p $(@D)
 	${CC} -c ${CFLAGS} $< -o $@
 
-${OBJ}: src/config.h config.mk
+${OBJ}: src/config/config.h config.mk
 
 config.h:
 	cp config.def.h $@

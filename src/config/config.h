@@ -32,8 +32,6 @@ static const char dmenufont[] = "monospace:size=8";
 static const char *const autostart[] = {
     // Start my build of slstatus
     "archy-slstatus", NULL,
-  // Start the terminal with tmux
-  TERMINAL, "-e", "tmux", NULL,
     NULL                           /* terminate */
 };
 
