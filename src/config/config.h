@@ -3,6 +3,15 @@
 /* def */
 #define TERMINAL "st"
 
+#ifndef STDDEF_H
+#include <stddef.h>
+#endif
+#ifndef ARCHY_DWM_H
+#include "../archy_dwm.h"
+#endif
+#include "keys.h"
+#include "mouse.h"
+
 /* appearance */
 static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int gappx = 3;    /* gaps size between windows */
