@@ -29,9 +29,8 @@ static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 0;      /* 0 means bottom bar */
 static const char *fonts[] = {
-    "monospace:size=6", "Noto Color Emoji:size=7",
-    "Nerd Font Mono:size=10:antialias=true:hinting=true"};
-static const char dmenufont[] = "monospace:size=8";
+    "monospace:size=6", "Noto Color Emoji:size=6"};
+static const char dmenufont[] = "monospace:size=7";
 
 /* Colors - Gruvbox dark hard */
 static const char norm_fg[] = "#D5C4A1";     // light2
