@@ -14,9 +14,9 @@
       (system:
         let
           pkgs = import nixpkgs { inherit system; };
-          libPath = with pkgs; lib.makeLibraryPath [ xorg.libX11 ];
+          libPath = with pkgs; lib.makeLibraryPath [ libX11 ];
           nativeBuildInputs = with pkgs; [ pkg-config gnumake ];
-          buildInputs = with pkgs.xorg; [ libX11 libXft libXinerama ];
+          buildInputs = with pkgs; [ libX11 libXft libXinerama ];
         in
         with pkgs; {
           packages = rec {
